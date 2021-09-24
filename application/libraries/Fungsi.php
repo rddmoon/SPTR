@@ -1,6 +1,6 @@
 <?php
 
-class Fungsi
+Class Fungsi
 {
   protected $ci;
   function __construct()
@@ -11,7 +11,7 @@ class Fungsi
   function user_login()
   {
     $this->ci->load->model('m_user');
-    $user_id = $this->ci->session->user_data('id');
+    $user_id = $this->ci->session->userdata('id');
     $user_data = $this->ci->m_user->get($user_id)->row();
     return $user_data;
   }

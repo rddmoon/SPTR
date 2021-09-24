@@ -5,7 +5,7 @@ class Auth extends CI_Controller {
 
 	public function login()
 	{
-		// cek_sudah_login();
+		cek_sudah_login();
 		$this->load->view('login');
 	}
 	public function process()
@@ -40,7 +40,7 @@ class Auth extends CI_Controller {
 
 	public function logout()
 	{
-		$params = array('id', 'role');
+		$params = array('user_id', 'role');
 		$this->session->unset_userdata($params);
 		redirect('auth/login');
 	}

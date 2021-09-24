@@ -19,7 +19,7 @@ class M_user extends CI_Model
     $this->db->from('user');
     if($id != null)
     {
-      $this->db->where('id', $id);
+      $this->db->where('user_id', $id);
     }
     $query = $this->db->get();
     return $query;
