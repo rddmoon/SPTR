@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		cek_belum_login();
-		$this->template->load('template', 'dashboard');
+		$content = $this->fungsi->user_login()->role . '/dashboard';
+		$this->template->load('template', $content);
 	}
 }

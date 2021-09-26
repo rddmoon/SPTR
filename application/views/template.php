@@ -164,7 +164,7 @@
                 <i class="fas fa-cog"></i> Settings
               </a> -->
               <div class="dropdown-divider"></div>
-              <a href="<?=site_url('auth/logout')?>" class="dropdown-item has-icon text-danger">
+              <a onclick="return confirm('Apakah anda yakin ingin Logout?')" href="<?=site_url('auth/logout')?>" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -174,6 +174,7 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
+            <!-- supaa -->
             <a href="<?=site_url('dashboard')?>">ITG</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">

@@ -20,7 +20,7 @@
                 <th scope="col">No</th>
                 <th scope="col">Username</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Akses</th>
+                <th scope="col">Role</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
@@ -34,10 +34,15 @@
                 <td><?=$value->nama?></td>
                 <td><?=$value->role?></td>
                 <td>
-                  <a href="<?=site_url('user/edit/')?>" class="btn btn-warning">
-                    <i class="fa fa-edit"></i> Ubah</a>
-                  <a href="<?=site_url('user/delete/')?>" class="btn btn-danger">
-                      <i class="fa fa-trash-alt"></i> Hapus</a>
+                  <form class="" action="<?=site_url('user/delete')?>" method="post">
+                    <a href="<?=site_url('user/edit/'.$value->id)?>" class="btn btn-warning">
+                      <i class="fa fa-edit"></i> Ubah
+                    </a>
+                    <input type="hidden" name="user_id" value="<?=$value->id?>">
+                    <button onclick="return confirm('Apakah anda yakin akan menghapus data?')" class="btn btn-danger">
+                      <i class="fa fa-trash-alt"></i> Hapus
+                    </button>
+                  </form>
                 </td>
               </tr>
             <?php } ?>

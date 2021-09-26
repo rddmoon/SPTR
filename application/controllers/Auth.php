@@ -24,7 +24,6 @@ class Auth extends CI_Controller {
 				$this->session->set_userdata($params);
 				// echo $row->role;
 				echo "<script>
-				alert('Login berhasil.');
 				window.location='".site_url('dashboard')."';
 				</script>";
 			}

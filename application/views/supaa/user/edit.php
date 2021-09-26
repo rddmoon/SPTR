@@ -6,7 +6,7 @@
     <div class="col-12 col-offset-12">
       <div class="card">
         <div class="card-header">
-          <h4>Masukkan Data Pengguna</h4>
+          <h4>Ubah Data Pengguna</h4>
         </div>
         <div class="card-body">
           <?php //echo validation_errors(); ?>
@@ -42,7 +42,6 @@
             <div class="form-group">
               <label>Role</label>
               <select name="role" class="form-control <?= form_error('role') ? 'is-invalid' : '' ?>">
-                <option value="">- Pilih Role -</option>
                 <option value="supaa" <?=set_value('role') == 'supaa' ? "selected" : null?>>Supaa</option>
                 <option value="dirut" <?=set_value('role') == 'dirut' ? "selected" : null?>>Dirut</option>
                 <option value="dirut_keuangan" <?=set_value('role') == 'dirut_keuangan' ? "selected" : null?>>Dirut Keuangan</option>
