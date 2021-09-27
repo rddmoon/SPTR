@@ -35,9 +35,3 @@ class M_perumahan extends CI_Model
         $this->db->delete('perumahan');
     }
 }
-
-
-
-
-
-?>
