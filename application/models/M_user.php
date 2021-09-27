@@ -19,7 +19,7 @@ class M_user extends CI_Model
     $this->db->from('user');
     if($id != null)
     {
-      $this->db->where('user_id', $id);
+      $this->db->where('id', $id);
     }
     $query = $this->db->get();
     return $query;
@@ -32,6 +32,19 @@ class M_user extends CI_Model
     $params['password'] = sha1($post['password']);
     $params['role'] = $post['role'];
     $this->db->insert('user', $params);
+  }
+
+  public function edit($post)
+  {
+    $params['username'] = $post['username'];
+    $params['nama'] = $post['nama'];
+    if (!empty($post['password']))
+    {
+      $params['password'] = sha1($post['password']);
+    }
+    $params['role'] = $post['role'];
+    $this->db->where('id', $post['user_id']);
+    $this->db->update('user', $params);
   }
 
   public function delete($id)

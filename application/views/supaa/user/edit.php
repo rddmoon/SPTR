@@ -13,28 +13,29 @@
           <form class="" action="" method="post">
             <div class="form-group">
               <label>Username</label>
-              <input type="text" name="username" value="<?=set_value('username')?>" class="form-control <?= form_error('username') ? 'is-invalid' : '' ?>">
+              <input type="hidden" name="user_id" value="<?=$user->id?>">
+              <input type="text" name="username" value="<?=$this->input->post('username') ?? $user->username?>" class="form-control <?= form_error('username') ? 'is-invalid' : '' ?>">
               <div class="invalid-feedback">
     						<?= form_error('username') ?>
     					</div>
             </div>
             <div class="form-group">
               <label>Nama</label>
-              <input type="text" name="nama" value="<?=set_value('nama')?>" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>">
+              <input type="text" name="nama" value="<?=$this->input->post('nama') ?? $user->nama?>" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>">
               <div class="invalid-feedback">
     						<?= form_error('nama') ?>
     					</div>
             </div>
             <div class="form-group">
-              <label>Password</label>
-                <input type="password" name="password" value="<?=set_value('password')?>" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
+              <label>Password</label> <small> (Jika tidak diganti, biarkan kosong)</small>
+                <input type="password" name="password" value="<?=$this->input->post('password')?>" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
                 <div class="invalid-feedback">
       						<?= form_error('password') ?>
       					</div>
             </div>
             <div class="form-group">
               <label>Konfirmasi Password</label>
-              <input type="password" name="passconf" value="<?=set_value('passconf')?>" class="form-control <?= form_error('passconf') ? 'is-invalid' : '' ?>">
+              <input type="password" name="passconf" value="<?=$this->input->post('passconf')?>" class="form-control <?= form_error('passconf') ? 'is-invalid' : '' ?>">
               <div class="invalid-feedback">
     						<?= form_error('passconf') ?>
     					</div>
@@ -42,13 +43,14 @@
             <div class="form-group">
               <label>Role</label>
               <select name="role" class="form-control <?= form_error('role') ? 'is-invalid' : '' ?>">
-                <option value="supaa" <?=set_value('role') == 'supaa' ? "selected" : null?>>Supaa</option>
-                <option value="dirut" <?=set_value('role') == 'dirut' ? "selected" : null?>>Dirut</option>
-                <option value="dirut_keuangan" <?=set_value('role') == 'dirut_keuangan' ? "selected" : null?>>Dirut Keuangan</option>
-                <option value="keuangan" <?=set_value('role') == 'keuangan' ? "selected" : null?>>Keuangan</option>
-                <option value="marketing" <?=set_value('role') == 'marketing' ? "selected" : null?>>Marketing</option>
-                <option value="penagihan" <?=set_value('role') == 'penagihan' ? "selected" : null?>>Penagihan</option>
-                <option value="kasir" <?=set_value('role') == 'kasir' ? "selected" : null?>>Kasir</option>
+                <?php $role = $this->input->post('role') ? $this->input->post('role') : $user->role ?>
+                <option value="supaa" <?=$role == 'supaa' ? 'selected' : null?>>Supaa</option>
+                <option value="dirut" <?=$role == 'dirut' ? 'selected' : null?>>Dirut</option>
+                <option value="dirut_keuangan" <?=$role == 'dirut_keuangan' ? 'selected' : null?>>Dirut Keuangan</option>
+                <option value="keuangan" <?=$role == 'keuangan' ? 'selected' : null?>>Keuangan</option>
+                <option value="marketing" <?=$role == 'marketing' ? 'selected' : null?>>Marketing</option>
+                <option value="penagihan" <?=$role == 'penagihan' ? 'selected' : null?>>Penagihan</option>
+                <option value="kasir" <?=$role == 'kasir' ? 'selected' : null?>>Kasir</option>
               </select>
               <div class="invalid-feedback">
     						<?= form_error('role') ?>

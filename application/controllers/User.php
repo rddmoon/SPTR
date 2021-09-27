@@ -8,6 +8,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		cek_belum_login();
 		$this->load->model('m_user');
+		$this->load->library('form_validation');
 	}
 
 	public function index()
@@ -24,18 +25,17 @@ class User extends CI_Controller {
 	{
 		$content = $this->fungsi->user_login()->role . '/user/add';
 
-		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
 				array('is_unique' => '%s sudah terpakai, gunakan username yang lain.')
 		);
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
-    $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
     $this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]',
 				array('matches' => '%s tidak sesuai.')
 		);
     $this->form_validation->set_rules('role', 'Role', 'required');
 		$this->form_validation->set_message('required', '%s masih kosong.');
-		$this->form_validation->set_message('min_length', '{field} minimal 6 karakter.');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter.');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -58,27 +58,26 @@ class User extends CI_Controller {
 	{
 		$content = $this->fungsi->user_login()->role . '/user/edit';
 
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
+		$this->form_validation->set_rules('username', 'Username', 'required|callback_username_check',
 				array('is_unique' => '%s sudah terpakai, gunakan username yang lain.')
 		);
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		if ($this->input->post('password'))
 		{
-			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
-			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]',
+			$this->form_validation->set_rules('password', 'Password', 'min_length[5]');
+			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
 			array('matches' => '%s tidak sesuai.')
 			);
 		}
 		if ($this->input->post('passconf'))
 		{
-			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'required|matches[password]',
+			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
 			array('matches' => '%s tidak sesuai.')
 			);
 		}
     $this->form_validation->set_rules('role', 'Role', 'required');
 		$this->form_validation->set_message('required', '%s masih kosong.');
-		$this->form_validation->set_message('min_length', '{field} minimal 6 karakter.');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter.');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -106,6 +105,21 @@ class User extends CI_Controller {
 		}
 		// $this->template->load('template', $content);
 	}
+
+	function username_check()
+  {
+		$post = $this->input->post(null, TRUE);
+		$query = $this->db->query("SELECT * FROM user WHERE username = '$post[username]' AND id != '$post[user_id]'");
+		if($query->num_rows() > 0)
+		{
+			$this->form_validation->set_message('username_check', '{field} sudah terpakai, gunakan username yang lain.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+  }
 
 	public function delete()
 	{
