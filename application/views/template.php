@@ -192,6 +192,12 @@
               <li>
                 <a href="<?=site_url('pembeli')?>" class="nav-link"><i class="far fa-address-book"></i> <span>Pembeli</span></a>
               </li>
+              <li>
+                <a href="<?=site_url('perumahan')?>" class="nav-link"><i class="fas fa-city"></i> <span>Perumahan</span></a>
+              </li>
+              <li>
+                <a href="<?=site_url('rumah')?>" class="nav-link"><i class="fas fa-home"></i> <span>Rumah</span></a>
+              </li>
             <?php } ?>
               <li class="menu-header">Starter</li>
               <li class="nav-item dropdown">
