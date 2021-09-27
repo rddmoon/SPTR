@@ -19,4 +19,9 @@ function cek_belum_login()
     redirect('auth/login');
   }
 }
+
+function cek_akses()
+{
+  // code...
+}
  ?>

@@ -11,7 +11,8 @@ class Auth extends CI_Controller {
 	public function process()
 	{
 		$post = $this->input->post(null, TRUE);
-		if(isset($post['login'])){
+		if(isset($post['login']))
+		{
 			$this->load->model('m_user');
 			$query = $this->m_user->login($post);
 			if($query->num_rows() > 0)
@@ -19,10 +20,12 @@ class Auth extends CI_Controller {
 				$row = $query->row();
 				$params = array(
 					'user_id' => $row->id,
+					'nama' => $row->nama,
+					'username' => $row->username,
 					'role' => $row->role
 				);
 				$this->session->set_userdata($params);
-				// echo $row->role;
+				//echo $row->role;
 				echo "<script>
 				window.location='".site_url('dashboard')."';
 				</script>";
@@ -39,7 +42,7 @@ class Auth extends CI_Controller {
 
 	public function logout()
 	{
-		$params = array('user_id', 'role');
+		$params = array('user_id', 'nama', 'username', 'role');
 		$this->session->unset_userdata($params);
 		redirect('auth/login');
 	}

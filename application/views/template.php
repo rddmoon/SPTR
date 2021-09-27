@@ -185,9 +185,14 @@
               <li>
                 <a href="<?=site_url('dashboard')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
               </li>
+              <?php if($this->session->userdata('role') == 'supaa') {?>
               <li>
                 <a href="<?=site_url('user')?>" class="nav-link"><i class="far fa-user"></i> <span>Pengguna</span></a>
               </li>
+              <li>
+                <a href="<?=site_url('pembeli')?>" class="nav-link"><i class="far fa-address-book"></i> <span>Pembeli</span></a>
+              </li>
+            <?php } ?>
               <li class="menu-header">Starter</li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>

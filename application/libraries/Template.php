@@ -15,5 +15,3 @@
       return $this->CI->load->view($template, $this->template_data, $return);
     }
   }
-
- ?>
