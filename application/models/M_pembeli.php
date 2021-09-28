@@ -27,11 +27,13 @@ class M_pembeli extends CI_Model
 
   public function add($post)
   {
-    $params['nama'] = $post['nama'];
+    $date = new DateTime($post['tl']);
+    $tl = $date->format('d M Y');
+    $params['nama_pembeli'] = $post['nama'];
     $params['NIK'] = $post['NIK'];
     $params['alamat'] = $post['alamat'];
     $params['telepon'] = $post['telepon'];
-    $params['ttl'] = $post['ttl'];
+    $params['ttl'] = $post['tempat'].', '. $tl;
     $params['status_perkawinan'] = $post['status_perkawinan'];
     $params['pekerjaan'] = $post['pekerjaan'];
     $this->db->insert('pembeli', $params);
