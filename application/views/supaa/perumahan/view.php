@@ -28,7 +28,7 @@
                             <?php $no = 1;
                             foreach ($perumahan->result() as $key => $value){
                             ?>
-                            <tr class="text-left">
+                            <tr class="text-center">
                                 <td><?=$no++?></td>
                                 <td><?=$value->nama?></td>
                                 <td><?=$value->jumlah_unit?></td>
