@@ -35,7 +35,7 @@
                                 <td><?=$value->lokasi?></td>
                                 <td>
                                     <form class="" action="<?=site_url('perumahan/delete')?>" method="post">
-                                        <a href="<?site_url('perumahan/edit/'.$value->id)?>" class="btn btn-warning">
+                                        <a href="<?=site_url('perumahan/edit/'.$value->id)?>" class="btn btn-warning">
                                             <i class="fa fa-edit"></i> Ubah
                                         </a>
                                         <input type="hidden" name="perumahan_id" value="<?=$value->id?>">
