@@ -26,7 +26,7 @@ class M_perumahan extends CI_Model
         $params['nama'] = $post['nama'];
         $params['jumlah_unit'] = $post['jumlah_unit'];
         $params['lokasi'] = $post['lokasi'];
-        $this->db->where('id', $post['id']);
+        $this->db->where('id', $post['perumahan_id']);
         $this->db->update('perumahan', $params);
     }
     public function delete($id)
