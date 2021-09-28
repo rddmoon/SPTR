@@ -196,7 +196,7 @@
                 <a href="<?=site_url('perumahan')?>" class="nav-link"><i class="fas fa-city"></i> <span>Perumahan</span></a>
               </li>
               <li>
-                <a href="<?=site_url('rumah')?>" class="nav-link"><i class="fas fa-home"></i> <span>Rumah</span></a>
+                <a href="<?=site_url('unit')?>" class="nav-link"><i class="fas fa-home"></i> <span>Rumah</span></a>
               </li>
               <li>
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
