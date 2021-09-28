@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_rumah extends CI_Model
+class M_unit extends CI_Model
 {
     public function get($id = null)
     {
