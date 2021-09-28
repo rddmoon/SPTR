@@ -25,36 +25,52 @@
     						<?= form_error('NIK') ?>
     					</div>
             </div>
+            <div class="form-group mb-0">
+              <label>Alamat</label>
+              <textarea name="alamat" value="<?=set_value('alamat')?>" class="form-control <?= form_error('alamat') ? 'is-invalid' : '' ?>"></textarea>
+              <div class="invalid-feedback">
+    						<?= form_error('alamat') ?>
+    					</div>
+            </div>
             <div class="form-group">
               <label>Telepon</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    +62
+                    <i class="fa fa-phone"></i>
                   </div>
                 </div>
-                <input type="text" class="form-control phone-number">
+                <input type="text" name="telepon" value="<?=set_value('telepon')?>" class="form-control phone-number <?= form_error('telepon') ? 'is-invalid' : '' ?>" placeholder="08xxxxxxxxxx">
+                <div class="invalid-feedback">
+      						<?= form_error('telepon') ?>
+      					</div>
               </div>
             </div>
             <div class="form-group">
-              <label>Role</label>
-              <select name="role" class="form-control <?= form_error('role') ? 'is-invalid' : '' ?>">
-                <option value="">- Pilih Role -</option>
-                <option value="supaa" <?=set_value('role') == 'supaa' ? "selected" : null?>>Supaa</option>
-                <option value="dirut" <?=set_value('role') == 'dirut' ? "selected" : null?>>Dirut</option>
-                <option value="dirut_keuangan" <?=set_value('role') == 'dirut_keuangan' ? "selected" : null?>>Dirut Keuangan</option>
-                <option value="keuangan" <?=set_value('role') == 'keuangan' ? "selected" : null?>>Keuangan</option>
-                <option value="marketing" <?=set_value('role') == 'marketing' ? "selected" : null?>>Marketing</option>
-                <option value="penagihan" <?=set_value('role') == 'penagihan' ? "selected" : null?>>Penagihan</option>
-                <option value="kasir" <?=set_value('role') == 'kasir' ? "selected" : null?>>Kasir</option>
+              <label>Tempat Tanggal Lahir</label>
+              <input type="text" name="ttl" value="<?=set_value('ttl')?>" class="form-control <?= form_error('ttl') ? 'is-invalid' : '' ?>" placeholder="Kota, xx Bulan Tahun">
+            </div>
+            <div class="form-group">
+              <label>Status Perkawinan</label>
+              <select name="status_perkawinan" class="form-control <?= form_error('status_perkawinan') ? 'is-invalid' : '' ?>">
+                <option value="">- Pilih Status -</option>
+                <option value="Kawin" <?=set_value('status_perkawinan') == 'Kawin' ? "selected" : null?>>Kawin</option>
+                <option value="Belum Kawin" <?=set_value('status_perkawinan') == 'Belum Kawin' ? "selected" : null?>>Belum Kawin</option>
               </select>
               <div class="invalid-feedback">
-    						<?= form_error('role') ?>
+    						<?= form_error('status_perkawinan') ?>
+    					</div>
+            </div>
+            <div class="form-group">
+              <label>Pekerjaan</label>
+              <input type="text" name="pekerjaan" value="<?=set_value('pekerjaan')?>" class="form-control <?= form_error('pekerjaan') ? 'is-invalid' : '' ?>">
+              <div class="invalid-feedback">
+    						<?= form_error('pekerjaan') ?>
     					</div>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-success">Simpan</button>
-              <a href="<?=site_url('user')?>" type="button" class="btn btn-danger pull-right">Batal</a>
+              <a href="<?=site_url('pembeli')?>" type="button" class="btn btn-danger pull-right">Batal</a>
             </div>
           </form>
         </div>
