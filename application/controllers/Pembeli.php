@@ -64,7 +64,8 @@ class Pembeli extends CI_Controller {
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
     $this->form_validation->set_rules('alamat', 'Alamat', 'required');
     $this->form_validation->set_rules('telepon', 'Telepon', 'required|numeric');
-    $this->form_validation->set_rules('ttl', 'TTL', 'required');
+		$this->form_validation->set_rules('tempat', 'Tempat Lahir', 'required');
+		$this->form_validation->set_rules('tl', 'Tanggal Lahir', 'required');
     $this->form_validation->set_rules('status_perkawinan', 'Status Perkawinan', 'required');
     $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required');
 		$this->form_validation->set_message('required', '%s masih kosong.');
