@@ -48,7 +48,27 @@
             </div>
             <div class="form-group">
               <label>Tempat Tanggal Lahir</label>
-              <input type="text" name="ttl" value="<?=set_value('ttl')?>" class="form-control <?= form_error('ttl') ? 'is-invalid' : '' ?>" placeholder="Kota, xx Bulan Tahun">
+              <br>
+              <div class="form-group" style="max-width: 300px">
+                <label>Tempat</label>
+                <input type="text" name="tempat" value="<?=set_value('tempat')?>" class="form-control <?= form_error('tempat') ? 'is-invalid' : '' ?>" placeholder="Kota">
+                <div class="invalid-feedback">
+                  <?= form_error('tempat') ?>
+                </div>
+                <label>Tanggal Lahir</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <i class="fa fa-calendar-alt"></i>
+                    </div>
+                  </div>
+                  <input type="date" name="tl" value="<?=set_value('tl')?>" class="form-control datepicker <?= form_error('tl') ? 'is-invalid' : '' ?>" placeholder="DD-MM-YYY">
+                  <div class="invalid-feedback">
+        						<?= form_error('tl') ?>
+        					</div>
+                </div>
+
+              </div>
             </div>
             <div class="form-group">
               <label>Status Perkawinan</label>
