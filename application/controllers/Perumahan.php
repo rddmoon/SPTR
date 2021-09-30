@@ -31,7 +31,7 @@ class Perumahan extends CI_Controller
             $this->template->load('template', $content);
         }
         else{
-            $post = $this->input->post(null, TRUE);
+            $post = $this->input->post(null,TRUE);
             $this->m_perumahan->add($post);
             if($this->db->affected_rows() > 0){
                 echo "<script>alert('Data berhasil disimpan');</script>";
@@ -60,13 +60,15 @@ class Perumahan extends CI_Controller
 				echo "window.location='".site_url('perumahan')."';</script>";
             }
         }
-        else{
-            $post = $this->input->post(null, TRUE);
-            $this->m_perumahan->edit($post);
-            if($this->db->affected_rows() > 0){
-                echo "<script>alert('Data berhasil disimpan');</script>";
-            }
-            echo "<script>window.location='".site_url('perumahan')."';</script>";
+        else
+        {
+            $post = $this->input->post(null,TRUE);
+			$this->m_perumahan->edit($post);
+			if($this->db->affected_rows() > 0)
+			{
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('perumahan')."';</script>";
         }
     }
 
