@@ -19,9 +19,11 @@
                         </div>
                         <div class="form-group">
                             <label>Jumlah Unit</label>
-                            <input type="text" name="jumlah_unit" value="<?=set_value('jumlah_unit')?>" class="form-control <?= form_error('jumlah_unit') ? 'is-invalid' : '' ?>">
-                            <div class="invalid-feedback">
-                                <?= form_error('jumlah_unit')?>
+                            <div class="" style="max-width:200px">
+                                <input type="number" min="1" name="jumlah_unit" value="<?=set_value('jumlah_unit')?>" class="form-control <?= form_error('jumlah_unit') ? 'is-invalid' : '' ?>">
+                                <div class="invalid-feedback">
+                                    <?= form_error('jumlah_unit')?>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
