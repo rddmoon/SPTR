@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label>Jumlah Unit</label>
                             <div class="" style="max-width:200px">
-                                <input type="number" min="1" name="jumlah_unit" value="<?=$this->input->post('jumlah_unit') ?? $perumahan->jumlah_unit?>" class="form-control" <?= form_error('jumlah_unit') ? 'is-invalid' : '' ?>>
+                                <input type="number" min="1" name="jumlah_unit" value="<?=$this->input->post('jumlah_unit') ?? $perumahan->jumlah_unit?>" class="form-control <?= form_error('jumlah_unit') ? 'is-invalid' : '' ?>">
                                 <div class="invalid-feedback">
                                     <?= form_error('jumlah_unit') ?>
                                 </div>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label>Lokasi</label>
-                            <input type="text" name="lokasi" value="<?=$this->input->post('lokasi') ?? $perumahan->lokasi?>" class="form-control" <?= form_error('lokasi') ? 'is-invalid' : '' ?>>
+                            <input type="text" name="lokasi" value="<?=$this->input->post('lokasi') ?? $perumahan->lokasi?>" class="form-control <?= form_error('lokasi') ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= form_error('lokasi') ?>
                             </div>
