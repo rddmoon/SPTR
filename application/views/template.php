@@ -196,7 +196,7 @@
                 <a href="<?=site_url('perumahan')?>" class="nav-link"><i class="fas fa-city"></i> <span>Perumahan</span></a>
               </li>
               <li>
-                <a href="<?=site_url('unit')?>" class="nav-link"><i class="fas fa-home"></i> <span>Rumah</span></a>
+                <a href="<?=site_url('unit')?>" class="nav-link"><i class="fas fa-home"></i> <span>Unit Rumah</span></a>
               </li>
               <li>
                 <a href="<?=site_url('pembelian')?>" class="nav-link"><i class="fas fa-search-dollar"></i> <span>Pembelian</span></a>
