@@ -37,6 +37,9 @@
                                 <td><?=$value->tipe_rumah?></td>
                                 <td>
                                     <form class="" action="<?=site_url('unit/delete')?>" method="post">
+                                        <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
+                                            <i class="fa fa-eye"></i> Detail
+                                        </a>
                                         <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning">
                                             <i class="fa fa-edit"></i> Ubah
                                         </a>
