@@ -8,9 +8,8 @@ class M_unit extends CI_Model
     {
         $this->db->from('unit');
         if($id != null){
-            $this->db->where('id', $id);
+            $this->db->where('unit.id', $id);
         }
-        // $this->db->join('perumahan', 'perumahan.id = unit.id_perumahan', 'left');
         $query = $this->db->get();
         return $query;
     }
