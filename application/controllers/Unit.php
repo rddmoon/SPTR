@@ -8,12 +8,14 @@ class Unit extends CI_Controller
         parent::__construct();
         cek_belum_login();
         $this->load->model('m_unit');
+        $this->load->model('m_perumahan');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
         $data['unit'] = $this->m_unit->get();
+        $data['perumahan'] = $this->m_perumahan->get();
         $content = $this->fungsi->user_login()->role . '/unit/view';
         $this->template->load('template', $content, $data);
     }

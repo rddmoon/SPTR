@@ -14,6 +14,7 @@
                         <i class="fa fa-plus"></i> Tambah</a>
                     </div>
                     <br>
+                    <?php //print_r($perumahan); ?>
                     <table class="table table-hover">
                         <thead>
                             <tr class="text-center">
@@ -28,10 +29,11 @@
                         <tbody>
                             <?php $no = 1;
                             foreach ($unit->result() as $key => $value){
+                            $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
                             ?>
                             <tr class="text-center">
                                 <td><?=$no++?></td>
-                                <td><?=$value->id_perumahan?></td>
+                                <td><?=$nama_perumahan?></td>
                                 <td><?=$value->cluster?></td>
                                 <td><?=$value->blok?></td>
                                 <td><?=$value->tipe_rumah?></td>
@@ -58,7 +60,3 @@
         </div>
     </div>
 </section>
-
-
-
-                        
