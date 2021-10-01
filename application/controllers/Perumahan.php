@@ -18,6 +18,13 @@ class Perumahan extends CI_Controller
         $this->template->load('template', $content, $data);
     }
 
+    public function list_unit($id)
+    {
+      $data['list_unit'] = $this->m_perumahan->list_unit($id);
+      $content = $this->fungsi->user_login()->role . '/perumahan/list_unit';
+      $this->template->load('template', $content, $data);
+    }
+
     public function add()
     {
         $content = $this->fungsi->user_login()->role . '/perumahan/add';

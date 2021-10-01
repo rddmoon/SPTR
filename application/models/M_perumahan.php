@@ -14,6 +14,15 @@ class M_perumahan extends CI_Model
         return $query;
     }
 
+    public function list_unit($id)
+    {
+        $this->db->from('unit');
+        $this->db->where('id_perumahan', $id);
+        $this->db->order_by('blok', 'asc');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function add($post)
     {
         $params['nama'] = $post['nama'];

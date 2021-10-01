@@ -7,12 +7,20 @@ class M_unit extends CI_Model
     public function get($id = null)
     {
         $this->db->from('unit');
-        $this->db->join('perumahan', 'perumahan.id = unit.id_perumahan');
         if($id != null){
             $this->db->where('id', $id);
         }
+        // $this->db->join('perumahan', 'perumahan.id = unit.id_perumahan', 'left');
         $query = $this->db->get();
         return $query;
+    }
+
+    public function get_nama_perumahan($id)
+    {
+      $this->db->from('perumahan');
+      $this->db->where('id', $id);
+      $query = $this->db->get()->row();
+      return $query;
     }
 
     public function add($post)

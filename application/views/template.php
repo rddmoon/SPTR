@@ -199,7 +199,10 @@
                 <a href="<?=site_url('unit')?>" class="nav-link"><i class="fas fa-home"></i> <span>Unit Rumah</span></a>
               </li>
               <li>
-                <a href="<?=site_url('pembelian')?>" class="nav-link"><i class="fas fa-search-dollar"></i> <span>Pembelian</span></a>
+                <a href="<?=site_url('pembelian')?>" class="nav-link"><i class="fas fa-hand-holding-usd"></i> <span>Pembelian</span></a>
+              </li>
+              <li>
+                <a href="<?=site_url('pembayaran')?>" class="nav-link"><i class="fas fa-coins"></i> <span>Pembayaran</span></a>
               </li>
               <li>
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
