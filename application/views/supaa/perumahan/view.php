@@ -35,6 +35,9 @@
                                 <td><?=$value->lokasi?></td>
                                 <td>
                                     <form class="" action="<?=site_url('perumahan/delete')?>" method="post">
+                                        <a href="<?=site_url('perumahan/list_unit/'.$value->id)?>" class="btn btn-info">
+                                            <i class="fa fa-home"></i> Unit
+                                        </a>
                                         <a href="<?=site_url('perumahan/edit/'.$value->id)?>" class="btn btn-warning">
                                             <i class="fa fa-edit"></i> Ubah
                                         </a>
