@@ -14,11 +14,13 @@
                     <div class="form-group">
                         <label>Nama Perumahan</label>
                         <input type="hidden" name="unit_id" value="<?=$unit->id?>">
-                        <select name="id_perumahan" class="form-control <?= form_error('id_perumahan') ? 'is-invalid' : '' ?>">
-                            <?php ?>
-                        </select>
-                        <div class="invalid-feedback">
-                            <?= form_error('id_perumahan') ?>
+                        <div class="" style="max-width:400px">
+                            <select name="id_perumahan" class="form-control <?= form_error('id_perumahan') ? 'is-invalid' : '' ?>">
+                                <?php ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?= form_error('id_perumahan') ?>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
