@@ -11,30 +11,39 @@ class Pembelian extends CI_Controller
         $this->load->model('m_pembeli');
         $this->load->model('m_perumahan');
         $this->load->model('m_metode');
+        $this->load->model('m_unit');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
         $data['pembelian'] = $this->m_pembelian->get();
-        // $data['perumahan'] = $this->m_perumahan->get();
-        // $data['pembeli'] = $this->m_pembelian->get();
-        // $data['metode'] = $this->m_metode->get();
+        $data['perumahan'] = $this->m_perumahan->get();
+        $data['pembeli'] = $this->m_pembeli->get();
+        $data['metode'] = $this->m_metode->get();
         $content = $this->fungsi->user_login()->role . '/pembelian/view';
         $this->template->load('template', $content, $data);
     }
 
     public function add()
     {
-        $content = $this->fungsi->user_login()->role . '/perumahan/add';
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('jumlah_unit', 'Jumlah Unit', 'required|numeric');
-        $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
+        $data['perumahan'] = $this->m_perumahan->get();
+        $data['pembeli'] = $this->m_pembeli->get();
+        $data['metode'] = $this->m_metode->get();
+        $data['unit'] = $this->m_unit->get();
+        $content = $this->fungsi->user_login()->role . '/pembelian/add';
+        $this->template->load('template', $content, $data);
+
+        $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
+        $this->form_validation->set_rules('id_pembeli', 'Perumahan', 'required');
+        $this->form_validation->set_rules('id_unit', 'Perumahan', 'required');
+        // $this->form_validation->set_rules('jumlah_unit', 'Jumlah Unit', 'required|numeric');
+        // $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
         $this->form_validation->set_message('required', '%s masih kosong.');
         $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
 
         if($this->form_validation->run() == FALSE){
-            $this->template->load('template', $content);
+            $this->template->load('template', $content, $data);
         }
         else{
             $post = $this->input->post(null,TRUE);

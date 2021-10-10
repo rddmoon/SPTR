@@ -14,7 +14,8 @@
                         <i class="fa fa-plus"></i> Buat Pembelian Baru</a>
                     </div>
                     <br>
-                    <?php //print_r($pembelian); ?>
+                    <?php //date_default_timezone_set('Asia/Jakarta');
+                    //print_r(date('ymdhis')); ?>
                     <table class="table table-hover">
                         <thead>
                             <tr class="text-center">
@@ -31,8 +32,8 @@
                             <?php $no = 1;
                             foreach ($pembelian->result() as $key => $value){
                             $nama_pembeli = $this->m_pembelian->get_nama_pembeli($value->id_pembeli)->nama_pembeli;
-                            $nama_metode = $this->m_metode->get_nama_metode($value->id_metode)->nama_metode;
-                            $cicilan_ke = $this->m_pembelian->get_cicilan_ke($value->id_pembelian);
+                            $nama_metode = $this->m_pembelian->get_nama_metode($value->id_metode)->nama_metode;
+                            $cicilan_ke = $this->m_pembelian->get_cicilan_ke($value->id);
                             ?>
                             <tr class="text-center">
                                 <td><?=$no++?></td>

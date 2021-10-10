@@ -41,7 +41,7 @@ class M_pembelian extends CI_Model
 
     public function add($post)
     {
-        $params['id'] = $post['id_pembelian'];
+        $params['id'] = $post['pembelian_id'];
         $params['nama'] = $post['nama'];
         $params['jumlah_unit'] = $post['jumlah_unit'];
         $params['lokasi'] = $post['lokasi'];
@@ -58,6 +58,6 @@ class M_pembelian extends CI_Model
     public function delete($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('perumahan');
+        $this->db->delete('pembelian');
     }
 }
