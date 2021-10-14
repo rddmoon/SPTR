@@ -58,11 +58,20 @@ class M_pembelian extends CI_Model
     }
     public function edit($post)
     {
-        $params['nama'] = $post['nama'];
-        $params['jumlah_unit'] = $post['jumlah_unit'];
-        $params['lokasi'] = $post['lokasi'];
-        $this->db->where('id', $post['perumahan_id']);
-        $this->db->update('perumahan', $params);
+        $params['id_unit'] = $post['id_unit'];
+        $params['id_pembeli'] = $post['id_pembeli'];
+        $params['DP'] = $post['DP'];
+        $params['id_metode'] = $post['id_metode'];
+        // $params['tanggal_beli'] = $post['tanggal_beli'];
+        $params['status_pembelian'] = $post['status_pembelian'];
+        $params['harga_beli'] = $post['harga_beli'];
+        $params['cicilan_perbulan'] = $post['cicilan_perbulan'];
+        $params['uang_masuk'] = $post['DP'];
+        // $params['uang_lainnya'] = 0;
+        // $params['counter'] = 0;
+        // $params['tunggakan'] = 0;
+        $this->db->where('id', $post['pembelian_id']);
+        $this->db->update('pembelian', $params);
     }
     public function delete($id)
     {

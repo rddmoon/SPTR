@@ -22,6 +22,21 @@ class M_unit extends CI_Model
       return $query;
     }
 
+    public function get_id_perumahan($id)
+    {
+      $this->db->from('unit');
+      $this->db->where('id', $id);
+      $query = $this->db->get()->row()->id_perumahan;
+      return $query;
+    }
+    public function get_unit_tersedia()
+    {
+      $this->db->from('unit');
+      $this->db->where('status', 'tersedia');
+      $query = $this->db->get();
+      return $query;
+    }
+
     // public function get_harga($id)
     // {
     //   $this->db->from('unit');
