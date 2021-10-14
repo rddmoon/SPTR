@@ -30,25 +30,25 @@
                       <div class="form-group">
                           <label>Perumahan</label>
                           <div class="" style="max-width:400px">
-                              <select name="perumahan" class="form-control <?= form_error('perumahan') ? 'is-invalid' : '' ?>">
+                              <select id="perumahan" name="perumahan" class="form-control <?= form_error('perumahan') ? 'is-invalid' : '' ?>" >
                                   <option value="">- Pilih Perumahan -</option>
-                                  <?php foreach ($perumahan->result() as $key => $value) {?>
-                                  <option value="<?=$value->id?>"><?=$value->nama?></option>
-                                <?php } ?>
+                                  <?php
+                                  foreach($perumahan as $row)
+                                  {
+                                   echo '<option value="'.$row->id.'">'.$row->nama.'</option>';
+                                  }
+                                  ?>
                               </select>
                               <div class="invalid-feedback">
-                                  <?= form_error('id_perumahan') ?>
+                                  <?= form_error('perumahan') ?>
                               </div>
                           </div>
                       </div>
                       <div class="form-group">
                           <label>Unit</label>
                           <div class="" style="max-width:400px">
-                              <select name="id_unit" class="form-control <?= form_error('id_unit') ? 'is-invalid' : '' ?>">
+                              <select id="id_unit" name="id_unit" class="form-control <?= form_error('id_unit') ? 'is-invalid' : '' ?>" >
                                   <option value="">- Pilih Unit -</option>
-                                  <?php foreach ($unit->result() as $key => $value) {?>
-                                  <option value="<?=$value->id?>"><?=$value->blok?> Cluster <?=$value->cluster?></option>
-                                <?php } ?>
                               </select>
                               <div class="invalid-feedback">
                                   <?= form_error('id_unit') ?>
@@ -56,60 +56,39 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>Cluster</label>
-                          <input type="text" name="cluster" value="<?=set_value('cluster')?>" class="form-control <?= form_error('cluster') ? 'is-invalid' : '' ?>">
-                          <div class="invalid-feedback">
-                              <?= form_error('cluster') ?>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label>Blok</label>
-                          <input type="text" name="blok" value="<?=set_value('blok')?>" class="form-control <?= form_error('blok') ? 'is-invalid' : '' ?>">
-                          <div class="invalid-feedback">
-                              <?= form_error('blok') ?>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label>Tipe Rumah</label>
-                          <div class="" style="max-width:200px">
-                              <input type="number" min="1" name="tipe_rumah" value="<?=set_value('tipe_rumah')?>" class="form-control <?= form_error('tipe_rumah') ? 'is-invalid' : '' ?>">
+                          <label>DP</label>
+                          <div class="" style="max-width:400px">
+                              <input type="text" name="DP" value="<?=set_value('DP')?>" class="form-control <?= form_error('DP') ? 'is-invalid' : '' ?>">
                               <div class="invalid-feedback">
-                                  <?= form_error('tipe_rumah')?>
+                                  <?= form_error('DP')?>
                               </div>
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>Luas Tanah</label>
-                          <div class="" style="max-width:200px">
-                              <input type="number" min="1" name="luas_tanah" value="<?=set_value('luas_tanah')?>" class="form-control <?= form_error('luas_tanah') ? 'is-invalid' : '' ?>">
+                          <label>Metode</label>
+                          <div class="" style="max-width:400px">
+                              <select name="id_metode" class="form-control <?= form_error('id_metode') ? 'is-invalid' : '' ?>" >
+                                  <option value="">- Pilih Metode -</option>
+                                  <?php
+                                  foreach($metode->result() as $key)
+                                  {
+                                   echo '<option value="'.$key->id.'">'.$key->nama_metode.'</option>';
+                                  }
+                                  ?>
+                              </select>
                               <div class="invalid-feedback">
-                                  <?= form_error('luas_tanah')?>
+                                  <?= form_error('id_metode') ?>
                               </div>
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>Tingkat Rumah</label>
-                          <div class="" style="max-width:200px">
-                              <input type="number" min="1" name="tingkat_rumah" value="<?=set_value('tingkat_rumah')?>" class="form-control <?= form_error('tingkat_rumah') ? 'is-invalid' : '' ?>">
-                              <div class="invalid-feedback">
-                                  <?= form_error('tingkat_rumah')?>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label>BEP</label>
-                          <input type="text" name="BEP" value="<?=set_value('BEP')?>" class="form-control <?= form_error('BEP') ? 'is-invalid' : '' ?>">
+                          <label>Harga Beli</label>
+                          <input type="text" name="harga_beli" value="<?=set_value('harga_beli')?>" class="form-control <?= form_error('harga_beli') ? 'is-invalid' : '' ?>">
                           <div class="invalid-feedback">
-                              <?= form_error('BEP')?>
+                              <?= form_error('harga_beli')?>
                           </div>
                       </div>
-                      <div class="form-group">
-                          <label>Harga Jual</label>
-                          <input type="text" name="harga_jual" value="<?=set_value('harga_jual')?>" class="form-control <?= form_error('harga_jual') ? 'is-invalid' : '' ?>">
-                          <div class="invalid-feedback">
-                              <?= form_error('harga_jual')?>
-                          </div>
-                      </div>
+                      
                       <div class="form-group">
                           <button type="submit" class="btn btn-success">Simpan</button>
                           <a href="<?=site_url('pembelian')?>" type="button" class="btn btn-danger">Batal</a>
@@ -119,4 +98,30 @@
             </div>
         </div>
     </div>
+    <!-- Script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+       $('#perumahan').change(function(){
+        var perumahan_id = $('#perumahan').val();
+        if(perumahan_id != '')
+        {
+         $.ajax({
+          url:"<?php echo base_url(); ?>pembelian/get_unit_by_perumahan",
+          method:"POST",
+          data:{perumahan_id:perumahan_id},
+          success:function(data)
+          {
+           $('#id_unit').html(data);
+          }
+         });
+        }
+        else
+        {
+         $('#id_unit').html('<option value="">- Pilih Unit -</option>');
+        }
+       });
+      });
+    </script>
 </section>

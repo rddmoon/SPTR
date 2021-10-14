@@ -18,21 +18,25 @@ class Pembelian extends CI_Controller
     public function index()
     {
         $data['pembelian'] = $this->m_pembelian->get();
-        $data['perumahan'] = $this->m_perumahan->get();
-        $data['pembeli'] = $this->m_pembeli->get();
-        $data['metode'] = $this->m_metode->get();
         $content = $this->fungsi->user_login()->role . '/pembelian/view';
         $this->template->load('template', $content, $data);
     }
 
+    public function get_unit_by_perumahan()
+    {
+      if($this->input->post('perumahan_id'))
+      {
+       echo $this->m_perumahan->unit_by_perumahan($this->input->post('perumahan_id'));
+      }
+    }
+
     public function add()
     {
-        $data['perumahan'] = $this->m_perumahan->get();
+        $data['perumahan'] = $this->m_perumahan->get()->result();
         $data['pembeli'] = $this->m_pembeli->get();
         $data['metode'] = $this->m_metode->get();
-        $data['unit'] = $this->m_unit->get();
         $content = $this->fungsi->user_login()->role . '/pembelian/add';
-        $this->template->load('template', $content, $data);
+        // $this->template->load('template', $content, $data);
 
         $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
         $this->form_validation->set_rules('id_pembeli', 'Perumahan', 'required');
@@ -43,7 +47,7 @@ class Pembelian extends CI_Controller
         $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
 
         if($this->form_validation->run() == FALSE){
-            $this->template->load('template', $content, $data);
+          $this->template->load('template', $content, $data);
         }
         else{
             $post = $this->input->post(null,TRUE);
