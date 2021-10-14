@@ -13,7 +13,9 @@
                       <div class="form-group">
                           <label>Pembeli</label>
                           <?php date_default_timezone_set('Asia/Jakarta');
-                          $now = date('ymdhis'); ?>
+                          $now = date('ymdhis');
+                          $tglbeli = date('Y-m-d');
+                          ?>
                           <input type="hidden" name="pembelian_id" value="<?=$now?>">
                           <div class="" style="max-width:400px">
                               <select name="id_pembeli" class="form-control <?= form_error('id_pembeli') ? 'is-invalid' : '' ?>">
@@ -56,7 +58,33 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>DP</label>
+                        <label>Harga Beli</label>
+                        <div class="" style="max-width:400px">
+                          <input id="harga_beli" type="text" name="harga_beli" value="<?=set_value('harga_beli')?>" class="form-control <?= form_error('harga_beli') ? 'is-invalid' : '' ?>">
+                          <div class="invalid-feedback">
+                            <?= form_error('harga_beli')?>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Metode</label>
+                        <div class="" style="max-width:400px">
+                          <select name="id_metode" class="form-control <?= form_error('id_metode') ? 'is-invalid' : '' ?>" >
+                            <option value="">- Pilih Metode -</option>
+                            <?php
+                            foreach($metode->result() as $key)
+                            {
+                              echo '<option value="'.$key->id.'">'.$key->nama_metode.'</option>';
+                            }
+                            ?>
+                          </select>
+                          <div class="invalid-feedback">
+                            <?= form_error('id_metode') ?>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <label>DP/Pembayaran Awal</label>
                           <div class="" style="max-width:400px">
                               <input type="text" name="DP" value="<?=set_value('DP')?>" class="form-control <?= form_error('DP') ? 'is-invalid' : '' ?>">
                               <div class="invalid-feedback">
@@ -65,30 +93,16 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>Metode</label>
+                        <label>Cicilan Perbulan (Metode cash isi dengan jumlah sisa pembayaran)</label>
                           <div class="" style="max-width:400px">
-                              <select name="id_metode" class="form-control <?= form_error('id_metode') ? 'is-invalid' : '' ?>" >
-                                  <option value="">- Pilih Metode -</option>
-                                  <?php
-                                  foreach($metode->result() as $key)
-                                  {
-                                   echo '<option value="'.$key->id.'">'.$key->nama_metode.'</option>';
-                                  }
-                                  ?>
-                              </select>
+                            <input type="text" name="cicilan_perbulan" value="<?=set_value('cicilan_perbulan')?>" class="form-control <?= form_error('cicilan_perbulan') ? 'is-invalid' : '' ?>">
                               <div class="invalid-feedback">
-                                  <?= form_error('id_metode') ?>
+                                <?= form_error('cicilan_perbulan')?>
                               </div>
                           </div>
                       </div>
-                      <div class="form-group">
-                          <label>Harga Beli</label>
-                          <input type="text" name="harga_beli" value="<?=set_value('harga_beli')?>" class="form-control <?= form_error('harga_beli') ? 'is-invalid' : '' ?>">
-                          <div class="invalid-feedback">
-                              <?= form_error('harga_beli')?>
-                          </div>
-                      </div>
-                      
+                      <input type="hidden" name="tanggal_beli" value="<?=$tglbeli?>">
+                      <input type="hidden" name="status_pembelian" value="berjalan">
                       <div class="form-group">
                           <button type="submit" class="btn btn-success">Simpan</button>
                           <a href="<?=site_url('pembelian')?>" type="button" class="btn btn-danger">Batal</a>
@@ -122,6 +136,26 @@
          $('#id_unit').html('<option value="">- Pilih Unit -</option>');
         }
        });
+
+       // $('#id_unit').change(function(){
+       //  var unit_id = $('#id_unit').val();
+       //  if(unit_id != '')
+       //  {
+       //   $.ajax({
+       //    url:"<?php //echo base_url(); ?>pembelian/get_harga_beli",
+       //    method:"POST",
+       //    data:{unit_id:unit_id},
+       //    success:function(data)
+       //    {
+       //     $('input[name="harga_beli"]').val(data);
+       //    }
+       //   });
+       //  }
+       //  else
+       //  {
+       //   $('#harga_beli').val();
+       //  }
+       // });
       });
     </script>
 </section>

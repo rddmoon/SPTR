@@ -16,6 +16,14 @@ class M_metode extends CI_Model
     return $query;
   }
 
+  public function get_banyak_cicilan($id)
+  {
+    $this->db->from('metode');
+    $this->db->where('id', $id);
+    $query = $this->db->get()->row();
+    return $query;
+  }
+
   public function add($post)
   {
     $params['nama_metode'] = $post['nama_metode'];

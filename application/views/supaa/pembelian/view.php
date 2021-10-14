@@ -39,10 +39,21 @@
                                 <td><?=$no++?></td>
                                 <td><?=$value->id?></td>
                                 <td><?=$nama_pembeli?></td>
-                                <td><?=$value->status_pembelian?></td>
+                                <?php
+                                if ($value->status_pembelian == "berjalan") {?>
+                                  <td><span class="badge badge-primary"><?=$value->status_pembelian?></span></td>
+                                <?php } ?>
+                                <?php
+                                if ($value->status_pembelian == "dibatalkan") {?>
+                                  <td><span class="badge badge-danger"><?=$value->status_pembelian?></span></td>
+                                <?php } ?>
+                                <?php
+                                if ($value->status_pembelian == "selesai") {?>
+                                  <td><span class="badge badge-success"><?=$value->status_pembelian?></span></td>
+                                <?php } ?>
                                 <td><?=$nama_metode?></td>
                                 <td><?=$cicilan_ke?></td>
-                                <td>
+                                <td style="min-width:300px">
                                     <form class="" action="<?=site_url('pembelian/delete')?>" method="post">
                                         <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
                                             <i class="fa fa-eye"></i> Detail

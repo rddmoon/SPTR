@@ -30,6 +30,14 @@ class Pembelian extends CI_Controller
       }
     }
 
+    // public function get_harga_beli()
+    // {
+    //   if($this->input->post('id_unit'))
+    //   {
+    //    echo $this->m_unit->get_harga($this->input->post('id_unit'));
+    //   }
+    // }
+
     public function add()
     {
         $data['perumahan'] = $this->m_perumahan->get()->result();
@@ -39,9 +47,12 @@ class Pembelian extends CI_Controller
         // $this->template->load('template', $content, $data);
 
         $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
-        $this->form_validation->set_rules('id_pembeli', 'Perumahan', 'required');
-        $this->form_validation->set_rules('id_unit', 'Perumahan', 'required');
-        // $this->form_validation->set_rules('jumlah_unit', 'Jumlah Unit', 'required|numeric');
+        $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
+        $this->form_validation->set_rules('id_unit', 'Unit', 'required');
+        $this->form_validation->set_rules('DP', 'DP', 'required|numeric');
+        $this->form_validation->set_rules('id_metode', 'Metode', 'required');
+        $this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric');
+        $this->form_validation->set_rules('cicilan_perbulan', 'Cicilan Perbulan', 'required|numeric');
         // $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
         $this->form_validation->set_message('required', '%s masih kosong.');
         $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
@@ -51,11 +62,16 @@ class Pembelian extends CI_Controller
         }
         else{
             $post = $this->input->post(null,TRUE);
-            $this->m_perumahan->add($post);
+            $this->m_pembelian->add($post);
+            $this->m_unit->edit_status_terjual($post['id_unit']);
+            // $cicilan = $this->m_metode->get_banyak_cicilan($post['id_metode']);
+            // if($cicilan > 1){
+            //   generate_pembayaran($post);
+            // }
             if($this->db->affected_rows() > 0){
                 echo "<script>alert('Data berhasil disimpan');</script>";
             }
-            echo "<script>window.location='".site_url('perumahan')."';</script>";
+            echo "<script>window.location='".site_url('pembelian')."';</script>";
         }
     }
 
@@ -93,11 +109,12 @@ class Pembelian extends CI_Controller
 
     public function delete()
     {
-        $id = $this->input->post('perumahan_id');
-        $this->m_perumahan->delete($id);
+        $id = $this->input->post('pembelian_id');
+        $this->m_pembelian->delete($id);
+        $this->m_unit->edit_status_tersedia($id);
         if($this->db->affected_rows() > 0){
             echo "<script>alert('Data berhasil dihapus');</script>";
         }
-        echo "<script>window.location='".site_url('perumahan')."';</script>";
+        echo "<script>window.location='".site_url('pembelian')."';</script>";
     }
 }

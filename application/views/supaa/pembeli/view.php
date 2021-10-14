@@ -41,7 +41,7 @@
                 <td><?=$value->ttl?></td>
                 <td><?=$value->status_perkawinan?></td>
                 <td><?=$value->pekerjaan?></td>
-                <td style="min-width:209px">
+                <td style="min-width:210px">
                   <form class="" action="<?=site_url('pembeli/delete')?>" method="post">
                     <a href="<?=site_url('pembeli/edit/'.$value->id)?>" class="btn btn-warning">
                       <i class="fa fa-edit"></i> Ubah
