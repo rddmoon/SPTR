@@ -30,7 +30,7 @@
                           </div>
                       </div>
                       <div class="form-group">
-                          <label>Perumahan</label>
+                        <label>Perumahan</label>
                           <div class="" style="max-width:400px">
                               <select id="perumahan" name="perumahan" class="form-control <?= form_error('perumahan') ? 'is-invalid' : '' ?>" >
                                   <option value="">- Pilih Perumahan -</option>
@@ -137,25 +137,23 @@
         }
        });
 
-       // $('#id_unit').change(function(){
-       //  var unit_id = $('#id_unit').val();
-       //  if(unit_id != '')
-       //  {
-       //   $.ajax({
-       //    url:"<?php //echo base_url(); ?>pembelian/get_harga_beli",
-       //    method:"POST",
-       //    data:{unit_id:unit_id},
-       //    success:function(data)
-       //    {
-       //     $('input[name="harga_beli"]').val(data);
-       //    }
-       //   });
-       //  }
-       //  else
-       //  {
-       //   $('#harga_beli').val();
-       //  }
-       // });
+       $('#id_unit').change(function()
+        {
+            $.ajax({
+             type:"POST",
+             data:"value="+$(this).val(),
+             url:"<?php echo base_url(); ?>pembelian/get_harga_beli",
+             success:function(msg)
+             {
+                $('#harga_beli').val(msg);
+             }
+
+          });
+
+
+
+        });
+
       });
     </script>
 </section>

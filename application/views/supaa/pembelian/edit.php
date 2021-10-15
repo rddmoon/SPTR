@@ -27,14 +27,26 @@
                           </div>
                       </div>
                       <div class="form-group">
+                        <label>Perumahan</label>
+                          <div class="" style="max-width:400px">
+                              <select id="perumahan" name="perumahan" class="form-control <?= form_error('perumahan') ? 'is-invalid' : '' ?>" >
+                                <?php $sperumahan = $this->input->post('perumahan') ? $this->input->post('perumahan') : $perumahan_selected; ?>
+                                  <option value="">- Pilih Perumahan -</option>
+                                  <?php foreach ($perumahan as $key => $value) {?>
+                                    <option value="<?=$value->id?>" <?=$sperumahan == $value->id ? 'selected' : null?>><?=$value->nama?></option>;
+                                <?php } ?>
+                              </select>
+                              <div class="invalid-feedback">
+                                  <?= form_error('perumahan') ?>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
                           <label>Unit</label>
                           <div class="" style="max-width:400px">
                               <select id="id_unit" name="id_unit" class="form-control <?= form_error('id_unit') ? 'is-invalid' : '' ?>" >
-                                <?php $sunit = $this->input->post('id_unit') ? $this->input->post('id_unit') : $pembelian->id_unit; ?>
+                                <?php $sunit = $this->input->post('id_unit') ? $this->input->post('id_unit') : $unit_selected->blok.' cluster '.$unit_selected->cluster; ?>
                                   <option value="">- Pilih Unit -</option>
-                                  <?php foreach ($unit as $key) {?>
-                                    <option value="<?=$key->id?>" <?=$sunit == $key->id ? 'selected' : null?>><?=$key->blok?> cluster <?=$key->cluster?></option>;
-                                <?php } ?>
                               </select>
                               <div class="invalid-feedback">
                                   <?= form_error('id_unit') ?>
@@ -108,50 +120,37 @@
         </div>
     </div>
     <!-- Script -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
       $(document).ready(function(){
        $('#perumahan').change(function(){
         var perumahan_id = $('#perumahan').val();
-        var perumahan_selected = $('#perumahan_selected').val();
-        if(perumahan_id != perumahan_selected)
-        {
+        var unit_id = $('#id_unit').val();
          $.ajax({
-          url:"<?php //echo base_url(); ?>pembelian/get_unit_by_perumahan_edit",
+          url:"<?php echo base_url(); ?>pembelian/get_unit_by_perumahan_edit",
           method:"POST",
-          data:{perumahan_id:perumahan_id},
+          data:{perumahan_id:perumahan_id, unit_id:unit_id},
           success:function(data)
           {
            $('#id_unit').html(data);
           }
          });
-        }
-        else
-        {
-         $('#id_unit').html('<option value="">- Pilih Unit -</option>');
-        }
        });
 
-       $('#id_unit').change(function(){
-        var unit_id = $('#id_unit').val();
-        if(unit_id != '')
+       $('#id_unit').change(function()
         {
-         $.ajax({
-          url:"<?php //echo base_url(); ?>pembelian/get_harga_beli",
-          method:"POST",
-          data:{unit_id:unit_id},
-          success:function(data)
-          {
-           $('input[name="harga_beli"]').val(data);
-          }
-         });
-        }
-        else
-        {
-         $('#harga_beli').val();
-        }
-       });
+            $.ajax({
+             type:"POST",
+             data:"value="+$(this).val(),
+             url:"<?php echo base_url(); ?>pembelian/get_harga_beli",
+             success:function(msg)
+             {
+                $('#harga_beli').val(msg);
+             }
+
+          });
+        });
       });
-    </script> -->
+    </script>
 </section>

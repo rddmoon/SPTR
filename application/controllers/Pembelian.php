@@ -30,21 +30,27 @@ class Pembelian extends CI_Controller
       }
     }
 
-    // public function get_unit_by_perumahan_edit()
-    // {
-    //   if($this->input->post('perumahan_id'))
-    //   {
-    //    echo $this->m_perumahan->unit_by_perumahan($this->input->post('perumahan_id'));
-    //   }
-    // }
+    public function get_unit_by_perumahan_edit()
+    {
+      $this->m_unit->edit_status_tersedia('unit_id');
+      if($this->input->post('perumahan_id'))
+      {
+       echo $this->m_perumahan->unit_by_perumahan_edit($this->input->post('perumahan_id'));
+      }
+    }
 
-    // public function get_harga_beli()
-    // {
-    //   if($this->input->post('id_unit'))
-    //   {
-    //    echo $this->m_unit->get_harga($this->input->post('id_unit'));
-    //   }
-    // }
+    public function get_harga_beli()
+    {
+      $value = $this->input->post('value');
+
+      $harga = $this->m_unit->get_harga($value);
+
+      echo $harga;
+      // if($this->input->post('id_unit'))
+      // {
+      //  echo $this->m_unit->get_harga($this->input->post('id_unit'));
+      // }
+    }
 
     public function add()
     {
@@ -85,13 +91,13 @@ class Pembelian extends CI_Controller
 
     public function edit($id)
     {
-      // $data['perumahan'] = $this->m_perumahan->get()->result();
+      $data['perumahan'] = $this->m_perumahan->get()->result();
       $data['pembeli'] = $this->m_pembeli->get()->result();
       $data['metode'] = $this->m_metode->get()->result();
       $data['unit'] = $this->m_unit->get_unit_tersedia()->result();
       $content = $this->fungsi->user_login()->role . '/pembelian/edit';
 
-      // $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
+      $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
       $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
       $this->form_validation->set_rules('id_unit', 'Unit', 'required');
       $this->form_validation->set_rules('DP', 'DP', 'required|numeric');
@@ -103,17 +109,17 @@ class Pembelian extends CI_Controller
       $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
 
       $query = $this->m_pembelian->get($id);
-      $this->m_unit->edit_status_tersedia($query->row()->id_unit);
         if($this->form_validation->run() == FALSE){
             if($query->num_rows() > 0){
                 $data['pembelian'] = $query->row();
-                // $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
-                // $data['perumahan_selected'] = $this->m_unit->get_id_perumahan($id_perumahan);
+                $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
+                $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
+                $data['perumahan_selected'] = $this->m_unit->get_id_perumahan($id_perumahan);
                 $this->template->load('template', $content, $data);
             }
             else{
                 echo "<script>alert('Data tidak ditemukan.');";
-				echo "window.location='".site_url('pembelian')."';</script>";
+				        echo "window.location='".site_url('pembelian')."';</script>";
             }
         }
         else

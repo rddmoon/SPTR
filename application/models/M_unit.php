@@ -37,14 +37,14 @@ class M_unit extends CI_Model
       return $query;
     }
 
-    // public function get_harga($id)
-    // {
-    //   $this->db->from('unit');
-    //   $this->db->where('id', $id);
-    //   $query = $this->db->get()->row()->harga_jual;
-    //   //$output = '<input id="harga_beli" type="text" name="harga_beli" value="'.$query->harga_jual.'" class="form-control">';
-    //   return $query;
-    // }
+    public function get_harga($id)
+    {
+      $this->db->from('unit');
+      $this->db->where('id', $id);
+      $query = $this->db->get()->row()->harga_jual;
+      //$output = '<input id="harga_beli" type="text" name="harga_beli" value="'.$query->harga_jual.'" class="form-control">';
+      return $query;
+    }
 
     public function edit_status_terjual($id)
     {

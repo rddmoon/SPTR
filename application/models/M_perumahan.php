@@ -38,20 +38,20 @@ class M_perumahan extends CI_Model
         return $output;
     }
 
-    // public function unit_by_perumahan_edit($id)
-    // {
-    //     $this->db->from('unit');
-    //     $this->db->where('id_perumahan', $id);
-    //     $this->db->where('status', 'tersedia');
-    //     $this->db->order_by('blok', 'asc');
-    //     $query = $this->db->get();
-    //     $output = '<option value="">- Pilih Unit -</option>';
-    //     foreach($query->result() as $row)
-    //     {
-    //      $output .= '<option value="'.$row->id.'"'.$sunit == $row->id ? 'selected' : null.'>'.$row->blok.' cluster '.$row->cluster.'</option>';
-    //     }
-    //     return $output;
-    // }
+    public function unit_by_perumahan_edit($id)
+    {
+        $this->db->from('unit');
+        $this->db->where('id_perumahan', $id);
+        $this->db->where('status', 'tersedia');
+        $this->db->order_by('blok', 'asc');
+        $query = $this->db->get();
+        $output = '<option value="">- Pilih Unit -</option>';
+        foreach($query->result() as $row)
+        {
+         $output .= '<option value="'.$row->id.'"'.$sunit == $row->id ? 'selected' : null.'>'.$row->blok.' cluster '.$row->cluster.'</option>';
+        }
+        return $output;
+    }
 
     public function add($post)
     {
