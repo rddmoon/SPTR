@@ -9,6 +9,7 @@
                     <h4>Ubah Data Pembelian</h4>
                 </div>
                 <div class="card-body">
+                  <?php //echo print_r($unit_selected); ?>
                   <form class="" action="" method="post">
                       <div class="form-group">
                           <label>Pembeli</label>
@@ -45,8 +46,11 @@
                           <label>Unit</label>
                           <div class="" style="max-width:400px">
                               <select id="id_unit" name="id_unit" class="form-control <?= form_error('id_unit') ? 'is-invalid' : '' ?>" >
-                                <?php $sunit = $this->input->post('id_unit') ? $this->input->post('id_unit') : $unit_selected->blok.' cluster '.$unit_selected->cluster; ?>
+                                <?php $sunit = $this->input->post('id_unit') ? $this->input->post('id_unit') : $unit_selected->id; ?>
                                   <option value="">- Pilih Unit -</option>
+                                  <?php foreach ($list_unit_selected as $key => $value) {?>
+                                    <option value="<?=$value->id?>" <?=$value->id == $sunit ? 'selected' : null?>><?=$value->blok?> cluster <?=$value->cluster?></option>;
+                                <?php } ?>
                               </select>
                               <div class="invalid-feedback">
                                   <?= form_error('id_unit') ?>
@@ -124,22 +128,65 @@
 
     <script>
       $(document).ready(function(){
-       $('#perumahan').change(function(){
-        var perumahan_id = $('#perumahan').val();
-        var unit_id = $('#id_unit').val();
-         $.ajax({
-          url:"<?php echo base_url(); ?>pembelian/get_unit_by_perumahan_edit",
-          method:"POST",
-          data:{perumahan_id:perumahan_id, unit_id:unit_id},
-          success:function(data)
-          {
-           $('#id_unit').html(data);
-          }
-         });
-       });
+        var perumahan2 = <?=$perumahan_selected?>;
+        $('#perumahan').change(function(){
+         var perumahan_id = $('#perumahan').val();
+         var unit_id = <?=$unit_selected->id?>;
+         var unit_blok = <?=$unit_selected->blok?>;
+         var list = <?=$list_unit_selected?>;
+         if(perumahan_id != perumahan2)
+         {
+          $.ajax({
+           url:"<?php echo base_url(); ?>pembelian/get_unit_by_perumahan_edit",
+           method:"POST",
+           data:{perumahan_id:perumahan_id},
+           success:function(data)
+           {
+            $('#id_unit').html(data);
+           }
+          });
+         }
+         // else {
+         //   for (var i = 0; i < list.length; i++) {
+         //     $('#id_unit').html('<option value="'+ unit_id +'">'+unit_blok+'</option>');
+         //
+         //   }
+         // }
+        });
+
+       // $('.perumahan').change(function(){
+       //          var id=$(this).val();
+                // var unit_id = "<?php //echo $unit_selected;?>";
+       //          $.ajax({
+       //              url : "<?php //echo site_url('pembelian/get_unit_by_perumahan_edit');?>",
+       //              method : "POST",
+       //              data : {id: id},
+       //              async : true,
+       //              dataType : 'json',
+       //              success: function(data){
+       //
+       //                  $('select[name="id_unit"]').empty();
+       //
+       //                  $.each(data, function(key, value) {
+       //                      if(unit_id==value.unit_id){
+       //                          $('select[name="id_unit"]').append('<option value="'+ value.id +'" selected>'+ value.blok +'</option>').trigger('change');
+       //                      }else{
+       //                          $('select[name="id_unit"]').append('<option value="'+ value.id +'">'+ value.blok +'</option>');
+       //                      }
+       //                  });
+       //
+       //              }
+       //          });
+       //          return false;
+       //      });
 
        $('#id_unit').change(function()
         {
+          var unit_id = $('#id_unit').val();
+          var unit2 = <?=$unit_selected->id?>;
+          var harga = <?=$unit_selected->harga_jual?>;
+          if(unit_id != unit2)
+          {
             $.ajax({
              type:"POST",
              data:"value="+$(this).val(),
@@ -150,6 +197,10 @@
              }
 
           });
+        }
+        else {
+          $('#harga_beli').val(harga);
+        }
         });
       });
     </script>

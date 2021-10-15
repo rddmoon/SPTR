@@ -32,12 +32,19 @@ class Pembelian extends CI_Controller
 
     public function get_unit_by_perumahan_edit()
     {
-      $this->m_unit->edit_status_tersedia('unit_id');
+      //$this->m_unit->edit_status_tersedia('unit_id');
       if($this->input->post('perumahan_id'))
       {
        echo $this->m_perumahan->unit_by_perumahan_edit($this->input->post('perumahan_id'));
       }
+      //$this->m_unit->edit_status_terjual('unit_id');
     }
+
+    // function get_unit_by_perumahan_edit(){
+    //     $perumahan_id = $this->input->post('id',TRUE);
+    //     $data = $this->m_perumahan->unit_by_perumahan_edit($perumahan_id)->result();
+    //     echo json_encode($data);
+    // }
 
     public function get_harga_beli()
     {
@@ -111,10 +118,12 @@ class Pembelian extends CI_Controller
       $query = $this->m_pembelian->get($id);
         if($this->form_validation->run() == FALSE){
             if($query->num_rows() > 0){
+                $this->m_unit->edit_status_tersedia($query->row()->id_unit);
                 $data['pembelian'] = $query->row();
                 $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
                 $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
                 $data['perumahan_selected'] = $this->m_unit->get_id_perumahan($id_perumahan);
+                $data['list_unit_selected'] = $this->m_perumahan->list_unit_selected($data['perumahan_selected'])->result();
                 $this->template->load('template', $content, $data);
             }
             else{
