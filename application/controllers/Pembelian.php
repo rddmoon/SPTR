@@ -32,19 +32,25 @@ class Pembelian extends CI_Controller
 
     public function get_unit_by_perumahan_edit()
     {
-      //$this->m_unit->edit_status_tersedia('unit_id');
-      if($this->input->post('perumahan_id'))
-      {
-       echo $this->m_perumahan->unit_by_perumahan_edit($this->input->post('perumahan_id'));
-      }
-      //$this->m_unit->edit_status_terjual('unit_id');
+        if($this->input->post('perumahan_id'))
+        {
+         $data = $this->m_perumahan->unit_by_perumahan_edit($this->input->post('perumahan_id'));
+         echo json_encode($data);
+        }
+        // $perumahan_id = $this->input->post('perumahan_id',TRUE);
+        // $data = $this->m_perumahan->get_unit_by_perumahan_edit($perumahan_id);
+        // echo json_encode($data);
     }
 
-    // function get_unit_by_perumahan_edit(){
-    //     $perumahan_id = $this->input->post('id',TRUE);
-    //     $data = $this->m_perumahan->unit_by_perumahan_edit($perumahan_id)->result();
-    //     echo json_encode($data);
-    // }
+    function get_data_edit(){
+      $pembelian_id = $this->input->post('pembelian_id',TRUE);
+      $data['id_unit'] = $this->m_pembelian->get($pembelian_id)->row()->id_unit;
+      $data['blok'] = $this->m_unit->get($pembelian_id)->row()->blok;
+      $data['cluster'] = $this->m_unit->get($pembelian_id)->row()->cluster;
+      // $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
+      // $data['perumahan'] = $this->m_unit->get_id_perumahan($id_perumahan);
+      echo json_encode($data);
+    }
 
     public function get_harga_beli()
     {
@@ -134,15 +140,15 @@ class Pembelian extends CI_Controller
         else
         {
             $post = $this->input->post(null,TRUE);
-            $this->m_unit->edit_status_terjual($query->row()->id_unit);
-            if ($post['id_unit'] != $data['pembelian']->id_unit)
-            {
-              $this->m_unit->edit_status_terjual($post['id_unit']);
-              $this->m_unit->edit_status_tersedia($data['pembelian']->id_unit);
-            }
       			$this->m_pembelian->edit($post);
       			if($this->db->affected_rows() > 0)
       			{
+              $this->m_unit->edit_status_terjual($query->row()->id_unit);
+              if ($post['id_unit'] != $data['pembelian']->id_unit)
+              {
+                $this->m_unit->edit_status_terjual($post['id_unit']);
+                $this->m_unit->edit_status_tersedia($data['pembelian']->id_unit);
+              }
       				echo "<script>alert('Data berhasil disimpan');</script>";
       			}
       			echo "<script>window.location='".site_url('pembelian')."';</script>";

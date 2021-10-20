@@ -46,11 +46,8 @@
                           <label>Unit</label>
                           <div class="" style="max-width:400px">
                               <select id="id_unit" name="id_unit" class="form-control <?= form_error('id_unit') ? 'is-invalid' : '' ?>" >
-                                <?php $sunit = $this->input->post('id_unit') ? $this->input->post('id_unit') : $unit_selected->id; ?>
-                                  <option value="">- Pilih Unit -</option>
-                                  <?php foreach ($list_unit_selected as $key => $value) {?>
-                                    <option value="<?=$value->id?>" <?=$value->id == $sunit ? 'selected' : null?>><?=$value->blok?> cluster <?=$value->cluster?></option>;
-                                <?php } ?>
+                                <?php $this->input->post('id_unit') ? $this->input->post('id_unit') : $unit_selected->id; ?>
+                                <option value="">- Pilih Unit -</option>
                               </select>
                               <div class="invalid-feedback">
                                   <?= form_error('id_unit') ?>
@@ -128,14 +125,13 @@
 
     <script>
       $(document).ready(function(){
-        var perumahan2 = <?=$perumahan_selected?>;
         $('#perumahan').change(function(){
          var perumahan_id = $('#perumahan').val();
-         var unit_id = <?=$unit_selected->id?>;
-         var unit_blok = <?=$unit_selected->blok?>;
-         var list = <?=$list_unit_selected?>;
-         if(perumahan_id != perumahan2)
-         {
+         var perumahan_selected = <?php echo $perumahan_selected; ?>;
+         var unit_selected = <?php echo $unit_selected->id; ?>;
+         var unit_blok = <?php echo $unit_selected->blok; ?>;
+         var unit_cluster = <?php echo $unit_selected->cluster; ?>;
+
           $.ajax({
            url:"<?php echo base_url(); ?>pembelian/get_unit_by_perumahan_edit",
            method:"POST",
@@ -146,39 +142,7 @@
            }
           });
          }
-         // else {
-         //   for (var i = 0; i < list.length; i++) {
-         //     $('#id_unit').html('<option value="'+ unit_id +'">'+unit_blok+'</option>');
-         //
-         //   }
-         // }
         });
-
-       // $('.perumahan').change(function(){
-       //          var id=$(this).val();
-                // var unit_id = "<?php //echo $unit_selected;?>";
-       //          $.ajax({
-       //              url : "<?php //echo site_url('pembelian/get_unit_by_perumahan_edit');?>",
-       //              method : "POST",
-       //              data : {id: id},
-       //              async : true,
-       //              dataType : 'json',
-       //              success: function(data){
-       //
-       //                  $('select[name="id_unit"]').empty();
-       //
-       //                  $.each(data, function(key, value) {
-       //                      if(unit_id==value.unit_id){
-       //                          $('select[name="id_unit"]').append('<option value="'+ value.id +'" selected>'+ value.blok +'</option>').trigger('change');
-       //                      }else{
-       //                          $('select[name="id_unit"]').append('<option value="'+ value.id +'">'+ value.blok +'</option>');
-       //                      }
-       //                  });
-       //
-       //              }
-       //          });
-       //          return false;
-       //      });
 
        $('#id_unit').change(function()
         {
@@ -198,10 +162,15 @@
 
           });
         }
+        // else if(unit_id == '')
+        // {
+        //   $('#harga_beli').val(0);
+        // }
         else {
           $('#harga_beli').val(harga);
         }
         });
+
       });
     </script>
 </section>

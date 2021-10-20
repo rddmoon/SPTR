@@ -55,10 +55,12 @@ class M_perumahan extends CI_Model
         $this->db->where('status', 'tersedia');
         $this->db->order_by('blok', 'asc');
         $query = $this->db->get();
+
+        //$sperumahan = $this->input->post('perumahan') ? $this->input->post('perumahan') : $perumahan_selected;
         $output = '<option value="">- Pilih Unit -</option>';
         foreach($query->result() as $row)
         {
-         $output .= '<option value="'.$row->id.'"'.$row->id.' == '.$pembelian->id_unit.'? "selected" : null>'.$row->blok.' cluster '.$row->cluster.'</option>';
+         $output .= '<option value="'.$row->id.'"'.$row->id == $pembelian->id_unit ? 'selected' : null.'>'.$row->blok.' cluster '.$row->cluster.'</option>';
         }
         return $output;
     }
