@@ -53,7 +53,7 @@
                                 <?php } ?>
                                 <td><?=$nama_metode?></td>
                                 <td><?=$cicilan_ke?></td>
-                                <td style="min-width:300px">
+                                <td style="min-width:215px">
                                     <form class="" action="<?=site_url('pembelian/delete')?>" method="post">
                                         <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
                                             <i class="fa fa-eye"></i> Detail

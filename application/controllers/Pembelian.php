@@ -22,6 +22,14 @@ class Pembelian extends CI_Controller
         $this->template->load('template', $content, $data);
     }
 
+    public function detail($id)
+    {
+        $data['pembelian'] = $this->m_pembelian->get($id)->row();
+        $content = $this->fungsi->user_login()->role . '/pembelian/detail';
+        $this->template->load('template', $content, $data);
+
+    }
+
     public function get_unit_by_perumahan()
     {
       if($this->input->post('perumahan_id'))
