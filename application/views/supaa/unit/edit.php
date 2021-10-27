@@ -9,14 +9,17 @@
                     <h4>Ubah Data Unit</h4>
                 </div>
                 <div class="card-body">
-                <?php //echo validation_errors(); ?>
                 <form class="" action="" method="post">
                     <div class="form-group">
                         <label>Nama Perumahan</label>
                         <input type="hidden" name="unit_id" value="<?=$unit->id?>">
                         <div class="" style="max-width:400px">
                             <select name="id_perumahan" class="form-control <?= form_error('id_perumahan') ? 'is-invalid' : '' ?>">
-                                <?php ?>
+                                <?php $perumahans = $this->input->post('id_perumahan') ? $this->input->post('id_perumahan') : $unit->id_perumahan; ?>
+                                <option value="">- Pilih Perumahan -</option>
+                                <?php foreach ($perumahan as $key => $value) {?>
+                                    <option value="<?=$value->id?>" <?=$perumahans == $value->id ? 'selected' : null?>><?=$value->nama?></option>;
+                                <?php } ?>
                             </select>
                             <div class="invalid-feedback">
                                 <?= form_error('id_perumahan') ?>
