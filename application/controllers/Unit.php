@@ -23,7 +23,9 @@ class Unit extends CI_Controller
     public function add()
     {
         $content = $this->fungsi->user_login()->role . '/unit/add';
-        $this->form_validation->set_rules('id_perumahan', 'Nama Perumahan', 'required');
+        $data['perumahan'] = $this->m_perumahan->get();
+        //$this->template->load('template', $content, $data);
+        $this->form_validation->set_rules('id_perumahan', 'Perumahan', 'required');
         $this->form_validation->set_rules('cluster', 'Cluster', 'required');
         $this->form_validation->set_rules('blok', 'Blok', 'required');
         $this->form_validation->set_rules('tipe_rumah', 'Tipe Rumah', 'required|numeric');
@@ -35,7 +37,7 @@ class Unit extends CI_Controller
         $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
 
         if($this->form_validation->run() == FALSE){
-            $this->template->load('template', $content);
+            $this->template->load('template', $content, $data);
         }
         else{
             $post = $this->input->post(null, TRUE);
@@ -50,7 +52,8 @@ class Unit extends CI_Controller
     public function edit($id)
     {
         $content = $this->fungsi->user_login()->role . '/unit/edit';
-        $this->form_validation->set_rules('id_perumahan', 'Nama Perumahan', 'required');
+        $data['perumahan'] = $this->m_perumahan->get()->result();
+        $this->form_validation->set_rules('id_perumahan', 'Perumahan', 'required');
         $this->form_validation->set_rules('cluster', 'Cluster', 'required');
         $this->form_validation->set_rules('blok', 'Blok', 'required');
         $this->form_validation->set_rules('tipe_rumah', 'Tipe Rumah', 'required|numeric');
