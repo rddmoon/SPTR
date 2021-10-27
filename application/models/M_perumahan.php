@@ -10,6 +10,7 @@ class M_perumahan extends CI_Model
         if($id != null){
             $this->db->where('id', $id);
         }
+        $this->db->order_by('nama', 'asc');
         $query = $this->db->get();
         return $query;
     }
