@@ -15,6 +15,9 @@
                             <div class="" style="max-width:400px">
                                 <select name="id_perumahan" class="form-control <?= form_error('id_perumahan') ? 'is-invalid' : '' ?>">
                                     <option value="">- Pilih Perumahan -</option>
+                                    <?php foreach ($perumahan->result() as $key => $value) {?>
+                                    <option value="<?=$value->id?>"><?=$value->nama?></option>
+                                    <?php } ?>
                                 </select>
                                 <div class="invalid-feedback">
                                     <?= form_error('id_perumahan') ?>
