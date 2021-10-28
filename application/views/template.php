@@ -181,7 +181,7 @@
             <a href="<?=site_url('dashboard')?>">ITG</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="menu-header">Beranda</li>
+              <li class="menu-header">Menu <?=$this->session->userdata('role')?></li>
               <li>
                 <a href="<?=site_url('dashboard')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
               </li>

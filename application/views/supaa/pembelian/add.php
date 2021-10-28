@@ -92,15 +92,15 @@
                               </div>
                           </div>
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label>Cicilan Perbulan (Metode cash isi dengan jumlah sisa pembayaran)</label>
                           <div class="" style="max-width:400px">
-                            <input type="text" name="cicilan_perbulan" value="<?=set_value('cicilan_perbulan')?>" class="form-control <?= form_error('cicilan_perbulan') ? 'is-invalid' : '' ?>">
+                            <input type="text" name="cicilan_perbulan" value="" class="form-control ">
                               <div class="invalid-feedback">
-                                <?= form_error('cicilan_perbulan')?>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
+                      <!-- <input type="hidden" name="cicilan_perbulan" value=""> -->
                       <input type="hidden" name="tanggal_beli" value="<?=$tglbeli?>">
                       <input type="hidden" name="status_pembelian" value="berjalan">
                       <div class="form-group">

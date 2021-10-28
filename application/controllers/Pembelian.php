@@ -12,6 +12,7 @@ class Pembelian extends CI_Controller
         $this->load->model('m_perumahan');
         $this->load->model('m_metode');
         $this->load->model('m_unit');
+        $this->load->model('m_pembayaran');
         $this->load->library('form_validation');
     }
 
@@ -25,6 +26,15 @@ class Pembelian extends CI_Controller
     public function detail($id)
     {
         $data['pembelian'] = $this->m_pembelian->get($id)->row();
+        $data['metode_selected'] = $this->m_metode->get($data['pembelian']->id_metode)->row();
+        $data['cicilan_ke'] = $this->m_pembelian->get_cicilan_ke($data['pembelian']->id);
+        $data['pembeli_selected'] = $this->m_pembeli->get($data['pembelian']->id_pembeli)->row();
+        $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
+        $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
+        $data['perumahan_selected'] = $this->m_unit->get_nama_perumahan($id_perumahan);
+
+        $data['pembayaran'] = $this->m_pembayaran->get_by_pembelian($data['pembelian']->id)->result();
+
         $content = $this->fungsi->user_login()->role . '/pembelian/detail';
         $this->template->load('template', $content, $data);
 
@@ -87,7 +97,7 @@ class Pembelian extends CI_Controller
         $this->form_validation->set_rules('DP', 'DP', 'required|numeric');
         $this->form_validation->set_rules('id_metode', 'Metode', 'required');
         $this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric');
-        $this->form_validation->set_rules('cicilan_perbulan', 'Cicilan Perbulan', 'required|numeric');
+        //$this->form_validation->set_rules('cicilan_perbulan', 'Cicilan Perbulan', 'required|numeric');
         // $this->form_validation->set_rules('lokasi', 'Lokasi', 'required');
         $this->form_validation->set_message('required', '%s masih kosong.');
         $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
@@ -97,6 +107,8 @@ class Pembelian extends CI_Controller
         }
         else{
             $post = $this->input->post(null,TRUE);
+            $banyaknya_cicilan = $this->m_metode->get($post['id_metode'])->row()->banyaknya_cicilan;
+            $post['cicilan_perbulan'] = ($post['harga_beli'] - $post['DP'])/$banyaknya_cicilan;
             $this->m_pembelian->add($post);
             $this->m_unit->edit_status_terjual($post['id_unit']);
             // $cicilan = $this->m_metode->get_banyak_cicilan($post['id_metode']);
