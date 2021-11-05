@@ -13,6 +13,7 @@ class Pembelian extends CI_Controller
         $this->load->model('m_metode');
         $this->load->model('m_unit');
         $this->load->model('m_pembayaran');
+        $this->load->model('m_pembayaran_tambahan');
         $this->load->library('form_validation');
     }
 
@@ -34,11 +35,62 @@ class Pembelian extends CI_Controller
         $data['perumahan_selected'] = $this->m_unit->get_nama_perumahan($id_perumahan);
 
         $data['pembayaran'] = $this->m_pembayaran->get_by_pembelian($data['pembelian']->id)->result();
+        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get_by_pembelian($data['pembelian']->id)->result();
 
         $content = $this->fungsi->user_login()->role . '/pembelian/detail';
         $this->template->load('template', $content, $data);
 
     }
+
+    public function edit_dibatalkan($id)
+    {
+      $id_unit = $this->m_pembelian->get($id)->row()->id_unit;
+      $this->m_pembelian->dibatalkan($id);
+      $this->m_unit->edit_status_tersedia($id_unit);
+      if($this->db->affected_rows() > 0){
+          echo "<script>alert('Pembelian telah dibatalkan');</script>";
+      }
+      echo "<script>window.location='".site_url('pembelian')."';</script>";
+    }
+
+    public function edit_pembeli($id)
+    {
+      $data['pembeli'] = $this->m_pembeli->get()->result();
+      $content = $this->fungsi->user_login()->role . '/pembelian/edit_pembeli';
+
+      $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
+      $this->form_validation->set_message('required', '%s masih kosong.');
+
+        if($this->form_validation->run() == FALSE)
+        {
+          $query = $this->m_pembelian->get($id);
+            if($query->num_rows() > 0)
+            {
+                $data['pembelian'] = $query->row();
+                $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
+                $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
+                $data['perumahan_selected'] = $this->m_perumahan->get($id_perumahan)->row();
+                $data['metode_selected'] = $this->m_metode->get($data['pembelian']->id_metode)->row();
+                $this->template->load('template', $content, $data);
+            }
+            else
+            {
+                echo "<script>alert('Data tidak ditemukan.');";
+				        echo "window.location='".site_url('pembelian')."';</script>";
+            }
+        }
+        else
+        {
+            $post = $this->input->post(null,TRUE);
+            $post['id'] = $id;
+      			$this->m_pembelian->pindah_tangan($post);
+      			if($this->db->affected_rows() > 0)
+      			{
+      				echo "<script>alert('Perubahan berhasil disimpan');</script>";
+      			}
+      			echo "<script>window.location='".site_url('pembelian/detail/'.$id)."';</script>";
+          }
+      }
 
     public function get_unit_by_perumahan()
     {

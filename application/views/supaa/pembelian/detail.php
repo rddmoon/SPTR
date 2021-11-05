@@ -42,7 +42,23 @@
                   <p><b>Harga Beli</b>&nbsp;&nbsp;&nbsp;&nbsp;<?="Rp".number_format($pembelian->harga_beli, 2);?></p>
                   <p><b>Cicilan Perbulan</b>&nbsp;&nbsp;&nbsp;&nbsp;<?="Rp".number_format($pembelian->cicilan_perbulan, 2);?></p>
                   <p><b>Tunggakan</b>&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembelian->tunggakan?></p>
-
+                  <p><b>Total Uang Masuk</b>&nbsp;&nbsp;&nbsp;&nbsp;<?="Rp".number_format($pembelian->uang_masuk, 2);?></p>
+                  <div class="text-center">
+                    <?php if($pembelian->status_pembelian == "berjalan"){ ?>
+                    <form class="" action="<?=site_url('pembelian/edit_pembeli/'.$pembelian->id)?>" method="post">
+                        <button onclick="return confirm('Apakah Anda yakin akan mengganti pembeli?')" class="btn btn-warning">
+                          <i class="fas fa-users-cog"></i> Pindah Tangan
+                        </button>
+                      </form>
+                  </br>
+                  <form class="" action="<?=site_url('pembelian/edit_dibatalkan/'.$pembelian->id)?>" method="post">
+                      <button onclick="return confirm('Apakah Anda yakin akan membatalkan pembelian?')" class="btn btn-danger">
+                        <i class="fa fa-times-circle"></i> Batalkan Pembelian
+                      </button>
+                    </form>
+                  <?php } ?>
+                  </div>
+                </br>
                 </div>
             </div>
           <?php //} ?>
@@ -51,7 +67,23 @@
                     <h4>Pembayaran</h4>
                 </div>
                 <div class="card-body">
-
+                  <?php foreach ($pembayaran as $key => $value) {?>
+                    <div class="col-12 col-md-6 col-lg-6">
+                      <div class="card card-primary">
+                        <div class="card-header">
+                          <h4><?=$value->keterangan?></h4>
+                          <div class="card-header-action">
+                            <a href="#" class="btn btn-primary">
+                              View All
+                            </a>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p>Write something here</p>
+                        </div>
+                      </div>
+                    </div>
+                  <?php } ?>
                 </div>
             </div>
             <div class="card">
@@ -59,7 +91,23 @@
                     <h4>Pembayaran Lain-lain</h4>
                 </div>
                 <div class="card-body">
-
+                  <?php foreach ($pembayaran_tambahan as $key => $value) {?>
+                    <div class="col-12 col-md-6 col-lg-6">
+                      <div class="card card-primary">
+                        <div class="card-header">
+                          <h4><?=$value->keterangan?></h4>
+                          <div class="card-header-action">
+                            <a href="#" class="btn btn-primary">
+                              View All
+                            </a>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p>Write something here</p>
+                        </div>
+                      </div>
+                    </div>
+                  <?php } ?>
                 </div>
             </div>
         </div>

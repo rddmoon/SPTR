@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_pembelian extends CI_Model
+class M_pembayaran_tambahan extends CI_Model
 {
     public function get($id = null)
     {
@@ -14,28 +14,12 @@ class M_pembelian extends CI_Model
         return $query;
     }
 
-    public function get_nama_pembeli($id)
+    public function get_by_pembelian($id)
     {
-        $this->db->from('pembeli');
-        $this->db->where('id', $id);
-        $query = $this->db->get()->row();
-        return $query;
-    }
-
-    public function get_nama_metode($id)
-    {
-        $this->db->from('metode');
-        $this->db->where('id', $id);
-        $query = $this->db->get()->row();
-        return $query;
-    }
-
-    public function get_cicilan_ke($id)
-    {
-        $this->db->from('pembayaran');
-        $this->db->join('pembelian', 'pembelian.id = pembayaran.id_pembelian', 'left');
+        $this->db->from('pembayaran_tambahan');
+        $this->db->join('pembelian', 'pembelian.id = pembayaran_tambahan.id_pembelian', 'left');
         $this->db->where('id_pembelian', $id);
-        $query = $this->db->count_all_results();
+        $query = $this->db->get();
         return $query;
     }
 
@@ -56,23 +40,6 @@ class M_pembelian extends CI_Model
         $params['tunggakan'] = 0;
         $this->db->insert('pembelian', $params);
     }
-
-    public function dibatalkan($id)
-    {
-        $params['status_pembelian'] = "dibatalkan";
-
-        $this->db->where('id', $id);
-        $this->db->update('pembelian', $params);
-    }
-
-    public function pindah_tangan($post)
-    {
-        $params['id_pembeli'] = $post['id_pembeli'];
-
-        $this->db->where('id', $post['id']);
-        $this->db->update('pembelian', $params);
-    }
-
     public function edit($post)
     {
         $params['id_unit'] = $post['id_unit'];

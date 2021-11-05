@@ -104,7 +104,7 @@
                       <input type="hidden" name="tanggal_beli" value="<?=$tglbeli?>">
                       <input type="hidden" name="status_pembelian" value="berjalan">
                       <div class="form-group">
-                          <button type="submit" class="btn btn-success">Simpan</button>
+                          <button onclick="return confirm('Apakah Anda yakin data yang dimasukkan sudah benar?')" type="submit" class="btn btn-success">Simpan</button>
                           <a href="<?=site_url('pembelian')?>" type="button" class="btn btn-danger">Batal</a>
                       </div>
                   </form>

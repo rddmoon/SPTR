@@ -62,9 +62,11 @@
                                             <i class="fa fa-edit"></i> Ubah
                                         </a>
                                         <input type="hidden" name="pembelian_id" value="<?=$value->id?>">
+                                        <?php if($value->status_pembelian == "dibatalkan"){ ?>
                                         <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
                                             <i class="fa fa-trash-alt"></i> Hapus
                                         </button>
+                                      <?php } ?>
                                     </form>
                                 </td>
                             </tr>
