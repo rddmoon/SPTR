@@ -20,11 +20,18 @@ class Unit extends CI_Controller
         $this->template->load('template', $content, $data);
     }
 
+    public function detail($id)
+    {
+        $data['unit'] = $this->m_unit->get($id)->row();
+        $data['perumahan'] = $this->m_unit->get_nama_perumahan($data['unit']->id_perumahan);
+        $content = $this->fungsi->user_login()->role . '/unit/detail';
+        $this->template->load('template', $content, $data);
+    }
+
     public function add()
     {
         $content = $this->fungsi->user_login()->role . '/unit/add';
         $data['perumahan'] = $this->m_perumahan->get();
-        //$this->template->load('template', $content, $data);
         $this->form_validation->set_rules('id_perumahan', 'Perumahan', 'required');
         $this->form_validation->set_rules('cluster', 'Cluster', 'required');
         $this->form_validation->set_rules('blok', 'Blok', 'required');
