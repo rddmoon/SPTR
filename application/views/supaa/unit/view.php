@@ -14,7 +14,6 @@
                         <i class="fa fa-plus"></i> Tambah</a>
                     </div>
                     <br>
-                    <?php //print_r($perumahan); ?>
                     <table class="table table-hover">
                         <thead>
                             <tr class="text-center">
