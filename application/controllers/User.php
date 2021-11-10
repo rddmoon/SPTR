@@ -21,6 +21,12 @@ class User extends CI_Controller {
 
 	}
 
+	public function profil($id)
+	{
+		$data['current_user'] = $this->m_user->get($id)->row();
+		$this->template->load('template', 'profil', $data);
+	}
+
 	public function add()
 	{
 		$content = $this->fungsi->user_login()->role . '/user/add';
