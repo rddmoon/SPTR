@@ -1,12 +1,12 @@
 <section class="section">
     <div class="section-header">
-        <h1>Unit Perumahan</h1>
+        <h1>Unit Perumahan <?= $perumahan->nama?></h1>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Data Unit Perumahan</h4>
+                    <h4>Data Unit Perumahan <?= $perumahan->nama?></h4>
                 </div>
                 <div class="card-body">
                     <div class="text-right">
