@@ -24,6 +24,14 @@ class M_perumahan extends CI_Model
         return $query;
     }
 
+    public function get_nama_perumahan($id)
+    {
+      $this->db->from('perumahan');
+      $this->db->where('id', $id);
+      $query = $this->db->get()->row();
+      return $query;
+    }
+
     public function list_unit_selected($id)
     {
         $this->db->from('unit');
