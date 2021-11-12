@@ -35,7 +35,7 @@ class M_pembelian extends CI_Model
         $this->db->from('pembayaran');
         $this->db->join('pembelian', 'pembelian.id = pembayaran.id_pembelian', 'left');
         $this->db->where('id_pembelian', $id);
-        $query = $this->db->count_all_results();
+        $query = $this->db->count_all_results() - 1;
         return $query;
     }
 

@@ -23,23 +23,21 @@ class M_pembayaran extends CI_Model
         return $query;
     }
 
-    public function add($post)
+    public function add($pembayaran)
     {
-        $params['id'] = $post['pembelian_id'];
-        $params['id_unit'] = $post['id_unit'];
-        $params['id_pembeli'] = $post['id_pembeli'];
-        $params['DP'] = $post['DP'];
-        $params['id_metode'] = $post['id_metode'];
-        $params['tanggal_beli'] = $post['tanggal_beli'];
-        $params['status_pembelian'] = $post['status_pembelian'];
-        $params['harga_beli'] = $post['harga_beli'];
-        $params['cicilan_perbulan'] = $post['cicilan_perbulan'];
-        $params['uang_masuk'] = $post['DP'];
-        $params['uang_lainnya'] = 0;
-        $params['counter'] = 0;
-        $params['tunggakan'] = 0;
-        $this->db->insert('pembelian', $params);
+        $params['id_kwitansi'] = $pembayaran['id_kwitansi'];
+        $params['id_user'] = $pembayaran['id_user'];
+        $params['id_pembelian'] = $pembayaran['id_pembelian'];
+        $params['nama_pembeli'] = $pembayaran['nama_pembeli'];
+        $params['biaya'] = $pembayaran['biaya'];
+        $params['tanggal_bayar'] = $pembayaran['tanggal_bayar'];
+        $params['tanggal_jatuh_tempo'] = $pembayaran['tanggal_jatuh_tempo'];
+        $params['jenis'] = $pembayaran['jenis'];
+        $params['keterangan'] = $pembayaran['keterangan'];
+        $params['blokir'] = $pembayaran['blokir'];
+        $this->db->insert('pembayaran', $params);
     }
+    ///////////////////////////////////////////////////////////////////////////
     public function edit($post)
     {
         $params['id_unit'] = $post['id_unit'];
@@ -57,9 +55,10 @@ class M_pembayaran extends CI_Model
         $this->db->where('id', $post['pembelian_id']);
         $this->db->update('pembelian', $params);
     }
+
     public function delete($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('pembelian');
+        $this->db->delete('pembayaran');
     }
 }

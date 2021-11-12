@@ -5,8 +5,6 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-              <?php //foreach ($pembelian->result() as $key => $value) { ?>
-
                 <div class="card-header">
                     <h4>Data Pembelian</h4>
                 </div>
@@ -61,55 +59,136 @@
                 </br>
                 </div>
             </div>
-          <?php //} ?>
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header">
                     <h4>Pembayaran</h4>
                 </div>
-                <div class="card-body">
-                  <?php foreach ($pembayaran as $key => $value) {?>
-                    <div class="col-12 col-md-6 col-lg-6">
-                      <div class="card card-primary">
-                        <div class="card-header">
-                          <h4><?=$value->keterangan?></h4>
-                          <div class="card-header-action">
-                            <a href="#" class="btn btn-primary">
-                              View All
-                            </a>
+              </div> -->
+              <h2 class="section-title">Pembayaran</h2>
+              <p class="section-lead">
+              Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
+              </p>
+                <div class="row">
+                  <?php foreach($pembayaran->result() as $key => $value) {?>
+                    <?php if($value->jenis == 0){
+                            $header = "DP" ;
+                          }
+                          else{
+                            $header = "Cicilan ".$value->jenis;
+                          }?>
+                    <?php if($value->blokir == "lunas"){?>
+                      <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-success">
+                          <div class="" style="color:#63ed7a">
+                            <div class="card-header">
+                              <h4><?=$header?></h4>
+                              <div class="card-header-action">
+                                  <b>LUNAS</b>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <p>Write something here</p>
                           </div>
                         </div>
-                        <div class="card-body">
-                          <p>Write something here</p>
-                        </div>
                       </div>
-                    </div>
-                  <?php } ?>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Pembayaran Lain-lain</h4>
-                </div>
-                <div class="card-body">
-                  <?php foreach ($pembayaran_tambahan as $key => $value) {?>
-                    <div class="col-12 col-md-6 col-lg-6">
-                      <div class="card card-primary">
-                        <div class="card-header">
-                          <h4><?=$value->keterangan?></h4>
-                          <div class="card-header-action">
-                            <a href="#" class="btn btn-primary">
-                              View All
-                            </a>
+                    <?php } ?>
+
+                    <?php if($value->blokir == "buka"){?>
+                      <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-primary">
+                          <div class="card-header">
+                            <h4><?=$header?></h4>
+                            <div class="card-header-action">
+                              <a href="#" class="btn btn-primary">
+                                Bayar
+                              </a>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <p>Write something here</p>
                           </div>
                         </div>
-                        <div class="card-body">
-                          <p>Write something here</p>
+                      </div>
+                    <?php } ?>
+
+                    <?php if($value->blokir == "blokir"){?>
+                      <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card card-light">
+                          <div class="card-header">
+                            <h4><?=$header?></h4>
+                            <div class="card-header-action">
+                              <a href="#" class="btn disabled">
+                                Diblokir
+                              </a>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <p>Write something here</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    <?php } ?>
                   <?php } ?>
                 </div>
-            </div>
+                <h2 class="section-title">Pembayaran Lain-lain</h2>
+                  <div class="row">
+                    <?php foreach($pembayaran_tambahan->result() as $key => $value) {?>
+                      <?php if($value->blokir == "lunas"){?>
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card card-success">
+                            <div class="" style="color:#63ed7a">
+                              <div class="card-header">
+                                <h4>Card Header</h4>
+                                <div class="card-header-action">
+                                    <b>LUNAS</b>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              <p>Write something here</p>
+                            </div>
+                          </div>
+                        </div>
+                      <?php } ?>
+
+                      <?php if($value->blokir == "buka"){?>
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card card-primary">
+                            <div class="card-header">
+                              <h4>Card Header</h4>
+                              <div class="card-header-action">
+                                <a href="#" class="btn btn-primary">
+                                  View All
+                                </a>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              <p>Write something here</p>
+                            </div>
+                          </div>
+                        </div>
+                      <?php } ?>
+
+                      <?php if($value->blokir == "blokir"){?>
+                        <div class="col-12 col-md-6 col-lg-4">
+                          <div class="card card-light">
+                            <div class="card-header">
+                              <h4>Card Header</h4>
+                              <div class="card-header-action">
+                                <a href="#" class="btn disabled">
+                                  Diblokir
+                                </a>
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              <p>Write something here</p>
+                            </div>
+                          </div>
+                        </div>
+                      <?php } ?>
+                    <?php } ?>
+                  </div>
         </div>
     </div>
 </section>

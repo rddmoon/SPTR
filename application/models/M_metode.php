@@ -20,7 +20,7 @@ class M_metode extends CI_Model
   {
     $this->db->from('metode');
     $this->db->where('id', $id);
-    $query = $this->db->get()->row();
+    $query = $this->db->get()->row()->banyaknya_cicilan;
     return $query;
   }
 

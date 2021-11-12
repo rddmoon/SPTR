@@ -60,6 +60,6 @@ class M_pembayaran_tambahan extends CI_Model
     public function delete($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('pembelian');
+        $this->db->delete('pembayaran_tambahan');
     }
 }

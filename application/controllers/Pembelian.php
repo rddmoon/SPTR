@@ -14,6 +14,7 @@ class Pembelian extends CI_Controller
         $this->load->model('m_unit');
         $this->load->model('m_pembayaran');
         $this->load->model('m_pembayaran_tambahan');
+        $this->load->model('m_kwitansi');
         $this->load->library('form_validation');
     }
 
@@ -34,8 +35,8 @@ class Pembelian extends CI_Controller
         $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
         $data['perumahan_selected'] = $this->m_unit->get_nama_perumahan($id_perumahan);
 
-        $data['pembayaran'] = $this->m_pembayaran->get_by_pembelian($data['pembelian']->id)->result();
-        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get_by_pembelian($data['pembelian']->id)->result();
+        $data['pembayaran'] = $this->m_pembayaran->get_by_pembelian($id);
+        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get_by_pembelian($data['pembelian']->id);
 
         $content = $this->fungsi->user_login()->role . '/pembelian/detail';
         $this->template->load('template', $content, $data);
@@ -135,6 +136,49 @@ class Pembelian extends CI_Controller
       // }
     }
 
+    // public function generate_pembayaran_cash($post)
+    // {
+    //
+    // }
+
+    public function generate_pembayaran_selain_cash($post)
+    {
+      date_default_timezone_set('Asia/Jakarta');
+      $kwitansi['id'] = date('dmyhis');
+      //generate dp
+      $kwitansi['biaya'] = $post['DP'];
+      $kwitansi['tanggal_bayar'] = $post['tanggal_beli'];
+      $unit = $this->m_unit->get($post['id_unit'])->row();
+      $kwitansi['keterangan'] = 'Pembayaran DP '.$post['perumahan'].' Unit '.$unit->blok.' Cluster '.$unit->cluster.'.';
+      $pembeli = $this->m_pembeli->get($post['id_pembeli'])->row();
+      $kwitansi['nama_pembeli'] = $pembeli->nama_pembeli;
+      $this->m_kwitansi->add($kwitansi);
+
+      $pembayaran_1['id_kwitansi'] = $kwitansi['id'];
+      $pembayaran_1['id_user'] = $this->fungsi->user_login()->id;
+      $pembayaran_1['id_pembelian'] = $post['pembelian_id'];
+      $pembayaran_1['nama_pembeli'] = $kwitansi['nama_pembeli'];
+      $pembayaran_1['biaya'] = $kwitansi['biaya'];
+      $pembayaran_1['tanggal_bayar'] = $post['tanggal_beli'];
+      $pembayaran_1['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime("+1 months", strtotime($post['tanggal_beli'])));
+      $pembayaran_1['jenis'] = 0;
+      $pembayaran_1['keterangan'] = $kwitansi['keterangan'];
+      $pembayaran_1['blokir'] = "lunas";
+      $this->m_pembayaran->add($pembayaran_1);
+      //generate cicilan 1
+      $pembayaran_2['id_kwitansi'] = NULL;
+      $pembayaran_2['id_user'] = NULL;
+      $pembayaran_2['id_pembelian'] = $post['pembelian_id'];
+      $pembayaran_2['nama_pembeli'] = $kwitansi['nama_pembeli'];
+      $pembayaran_2['biaya'] = $post['cicilan_perbulan'];
+      $pembayaran_2['tanggal_bayar'] = NULL;
+      $pembayaran_2['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime("+1 months", strtotime($post['tanggal_beli'])));
+      $pembayaran['jenis'] = 1;
+      $pembayaran_2['keterangan'] = NULL;
+      $pembayaran_2['blokir'] = "buka";
+      $this->m_pembayaran->add($pembayaran_2);
+    }
+
     public function add()
     {
         $data['perumahan'] = $this->m_perumahan->get()->result();
@@ -163,11 +207,17 @@ class Pembelian extends CI_Controller
             $post['cicilan_perbulan'] = ($post['harga_beli'] - $post['DP'])/$banyaknya_cicilan;
             $this->m_pembelian->add($post);
             $this->m_unit->edit_status_terjual($post['id_unit']);
-            // $cicilan = $this->m_metode->get_banyak_cicilan($post['id_metode']);
-            // if($cicilan > 1){
-            //   generate_pembayaran($post);
-            // }
-            if($this->db->affected_rows() > 0){
+            if($this->db->affected_rows() > 0)
+            {
+              $cicilan = $this->m_metode->get_banyak_cicilan($post['id_metode']);
+              if($cicilan > 0)
+              {
+                $this->generate_pembayaran_selain_cash($post);
+              }
+              else
+              {
+                $this->generate_pembayaran_cash($post);
+              }
                 echo "<script>alert('Data berhasil disimpan');</script>";
             }
             echo "<script>window.location='".site_url('pembelian')."';</script>";
