@@ -59,72 +59,82 @@
                 </br>
                 </div>
             </div>
-            <!-- <div class="card">
-                <div class="card-header">
-                    <h4>Pembayaran</h4>
-                </div>
-              </div> -->
+            <!-- Pembayaran -->
               <h2 class="section-title">Pembayaran</h2>
               <p class="section-lead">
-              Bootstrap’s cards provide a flexible and extensible content container with multiple variants and options.
+              Pembayaran-pembayaran menyangkut DP dan cicilan pada pembelian ini.
               </p>
                 <div class="row">
-                  <?php foreach($pembayaran->result() as $key => $value) {?>
-                    <?php if($value->jenis == 0){
-                            $header = "DP" ;
-                          }
-                          else{
-                            $header = "Cicilan ".$value->jenis;
-                          }?>
-                    <?php if($value->blokir == "lunas"){?>
+                  <?php foreach($pembayaran->result() as $key) {?>
+                    <?php if($key->jenis == 0){
+                              $header = "DP" ;
+                            }
+                            else {
+                              $header = "Cicilan ".$key->jenis;
+                            }?>
+                    <?php if($key->blokir == "lunas"){?>
                       <div class="col-12 col-md-6 col-lg-4">
                         <div class="card card-success">
-                          <div class="" style="color:#63ed7a">
                             <div class="card-header">
-                              <h4><?=$header?></h4>
+                              <h4 style="color:#63ed7a"><?=$header?></h4>
                               <div class="card-header-action">
-                                  <b>LUNAS</b>
+                                <a href="#" class="btn btn-success">
+                                  Cetak
+                                </a>
                               </div>
                             </div>
-                          </div>
                           <div class="card-body">
-                            <p>Write something here</p>
+                            <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
+                            <?php if($key->jenis == 0) {?>
+                              <p>Dibayar: <?=date('d M Y', strtotime($key->tanggal_bayar))?></p>
+                              <p></br></p>
+                            <?php }else { ?>
+                              <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                              <p>Dibayar: <?=date('d M Y', strtotime($key->tanggal_bayar))?></p>
+                            <?php } ?>
+                            <p><span style="color:#47c363"><b>LUNAS</b></span></p>
                           </div>
                         </div>
                       </div>
                     <?php } ?>
 
-                    <?php if($value->blokir == "buka"){?>
+                    <?php if($key->blokir == "buka"){?>
                       <div class="col-12 col-md-6 col-lg-4">
                         <div class="card card-primary">
                           <div class="card-header">
                             <h4><?=$header?></h4>
                             <div class="card-header-action">
-                              <a href="#" class="btn btn-primary">
+                              <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" class="btn btn-primary">
                                 Bayar
                               </a>
                             </div>
                           </div>
                           <div class="card-body">
-                            <p>Write something here</p>
+                            <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
+                            <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                            <p>Dibayar: -</p>
+                            <p><span style="color:#6777ef"><b>MENUNGGU PEMBAYARAN</b></span></p>
                           </div>
                         </div>
                       </div>
                     <?php } ?>
 
-                    <?php if($value->blokir == "blokir"){?>
+                    <?php if($key->blokir == "blokir"){?>
                       <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card card-light">
+                        <div class="card card-secondary">
                           <div class="card-header">
-                            <h4><?=$header?></h4>
+                            <h4 style="color:#808184"><?=$header?></h4>
                             <div class="card-header-action">
-                              <a href="#" class="btn disabled">
+                              <a href="#" class="btn btn-secondary disabled">
                                 Diblokir
                               </a>
                             </div>
                           </div>
                           <div class="card-body">
-                            <p>Write something here</p>
+                            <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
+                            <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                            <p>Dibayar: -</p>
+                            <p><span style="color:#808184"><b>MELEBIHI JATUH TEMPO</b></span></p>
                           </div>
                         </div>
                       </div>
@@ -132,6 +142,9 @@
                   <?php } ?>
                 </div>
                 <h2 class="section-title">Pembayaran Lain-lain</h2>
+                <p class="section-lead">
+                Pembayaran-pembayaran menyangkut kelebihan tanah, tambahan bangunan, dan pembayaran tambahan lainnya pada pembelian ini.
+                </p>
                   <div class="row">
                     <?php foreach($pembayaran_tambahan->result() as $key => $value) {?>
                       <?php if($value->blokir == "lunas"){?>

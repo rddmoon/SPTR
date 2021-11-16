@@ -6,7 +6,7 @@
         <div class="col-12 col-offset-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Ubah Data Pembelian Pindah Tangan</h4>
+                    <h4>Ubah Pembeli Pindah Tangan</h4>
                 </div>
                 <div class="card-body">
                   <form class="" action="" method="post">
@@ -17,7 +17,7 @@
                                 <?php $spembeli = $this->input->post('id_pembeli') ? $this->input->post('id_pembeli') : $pembelian->id_pembeli; ?>
                                   <option value="">- Pilih Pembeli -</option>
                                   <?php foreach ($pembeli as $key => $value) {?>
-                                    <option value="<?=$value->id?>" <?=$spembeli == $value->id ? 'selected' : null?>><?=$value->nama_pembeli?> - <?=$value->NIK?></option>;
+                                    <option value="<?=$value->id?>" <?=$spembeli == $value->id ? 'selected' : null?>><?=$value->nama_pembeli?> - NIK <?=$value->NIK?></option>;
                                 <?php } ?>
                               </select>
                               <div class="invalid-feedback">

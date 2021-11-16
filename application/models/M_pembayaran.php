@@ -6,7 +6,7 @@ class M_pembayaran extends CI_Model
 {
     public function get($id = null)
     {
-        $this->db->from('pembelian');
+        $this->db->from('pembayaran');
         if($id != null){
             $this->db->where('id', $id);
         }
@@ -17,8 +17,17 @@ class M_pembayaran extends CI_Model
     public function get_by_pembelian($id)
     {
         $this->db->from('pembayaran');
-        $this->db->join('pembelian', 'pembelian.id = pembayaran.id_pembelian', 'left');
         $this->db->where('id_pembelian', $id);
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function get_pembayaran_terakhir($id)
+    {
+        $this->db->from('pembayaran');
+        $this->db->where('id_pembelian', $id);
+        $this->db->order_by('id',"DESC");
+        $this->db->limit(1);
         $query = $this->db->get();
         return $query;
     }
@@ -35,7 +44,20 @@ class M_pembayaran extends CI_Model
         $params['jenis'] = $pembayaran['jenis'];
         $params['keterangan'] = $pembayaran['keterangan'];
         $params['blokir'] = $pembayaran['blokir'];
+        $params['cetak_kwitansi'] = "belum";
         $this->db->insert('pembayaran', $params);
+    }
+
+    public function bayar($pembayaran)
+    {
+        $params['id_kwitansi'] = $pembayaran['id_kwitansi'];
+        $params['id_user'] = $pembayaran['id_user'];
+        $params['tanggal_bayar'] = $pembayaran['tanggal_bayar'];
+        $params['keterangan'] = $pembayaran['keterangan'];
+        $params['blokir'] = $pembayaran['blokir'];
+
+        $this->db->where('id', $pembayaran['id']);
+        $this->db->update('pembayaran', $params);
     }
     ///////////////////////////////////////////////////////////////////////////
     public function edit($post)

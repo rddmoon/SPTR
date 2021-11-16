@@ -21,6 +21,9 @@ class Pembelian extends CI_Controller
     public function index()
     {
         $data['pembelian'] = $this->m_pembelian->get();
+        $data['pembelian_berjalan'] = $this->m_pembelian->get_berjalan();
+        $data['pembelian_selesai'] = $this->m_pembelian->get_selesai();
+        $data['pembelian_dibatalkan'] = $this->m_pembelian->get_dibatalkan();
         $content = $this->fungsi->user_login()->role . '/pembelian/view';
         $this->template->load('template', $content, $data);
     }
@@ -77,7 +80,7 @@ class Pembelian extends CI_Controller
             else
             {
                 echo "<script>alert('Data tidak ditemukan.');";
-				        echo "window.location='".site_url('pembelian')."';</script>";
+				        echo "window.location='".site_url('pembelian/detail/'.$id)."';</script>";
             }
         }
         else
@@ -136,12 +139,33 @@ class Pembelian extends CI_Controller
       // }
     }
 
-    // public function generate_pembayaran_cash($post)
-    // {
-    //
-    // }
+    public function generate_pembayaran_cash_keras($post)
+    {
+      date_default_timezone_set('Asia/Jakarta');
+      $kwitansi['id'] = date('dmyhis');
+      //generate dp
+      $kwitansi['biaya'] = $post['DP'];
+      $kwitansi['tanggal_bayar'] = $post['tanggal_beli'];
+      $unit = $this->m_unit->get($post['id_unit'])->row();
+      $kwitansi['keterangan'] = 'Pembayaran '.$post['perumahan'].' Unit '.$unit->blok.' Cluster '.$unit->cluster.'.';
+      $pembeli = $this->m_pembeli->get($post['id_pembeli'])->row();
+      $kwitansi['nama_pembeli'] = $pembeli->nama_pembeli;
+      $this->m_kwitansi->add($kwitansi);
 
-    public function generate_pembayaran_selain_cash($post)
+      $pembayaran_1['id_kwitansi'] = $kwitansi['id'];
+      $pembayaran_1['id_user'] = $this->fungsi->user_login()->id;
+      $pembayaran_1['id_pembelian'] = $post['pembelian_id'];
+      $pembayaran_1['nama_pembeli'] = $kwitansi['nama_pembeli'];
+      $pembayaran_1['biaya'] = $kwitansi['biaya'];
+      $pembayaran_1['tanggal_bayar'] = $post['tanggal_beli'];
+      $pembayaran_1['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime($post['tanggal_beli']));
+      $pembayaran_1['jenis'] = 0;
+      $pembayaran_1['keterangan'] = $kwitansi['keterangan'];
+      $pembayaran_1['blokir'] = "lunas";
+      $this->m_pembayaran->add($pembayaran_1);
+    }
+
+    public function generate_dua_pembayaran($post)
     {
       date_default_timezone_set('Asia/Jakarta');
       $kwitansi['id'] = date('dmyhis');
@@ -160,7 +184,7 @@ class Pembelian extends CI_Controller
       $pembayaran_1['nama_pembeli'] = $kwitansi['nama_pembeli'];
       $pembayaran_1['biaya'] = $kwitansi['biaya'];
       $pembayaran_1['tanggal_bayar'] = $post['tanggal_beli'];
-      $pembayaran_1['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime("+1 months", strtotime($post['tanggal_beli'])));
+      $pembayaran_1['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime($post['tanggal_beli']));
       $pembayaran_1['jenis'] = 0;
       $pembayaran_1['keterangan'] = $kwitansi['keterangan'];
       $pembayaran_1['blokir'] = "lunas";
@@ -173,10 +197,23 @@ class Pembelian extends CI_Controller
       $pembayaran_2['biaya'] = $post['cicilan_perbulan'];
       $pembayaran_2['tanggal_bayar'] = NULL;
       $pembayaran_2['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime("+1 months", strtotime($post['tanggal_beli'])));
-      $pembayaran['jenis'] = 1;
+      $pembayaran_2['jenis'] = 1;
       $pembayaran_2['keterangan'] = NULL;
       $pembayaran_2['blokir'] = "buka";
       $this->m_pembayaran->add($pembayaran_2);
+    }
+
+    public function check_status_pembelian($id)
+    {
+      $pembelian = $this->m_pembelian->get($id)->row();
+      $metode = $this->m_metode->get($pembelian->id_metode)->row();
+      $cicilan = $this->m_pembelian->get_cicilan_ke($pembelian->id);
+      if($pembelian->uang_masuk == $pembelian->harga_beli || $cicilan == $metode->banyaknya_cicilan)
+      {
+        $this->m_pembelian->selesai($id);
+        return 1;
+      }
+      return 0;
     }
 
     public function add()
@@ -204,7 +241,12 @@ class Pembelian extends CI_Controller
         else{
             $post = $this->input->post(null,TRUE);
             $banyaknya_cicilan = $this->m_metode->get($post['id_metode'])->row()->banyaknya_cicilan;
-            $post['cicilan_perbulan'] = ($post['harga_beli'] - $post['DP'])/$banyaknya_cicilan;
+            if($banyaknya_cicilan > 0){
+              $post['cicilan_perbulan'] = ($post['harga_beli'] - $post['DP'])/$banyaknya_cicilan;
+            }
+            else {
+              $post['cicilan_perbulan'] = 0;
+            }
             $this->m_pembelian->add($post);
             $this->m_unit->edit_status_terjual($post['id_unit']);
             if($this->db->affected_rows() > 0)
@@ -212,15 +254,16 @@ class Pembelian extends CI_Controller
               $cicilan = $this->m_metode->get_banyak_cicilan($post['id_metode']);
               if($cicilan > 0)
               {
-                $this->generate_pembayaran_selain_cash($post);
+                $this->generate_dua_pembayaran($post);
               }
               else
               {
-                $this->generate_pembayaran_cash($post);
+                  $return = $this->check_status_pembelian($post['pembelian_id']);
+                  $this->generate_pembayaran_cash_keras($post);
               }
                 echo "<script>alert('Data berhasil disimpan');</script>";
             }
-            echo "<script>window.location='".site_url('pembelian')."';</script>";
+            echo "<script>window.location='".site_url('pembelian/detail/'.$post['pembelian_id'])."';</script>";
         }
     }
 

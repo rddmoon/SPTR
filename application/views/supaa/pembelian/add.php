@@ -21,7 +21,7 @@
                               <select name="id_pembeli" class="form-control <?= form_error('id_pembeli') ? 'is-invalid' : '' ?>">
                                   <option value="">- Pilih Pembeli -</option>
                                   <?php foreach ($pembeli->result() as $key => $value) {?>
-                                  <option value="<?=$value->id?>"><?=$value->nama_pembeli?> - <?=$value->NIK?></option>
+                                  <option value="<?=$value->id?>"><?=$value->nama_pembeli?> - NIK <?=$value->NIK?></option>
                                 <?php } ?>
                               </select>
                               <div class="invalid-feedback">
