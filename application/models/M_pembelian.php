@@ -7,8 +7,13 @@ class M_pembelian extends CI_Model
     public function get($id = null)
     {
         $this->db->from('pembelian');
-        if($id != null){
+        if($id != null)
+        {
             $this->db->where('id', $id);
+        }
+        else
+        {
+          $this->db->order_by('id',"DESC");
         }
         $query = $this->db->get();
         return $query;

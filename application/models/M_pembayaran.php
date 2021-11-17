@@ -7,8 +7,13 @@ class M_pembayaran extends CI_Model
     public function get($id = null)
     {
         $this->db->from('pembayaran');
-        if($id != null){
+        if($id != null)
+        {
             $this->db->where('id', $id);
+        }
+        else
+        {
+          $this->db->order_by('id',"DESC");
         }
         $query = $this->db->get();
         return $query;
@@ -30,6 +35,33 @@ class M_pembayaran extends CI_Model
         $this->db->limit(1);
         $query = $this->db->get();
         return $query;
+    }
+
+    public function buka()
+    {
+      $this->db->from('pembayaran');
+      $this->db->where('blokir', "buka");
+      $this->db->order_by('id',"DESC");
+      $query = $this->db->get();
+      return $query;
+    }
+
+    public function lunas()
+    {
+      $this->db->from('pembayaran');
+      $this->db->where('blokir', "lunas");
+      $this->db->order_by('id',"DESC");
+      $query = $this->db->get();
+      return $query;
+    }
+
+    public function blokir()
+    {
+      $this->db->from('pembayaran');
+      $this->db->where('blokir', "blokir");
+      $this->db->order_by('id',"DESC");
+      $query = $this->db->get();
+      return $query;
     }
 
     public function add($pembayaran)
@@ -58,6 +90,22 @@ class M_pembayaran extends CI_Model
 
         $this->db->where('id', $pembayaran['id']);
         $this->db->update('pembayaran', $params);
+    }
+
+    public function buka_blokir($id)
+    {
+      $params['blokir'] = "buka";
+
+      $this->db->where('id', $id);
+      $this->db->update('pembayaran', $params);
+    }
+
+    public function blokir_pembayaran($id)
+    {
+      $params['blokir'] = "blokir";
+
+      $this->db->where('id', $id);
+      $this->db->update('pembayaran', $params);
     }
     ///////////////////////////////////////////////////////////////////////////
     public function edit($post)

@@ -205,6 +205,9 @@
                 <a href="<?=site_url('pembayaran')?>" class="nav-link"><i class="fas fa-coins"></i> <span>Pembayaran</span></a>
               </li>
               <li>
+                <a href="<?=site_url('pembayaran_tambahan')?>" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Pembayaran Tambahan</span></a>
+              </li>
+              <li>
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
               </li>
             <?php } ?>

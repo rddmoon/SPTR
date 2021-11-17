@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pembayaran extends CI_Controller
+class Pembayaran_tambahan extends CI_Controller
 {
     function __construct()
     {
@@ -13,38 +13,37 @@ class Pembayaran extends CI_Controller
         $this->load->model('m_metode');
         $this->load->model('m_unit');
         $this->load->model('m_pembayaran');
-        // $this->load->model('m_pembayaran_tambahan');
+        $this->load->model('m_pembayaran_tambahan');
         $this->load->model('m_kwitansi');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data['pembayaran'] = $this->m_pembayaran->get();
-        $data['pembayaran_buka'] = $this->m_pembayaran->buka();
-        $data['pembayaran_lunas'] = $this->m_pembayaran->lunas();
-        $data['pembayaran_blokir'] = $this->m_pembayaran->blokir();
-        $content = $this->fungsi->user_login()->role . '/pembayaran/view';
+        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get();
+        $data['pembayaran_tambahan_buka'] = $this->m_pembayaran_tambahan->buka();
+        $data['pembayaran_tambahan_lunas'] = $this->m_pembayaran_tambahan->lunas();
+        $content = $this->fungsi->user_login()->role . '/pembayaran_tambahan/view';
         $this->template->load('template', $content, $data);
     }
 
     public function detail($id)
     {
-        $data['pembayaran'] = $this->m_pembayaran->get($id)->row();
-        $content = $this->fungsi->user_login()->role . '/pembayaran/detail';
+        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get($id)->row();
+        $content = $this->fungsi->user_login()->role . '/pembayaran_tambahan/detail';
         $this->template->load('template', $content, $data);
 
     }
 
-    public function buka_blokir($id)
-    {
-      $this->m_pembayaran->buka_blokir($id);
-    }
+    // public function buka_blokir($id)
+    // {
+    //   $this->m_pembayaran->buka_blokir($id);
+    // }
 
-    public function blokir_pembayaran($id)
-    {
-      $this->m_pembayaran->blokir_pembayaran($id);
-    }
+    // public function blokir_pembayaran($id)
+    // {
+    //   $this->m_pembayaran->blokir_pembayaran($id);
+    // }
 
     public function bayar($id)
     {

@@ -51,6 +51,8 @@ class Pembelian extends CI_Controller
       $id_unit = $this->m_pembelian->get($id)->row()->id_unit;
       $this->m_pembelian->dibatalkan($id);
       $this->m_unit->edit_status_tersedia($id_unit);
+      $pembayaran = $this->m_pembayaran->get_pembayaran_terakhir($id)->row();
+      $this->blokir_pembayaran($pembayaran->id);
       if($this->db->affected_rows() > 0){
           echo "<script>alert('Pembelian telah dibatalkan');</script>";
       }
@@ -137,6 +139,11 @@ class Pembelian extends CI_Controller
       // {
       //  echo $this->m_unit->get_harga($this->input->post('id_unit'));
       // }
+    }
+
+    public function blokir_pembayaran($id)
+    {
+      $this->m_pembayaran->blokir_pembayaran($id);
     }
 
     public function generate_pembayaran_cash_keras($post)
