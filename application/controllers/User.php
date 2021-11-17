@@ -27,6 +27,54 @@ class User extends CI_Controller {
 		$this->template->load('template', 'profil', $data);
 	}
 
+	public function edit_profil($id)
+	{
+		$this->form_validation->set_rules('username', 'Username', 'required|callback_username_check',
+				array('is_unique' => '%s sudah terpakai, gunakan username yang lain.'));
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		if ($this->input->post('password'))
+		{
+			$this->form_validation->set_rules('password', 'Password', 'min_length[5]');
+			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
+			array('matches' => '%s tidak sesuai.')
+			);
+		}
+		if ($this->input->post('passconf'))
+		{
+			$this->form_validation->set_rules('passconf', 'Konfirmasi Password', 'matches[password]',
+			array('matches' => '%s tidak sesuai.')
+			);
+		}
+		$this->form_validation->set_message('required', '%s masih kosong.');
+		$this->form_validation->set_message('min_length', '{field} minimal 5 karakter.');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$query = $this->m_user->get($id);
+			if($query->num_rows() > 0)
+			{
+				$data['user'] = $query->row();
+				$this->template->load('template', "edit_profil", $data);
+			}
+			else
+			{
+				echo "<script>alert('Data tidak ditemukan.');";
+				echo "window.location='".site_url('user/profil'.$id)."';</script>";
+			}
+		}
+		else
+		{
+			$post = $this->input->post(null,TRUE);
+			$this->m_user->edit_profil($post);
+			if($this->db->affected_rows() > 0)
+			{
+				echo "<script>alert('Data berhasil disimpan');</script>";
+			}
+			echo "<script>window.location='".site_url('user/profil/'.$id)."';</script>";
+		}
+		// $this->template->load('template', $content);
+	}
+
 	public function add()
 	{
 		$content = $this->fungsi->user_login()->role . '/user/add';
