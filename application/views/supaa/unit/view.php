@@ -31,6 +31,7 @@
                                   <th scope="col">Cluster</th>
                                   <th scope="col">Blok</th>
                                   <th scope="col">Tipe Rumah</th>
+                                  <th scope="col">Status</th>
                                   <th scope="col">Aksi</th>
                               </tr>
                           </thead>
@@ -45,6 +46,12 @@
                                   <td><?=$value->cluster?></td>
                                   <td><?=$value->blok?></td>
                                   <td><?=$value->tipe_rumah?></td>
+                                  <?php  if ($value->status == "tersedia") {?>
+                                    <td><span class="badge badge-success">Tersedia</span></td>
+                                <?php } ?>
+                                <?php  if ($value->status == "terjual") {?>
+                                    <td><span class="badge badge-danger">Terjual</span></td>
+                                <?php } ?>
                                   <td style="min-width:295px">
                                       <form class="" action="<?=site_url('unit/delete')?>" method="post">
                                           <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
