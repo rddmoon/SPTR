@@ -104,7 +104,7 @@
                       <div class="card-header">
                         <h4><?=$header?></h4>
                         <div class="card-header-action">
-                          <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" class="btn btn-primary">
+                          <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
                             Bayar
                           </a>
                         </div>
