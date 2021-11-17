@@ -47,6 +47,18 @@ class M_user extends CI_Model
     $this->db->update('user', $params);
   }
 
+  public function edit_profil($post)
+  {
+    $params['username'] = $post['username'];
+    $params['nama'] = $post['nama'];
+    if (!empty($post['password']))
+    {
+      $params['password'] = sha1($post['password']);
+    }
+    $this->db->where('id', $post['user_id']);
+    $this->db->update('user', $params);
+  }
+
   public function delete($id)
 	{
 		$this->db->where('id', $id);
