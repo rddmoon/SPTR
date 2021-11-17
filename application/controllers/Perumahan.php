@@ -21,6 +21,8 @@ class Perumahan extends CI_Controller
     public function list_unit($id)
     {
       $data['list_unit'] = $this->m_perumahan->list_unit($id);
+      $data['list_unit_tersedia'] = $this->m_perumahan->list_unit_tersedia($id);
+      $data['list_unit_terjual'] = $this->m_perumahan->list_unit_terjual($id); 
       $data['perumahan'] = $this->m_perumahan->get($id)->row();
       $content = $this->fungsi->user_login()->role . '/perumahan/list_unit';
       $this->template->load('template', $content, $data);

@@ -37,6 +37,14 @@ class M_unit extends CI_Model
       return $query;
     }
 
+    public function get_unit_terjual()
+    {
+      $this->db->from('unit');
+      $this->db->where('status', 'terjual');
+      $query = $this->db->get();
+      return $query;
+    }
+
     public function get_harga($id)
     {
       $this->db->from('unit');

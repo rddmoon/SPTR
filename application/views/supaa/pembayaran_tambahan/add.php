@@ -1,34 +1,34 @@
 <section class="section">
     <div class="section-header">
-        <h1>Pembelian</h1>
+        <h1>Pembayaran Tambahan</h1>
     </div>
     <div class="row">
         <div class="col-12 col-offset-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Masukkan Data Pembelian</h4>
+                    <h4>Masukkan Data Pembayaran Tambahann</h4>
                 </div>
                 <div class="card-body">
+                  
                   <form class="" action="" method="post">
                       <div class="form-group">
-                          <label>Pembeli</label>
+                          <label>Pembelian</label>
                           <?php date_default_timezone_set('Asia/Jakarta');
                           $now = date('ymdhis');
                           $tglbeli = date('Y-m-d');
                           ?>
-                          <input type="hidden" name="pembelian_id" value="<?=$now?>">
                           <div class="" style="max-width:400px">
-                              <select name="id_pembeli" class="form-control <?= form_error('id_pembeli') ? 'is-invalid' : '' ?>">
-                                  <option value="">- Pilih Pembeli -</option>
-                                  <?php foreach ($pembeli->result() as $key => $value) {?>
-                                  <option value="<?=$value->id?>"><?=$value->nama_pembeli?> - NIK <?=$value->NIK?></option>
-                                <?php } ?>
-                              </select>
-                              <div class="invalid-feedback">
-                                  <?= form_error('id_pembeli') ?>
-                              </div>
+                            <input name="id_pembelian" list="pembelian" type="text" class="form-control <?= form_error('id_pembelian') ? 'is-invalid' : '' ?>">
+                              <datalist id="pembelian">
+                                  <?php foreach ($pembelian->result() as $key => $value) {?>
+                                  <option value="<?=$value->id?>"><?=$value->nama_pembeli?></option>
+                                  <?php } ?>
+                              </datalist>
+                            <div class="invalid-feedback">
+                                <?= form_error('id_pembelian') ?>
+                            </div>
                           </div>
-                      </div>
+                        </div>
                       <div class="form-group">
                         <label>Perumahan</label>
                           <div class="" style="max-width:400px">

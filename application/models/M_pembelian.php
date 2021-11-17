@@ -7,9 +7,38 @@ class M_pembelian extends CI_Model
     public function get($id = null)
     {
         $this->db->from('pembelian');
-        if($id != null){
+        if($id != null)
+        {
             $this->db->where('id', $id);
         }
+        else
+        {
+          $this->db->order_by('id',"DESC");
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function get_berjalan()
+    {
+        $this->db->from('pembelian');
+        $this->db->where('status_pembelian', "berjalan");
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function get_selesai()
+    {
+        $this->db->from('pembelian');
+        $this->db->where('status_pembelian', "selesai");
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function get_dibatalkan()
+    {
+        $this->db->from('pembelian');
+        $this->db->where('status_pembelian', "dibatalkan");
         $query = $this->db->get();
         return $query;
     }
@@ -33,11 +62,11 @@ class M_pembelian extends CI_Model
     public function get_cicilan_ke($id)
     {
         $this->db->from('pembayaran');
-        $this->db->join('pembelian', 'pembelian.id = pembayaran.id_pembelian', 'left');
         $this->db->where('id_pembelian', $id);
-        $query = $this->db->count_all_results();
+        $query = $this->db->count_all_results() - 1;
         return $query;
     }
+
 
     public function add($post)
     {
@@ -57,6 +86,14 @@ class M_pembelian extends CI_Model
         $this->db->insert('pembelian', $params);
     }
 
+    public function selesai($id)
+    {
+      $params['status_pembelian'] = "selesai";
+
+      $this->db->where('id', $id);
+      $this->db->update('pembelian', $params);
+    }
+
     public function dibatalkan($id)
     {
         $params['status_pembelian'] = "dibatalkan";
@@ -70,6 +107,14 @@ class M_pembelian extends CI_Model
         $params['id_pembeli'] = $post['id_pembeli'];
 
         $this->db->where('id', $post['id']);
+        $this->db->update('pembelian', $params);
+    }
+
+    public function uang_masuk($bayar)
+    {
+        $params['uang_masuk'] = $bayar['biaya'];
+
+        $this->db->where('id', $bayar['pembelian_id']);
         $this->db->update('pembelian', $params);
     }
 
