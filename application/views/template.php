@@ -160,7 +160,7 @@
               <a href="<?=site_url('user/profil/'.$this->session->userdata('user_id'))?>" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profil
               </a>
-              <!-- <a href="features-settings.html" class="dropdown-item has-icon">
+              <!-- <a href="<?=site_url('user/edit_profil/'.$this->session->userdata('user_id'))?>" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
               </a> -->
               <div class="dropdown-divider"></div>
