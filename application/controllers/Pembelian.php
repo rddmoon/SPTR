@@ -154,7 +154,7 @@ class Pembelian extends CI_Controller
       $kwitansi['biaya'] = $post['DP'];
       $kwitansi['tanggal_bayar'] = $post['tanggal_beli'];
       $unit = $this->m_unit->get($post['id_unit'])->row();
-      $kwitansi['keterangan'] = 'Pembayaran '.$post['perumahan'].' Unit '.$unit->blok.' Cluster '.$unit->cluster.'.';
+      $kwitansi['keterangan'] = 'Pembayaran '.$post['perumahan']->nama.' Unit '.$unit->blok.' Cluster '.$unit->cluster.'.';
       $pembeli = $this->m_pembeli->get($post['id_pembeli'])->row();
       $kwitansi['nama_pembeli'] = $pembeli->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);
@@ -180,7 +180,7 @@ class Pembelian extends CI_Controller
       $kwitansi['biaya'] = $post['DP'];
       $kwitansi['tanggal_bayar'] = $post['tanggal_beli'];
       $unit = $this->m_unit->get($post['id_unit'])->row();
-      $kwitansi['keterangan'] = 'Pembayaran DP '.$post['perumahan'].' Unit '.$unit->blok.' Cluster '.$unit->cluster.'.';
+      $kwitansi['keterangan'] = 'Pembayaran DP '.$post['perumahan']->nama.' Unit '.$unit->blok.' Cluster '.$unit->cluster.'.';
       $pembeli = $this->m_pembeli->get($post['id_pembeli'])->row();
       $kwitansi['nama_pembeli'] = $pembeli->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);
