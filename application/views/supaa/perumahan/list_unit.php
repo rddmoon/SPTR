@@ -1,12 +1,12 @@
 <section class="section">
     <div class="section-header">
-        <h1>Unit Perumahan <?= $perumahan->nama?></h1>
+        <h1>Unit <?= $perumahan->nama?></h1>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Data Unit Perumahan <?= $perumahan->nama?></h4>
+                    <h4>Data Unit <?= $perumahan->nama?></h4>
                 </div>
                 <div class="card-body">
                     <div class="text-right">
@@ -29,6 +29,7 @@
                                 <th scope="col">Cluster</th>
                                 <th scope="col">Blok</th>
                                 <th scope="col">Tipe Rumah</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -41,6 +42,12 @@
                                 <td><?=$value->cluster?></td>
                                 <td><?=$value->blok?></td>
                                 <td><?=$value->tipe_rumah?></td>
+                                <?php  if ($value->status == "tersedia") {?>
+                                    <td><span class="badge badge-success">Tersedia</span></td>
+                                <?php } ?>
+                                <?php  if ($value->status == "terjual") {?>
+                                    <td><span class="badge badge-danger">Terjual</span></td>
+                                <?php } ?>
                                 <td>
                                     <form class="" action="<?=site_url('unit/delete')?>" method="post">
                                         <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
