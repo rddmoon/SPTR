@@ -35,6 +35,14 @@ class Pembayaran_tambahan extends CI_Controller
 
     }
 
+    public function get_pembelian_by_pembeli()
+    {
+      if($this->input->post('pembeli_id'))
+      {
+       echo $this->m_pembayaran_tambahan->pembelian_by_pembeli($this->input->post('pembeli_id'));
+      }
+    }
+
     // public function buka_blokir($id)
     // {
     //   $this->m_pembayaran->buka_blokir($id);
@@ -47,18 +55,18 @@ class Pembayaran_tambahan extends CI_Controller
 
     public function bayar($id)
     {
-      $detail['pembayaran'] = $this->m_pembayaran->get($id)->row();
+      $detail['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get($id)->row();
 
       date_default_timezone_set('Asia/Jakarta');
       $kwitansi['id'] = date('dmyhis');
-      $kwitansi['biaya'] = $detail['pembayaran']->biaya;
+      $kwitansi['biaya'] = $detail['pembayaran_tambahan']->biaya;
       $kwitansi['tanggal_bayar'] = date('Y-m-d');
-      $detail['pembelian'] = $this->m_pembelian->get($detail['pembayaran']->id_pembelian)->row();
-      $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
-      $detail['perumahan'] = $this->m_perumahan->get($detail['unit']->id_perumahan)->row();
-      $kwitansi['keterangan'] = 'Pembayaran Cicilan Ke '.$detail['pembayaran']->jenis.' Pembelian '.$detail['perumahan']->nama.' Unit '.$detail['unit']->blok.' Cluster '.$detail['unit']->cluster.'.';
-      $detail['pembeli'] = $this->m_pembeli->get($detail['pembelian']->id_pembeli)->row();
-      $kwitansi['nama_pembeli'] = $detail['pembeli']->nama_pembeli;
+      $detail['pembelian'] = $this->m_pembelian->get($detail['pembayaran_tambahan']->id_pembelian)->row();
+      // $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
+      // $detail['perumahan'] = $this->m_perumahan->get($detail['unit']->id_perumahan)->row();
+      $kwitansi['keterangan'] = $detail['pembayaran_tambahan']->keterangan;
+      // $detail['pembeli'] = $this->m_pembeli->get($detail['pembelian']->id_pembeli)->row();
+      $kwitansi['nama_pembeli'] = $detail['pembayaran_tambahan']->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);
 
       $pembayaran['id'] = $id;
@@ -66,52 +74,110 @@ class Pembayaran_tambahan extends CI_Controller
       $pembayaran['id_user'] = $this->fungsi->user_login()->id;
       $pembayaran['tanggal_bayar'] = date('Y-m-d');
       $pembayaran['keterangan'] = $kwitansi['keterangan'];
-      $pembayaran['blokir'] = "lunas";
-      $this->m_pembayaran->bayar($pembayaran);
+      $this->m_pembayaran_tambahan->bayar($pembayaran);
 
       $bayar['pembelian_id'] = $detail['pembelian']->id;
-      $bayar['biaya'] = $detail['pembelian']->uang_masuk + $detail['pembayaran']->biaya;
-      $this->m_pembelian->uang_masuk($bayar);
+      $bayar['biaya'] = $detail['pembelian']->uang_lainnya + $detail['pembayaran_tambahan']->biaya;
+      $this->m_pembelian->uang_lainnya($bayar);
 
       if($this->db->affected_rows() > 0)
       {
-          echo "<script>alert('Data berhasil disimpan');</script>";
-          if($this->check_status_pembelian($detail['pembelian']->id) == 0){
-            $this->generate_pembayaran_baru($id);
-          }
+          echo "<script>alert('Pembayaran Tambahan berhasil disimpan');</script>";
       }
       echo "<script>window.location='".site_url('pembelian/detail/'.$detail['pembelian']->id)."';</script>";
     }
 
-    public function generate_pembayaran_baru($id)
+    public function add()
     {
-      $detail = $this->m_pembayaran->get($id)->row();
-      $pembelian = $this->m_pembelian->get($detail->id_pembelian)->row();
-      $pembeli = $this->m_pembeli->get($pembelian->id_pembeli)->row();
+        $data['pembeli'] = $this->m_pembeli->get()->result();
+        $content = $this->fungsi->user_login()->role . '/pembayaran_tambahan/add';
+        // $this->template->load('template', $content, $data);
 
-      $pembayaran['id_kwitansi'] = NULL;
-      $pembayaran['id_user'] = NULL;
-      $pembayaran['id_pembelian'] = $detail->id_pembelian;
-      $pembayaran['nama_pembeli'] = $pembeli->nama_pembeli;
-      $pembayaran['biaya'] = $detail->biaya;
-      $pembayaran['tanggal_bayar'] = NULL;
-      $pembayaran['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime("+1 months", strtotime($detail->tanggal_jatuh_tempo)));
-      $pembayaran['jenis'] = $detail->jenis + 1;
-      $pembayaran['keterangan'] = NULL;
-      $pembayaran['blokir'] = "buka";
-      $this->m_pembayaran->add($pembayaran);
+        $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
+        $this->form_validation->set_rules('id_pembelian', 'ID Pembelian', 'required');
+        $this->form_validation->set_rules('biaya', 'Biaya', 'required|numeric');
+        $this->form_validation->set_rules('tanggal_jatuh_tempo', 'Tanggal Jatuh Tempo', 'required');
+        $this->form_validation->set_rules('jenis_pembayaran', 'Jenis Pembayaran', 'required');
+
+        $this->form_validation->set_message('required', '%s masih kosong.');
+        $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
+
+        if($this->form_validation->run() == FALSE){
+          $this->template->load('template', $content, $data);
+        }
+        else{
+            $post = $this->input->post(null,TRUE);
+            if($post['keterangan'] == NULL){
+              $post['keterangan'] = 'Pembayaran '.strtolower($post['jenis_pembayaran']).' pada ID pembelian '.$post['id_pembelian'].'.';
+            }
+            $post['nama_pembeli'] = $this->m_pembeli->get($post['id_pembeli'])->row()->nama_pembeli;
+            $post['id_kwitansi'] = NULL;
+            $post['id_user'] = NULL;
+            $this->m_pembayaran_tambahan->add($post);
+
+            if($post['tanggal_bayar'] != NULL){
+              $terakhir = $this->m_pembayaran_tambahan->get_pembayaran_terakhir($post['id_pembelian'])->row();
+              $this->bayar($terakhir);
+            }
+            if($this->db->affected_rows() > 0 && $post['tanggal_bayar'] == NULL )
+            {
+              echo "<script>alert('Pembayaran Tambahan berhasil disimpan');</script>";
+              echo "<script>window.location='".site_url('pembelian/detail/'.$post['id_pembelian'])."';</script>";
+            }
+        }
     }
 
-    public function check_status_pembelian($id)
+    public function add_by_id($id)
     {
-      $pembelian = $this->m_pembelian->get($id)->row();
-      $metode = $this->m_metode->get($pembelian->id_metode)->row();
-      $cicilan = $this->m_pembelian->get_cicilan_ke($pembelian->id);
-      if($pembelian->uang_masuk == $pembelian->harga_beli || $cicilan == $metode->banyaknya_cicilan)
-      {
-        $this->m_pembelian->selesai($id);
-        return 1;
-      }
-      return 0;
+        $data['pembelian'] = $this->m_pembelian->get($id)->row();
+        $data['pembeli'] = $this->m_pembeli->get($data['pembelian']->id_pembeli)->row();
+        $content = $this->fungsi->user_login()->role . '/pembayaran_tambahan/add_by_id';
+
+        // $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
+        // $this->form_validation->set_rules('id_pembelian', 'ID Pembelian', 'required');
+        $this->form_validation->set_rules('biaya', 'Biaya', 'required|numeric');
+        $this->form_validation->set_rules('tanggal_jatuh_tempo', 'Tanggal Jatuh Tempo', 'required');
+        $this->form_validation->set_rules('jenis_pembayaran', 'Jenis Pembayaran', 'required');
+
+        $this->form_validation->set_message('required', '%s masih kosong.');
+        $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
+
+        if($this->form_validation->run() == FALSE){
+          $this->template->load('template', $content, $data);
+        }
+        else{
+            $post = $this->input->post(null,TRUE);
+            if($post['keterangan'] == NULL){
+              $post['keterangan'] = 'Pembayaran '.strtolower($post['jenis_pembayaran']).' pada ID pembelian '.$data['pembelian']->id.'.';
+            }
+            $post['id_pembelian'] = $id;
+            $post['nama_pembeli'] = $data['pembeli']->nama_pembeli;
+            $post['id_kwitansi'] = NULL;
+            $post['id_user'] = NULL;
+            $this->m_pembayaran_tambahan->add($post);
+
+            if($post['tanggal_bayar'] != NULL){
+              $terakhir = $this->m_pembayaran_tambahan->get_pembayaran_terakhir($post['id_pembelian'])->row();
+              $this->bayar($terakhir);
+            }
+            if($this->db->affected_rows() > 0 && $post['tanggal_bayar'] == NULL )
+            {
+              echo "<script>alert('Pembayaran Tambahan berhasil disimpan');</script>";
+              echo "<script>window.location='".site_url('pembelian/detail/'.$id)."';</script>";
+            }
+        }
     }
+
+    // public function check_status_pembelian($id)
+    // {
+    //   $pembelian = $this->m_pembelian->get($id)->row();
+    //   $metode = $this->m_metode->get($pembelian->id_metode)->row();
+    //   $cicilan = $this->m_pembelian->get_cicilan_ke($pembelian->id);
+    //   if($pembelian->uang_masuk == $pembelian->harga_beli || $cicilan == $metode->banyaknya_cicilan)
+    //   {
+    //     $this->m_pembelian->selesai($id);
+    //     return 1;
+    //   }
+    //   return 0;
+    // }
 }

@@ -4,15 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_pembeli extends CI_Model
 {
-  // public function login($post)
-  // {
-  //   $this->db->select('*');
-  //   $this->db->from('pembeli');
-  //   $this->db->where('username', $post['username']);
-  //   $this->db->where('password', sha1($post['password']));
-  //   $query = $this->db->get();
-  //   return $query;
-  // }
 
   public function get($id = null)
   {
@@ -20,6 +11,9 @@ class M_pembeli extends CI_Model
     if($id != null)
     {
       $this->db->where('id', $id);
+    }
+    else {
+      $this->db->order_by('nama_pembeli', 'asc');
     }
     $query = $this->db->get();
     return $query;

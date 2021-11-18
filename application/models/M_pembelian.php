@@ -118,6 +118,14 @@ class M_pembelian extends CI_Model
         $this->db->update('pembelian', $params);
     }
 
+    public function uang_lainnya($bayar)
+    {
+        $params['uang_lainnya'] = $bayar['biaya'];
+
+        $this->db->where('id', $bayar['pembelian_id']);
+        $this->db->update('pembelian', $params);
+    }
+
     public function edit($post)
     {
         $params['id_unit'] = $post['id_unit'];

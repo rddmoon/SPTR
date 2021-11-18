@@ -64,6 +64,22 @@ class m_pembayaran_tambahan extends CI_Model
     //   return $query;
     // }
 
+    public function pembelian_by_pembeli($id)
+    {
+      $this->db->from('pembelian');
+      $this->db->where('id_pembeli', $id);
+      $this->db->where('status_pembelian', 'berjalan');
+      $query = $this->db->get();
+
+      $output = '<option value="">- Pilih ID Pembelian -</option>';
+      foreach($query->result() as $row)
+      {
+       $tglbeli =  date('d M Y', strtotime($row->tanggal_beli));
+       $output .= '<option value="'.$row->id.'">'.$row->id.' - Tgl Beli '.$tglbeli.'</option>';
+      }
+      return $output;
+    }
+
     public function add($pembayaran)
     {
         $params['id_kwitansi'] = $pembayaran['id_kwitansi'];
@@ -71,13 +87,12 @@ class m_pembayaran_tambahan extends CI_Model
         $params['id_pembelian'] = $pembayaran['id_pembelian'];
         $params['nama_pembeli'] = $pembayaran['nama_pembeli'];
         $params['biaya'] = $pembayaran['biaya'];
-        $params['tanggal_bayar'] = $pembayaran['tanggal_bayar'];
+        $params['tanggal_bayar'] = NULL;
         $params['tanggal_jatuh_tempo'] = $pembayaran['tanggal_jatuh_tempo'];
-        $params['jenis'] = $pembayaran['jenis'];
+        $params['jenis_pembayaran'] = $pembayaran['jenis_pembayaran'];
         $params['keterangan'] = $pembayaran['keterangan'];
-        $params['blokir'] = $pembayaran['blokir'];
         $params['cetak_kwitansi'] = "belum";
-        $this->db->insert('pembayaran', $params);
+        $this->db->insert('pembayaran_tambahan', $params);
     }
 
     public function bayar($pembayaran)
@@ -86,12 +101,12 @@ class m_pembayaran_tambahan extends CI_Model
         $params['id_user'] = $pembayaran['id_user'];
         $params['tanggal_bayar'] = $pembayaran['tanggal_bayar'];
         $params['keterangan'] = $pembayaran['keterangan'];
-        $params['blokir'] = $pembayaran['blokir'];
 
         $this->db->where('id', $pembayaran['id']);
-        $this->db->update('pembayaran', $params);
+        $this->db->update('pembayaran_tambahan', $params);
     }
 
+    ///////////////////////////////////////////////////////////////////////////
     // public function buka_blokir($id)
     // {
     //   $params['blokir'] = "buka";
@@ -107,7 +122,6 @@ class m_pembayaran_tambahan extends CI_Model
     //   $this->db->where('id', $id);
     //   $this->db->update('pembayaran_tambahan', $params);
     // }
-    ///////////////////////////////////////////////////////////////////////////
     public function edit($post)
     {
         $params['id_unit'] = $post['id_unit'];

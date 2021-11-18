@@ -14,35 +14,19 @@
                     <div class="form-group">
                       <label>Pembeli</label>
                       <div class="" style="max-width:400px">
-                        <select id="id_pembeli" name="id_pembeli" class="form-control <?= form_error('id_pembeli') ? 'is-invalid' : '' ?>">
-                          <option value="">- Pilih Pembeli -</option>
-                          <?php foreach ($pembeli as $key => $value) {?>
-                            <option value="<?=$value->id?>"><?=$value->nama_pembeli?> - NIK <?=$value->NIK?></option>
-                          <?php } ?>
+                        <select id="id_pembeli" name="id_pembeli" class="form-control" disabled>
+                          <option value="<?=$pembeli->id?>"><?=$pembeli->nama_pembeli?> - NIK <?=$pembeli->NIK?></option>
                         </select>
-                        <div class="invalid-feedback">
-                          <?= form_error('id_pembeli') ?>
-                        </div>
                       </div>
                     </div>
                     <div class="form-group">
                         <label>ID Pembelian</label>
                         <div class="" style="max-width:400px">
-                            <select id="id_pembelian" name="id_pembelian" class="form-control <?= form_error('id_pembelian') ? 'is-invalid' : '' ?>" >
-                                <option value="">- Pilih ID Pembelian -</option>
+                            <select id="id_pembelian" name="id_pembelian" class="form-control" disabled>
+                                <option value="<?=$pembelian->id?>"><?=$pembelian->id?></option>
                             </select>
-                            <div class="invalid-feedback">
-                                <?= form_error('id_pembelian') ?>
-                            </div>
                         </div>
                     </div>
-                      <!-- <div class="form-group">
-                      <div class="" style="max-width:400px">
-                        <input name="id_pembelian" list="pembelian" type="text" class="form-control">
-                          <datalist id="pembelian">
-                          </datalist>
-                      </div>
-                    </div> -->
                     <div class="form-group">
                         <label>Biaya</label>
                         <div class="" style="max-width:400px">
@@ -105,40 +89,13 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" name="nama_pembeli" value="<?=$value->nama_pembeli?>" hidden>
                     <div class="form-group">
                         <button onclick="return confirm('Apakah Anda yakin data yang dimasukkan sudah benar?')" type="submit" class="btn btn-success">Simpan</button>
-                        <a href="<?=site_url('pembayaran_tambahan')?>" type="button" class="btn btn-danger">Batal</a>
+                        <a href="<?=site_url('pembelian/detail/'.$pembelian->id)?>" type="button" class="btn btn-danger">Batal</a>
                     </div>
                   </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <script>
-      $(document).ready(function(){
-       $('#id_pembeli').change(function(){
-        var pembeli_id = $('#id_pembeli').val();
-        if(pembeli_id != '')
-        {
-         $.ajax({
-          url:"<?php echo base_url(); ?>pembayaran_tambahan/get_pembelian_by_pembeli",
-          method:"POST",
-          data:{pembeli_id:pembeli_id},
-          success:function(data)
-          {
-           $('#id_pembelian').html(data);
-          }
-         });
-        }
-        else
-        {
-         $('#id_pembelian').html('<option value="">- Pilih ID Pembelian -</option>');
-        }
-       });
-      });
-    </script>
 </section>

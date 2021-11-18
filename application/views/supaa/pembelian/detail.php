@@ -149,10 +149,11 @@
             </p>
             <?php if($pembelian->status_pembelian == "berjalan"){ ?>
               <div class="text-center">
-                  <a href="<?=site_url('pembayaran_tambahan/add')?>" class="btn btn-primary">
+                  <a href="<?=site_url('pembayaran_tambahan/add_by_id/'.$pembelian->id)?>" class="btn btn-primary">
                   <i class="fa fa-plus"></i> Buat Pembayaran Tambahan Baru</a>
               </div>
             <?php } ?>
+          </br>
             <div class="row">
               <?php $no = 1;
               foreach($pembayaran_tambahan->result() as $key) {?>
@@ -169,8 +170,9 @@
                         </div>
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
-                        <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                        <p>Jenis: <?=$key->jenis_pembayaran?></p>
                         <p>Dibayar: <?=date('d M Y', strtotime($key->tanggal_bayar))?></p>
+                        <br><br>
                         <p><span style="color:#47c363"><b>LUNAS</b></span></p>
                       </div>
                     </div>
@@ -181,7 +183,7 @@
                   <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-primary">
                       <div class="card-header">
-                        <h4><?=$header?></h4>
+                        <h4>Pembayaran <?=$no++?></h4>
                         <div class="card-header-action">
                           <a href="<?=site_url('pembayaran_tambahan/bayar/'.$key->id)?>" class="btn btn-primary">
                             Bayar
@@ -190,6 +192,7 @@
                       </div>
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
+                        <p>Jenis: <?=$key->jenis_pembayaran?></p>
                         <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
                         <p>Dibayar: -</p>
                         <p><span style="color:#6777ef"><b>MENUNGGU PEMBAYARAN</b></span></p>

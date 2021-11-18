@@ -39,6 +39,9 @@ class Pembayaran extends CI_Controller
     public function buka_blokir($id)
     {
       $this->m_pembayaran->buka_blokir($id);
+      $pembelian = $this->m_pembayaran->get($id)->row();
+      echo "<script>alert('Blokir pembayaran berhasil dibuka.');</script>";
+      echo "<script>window.location='".site_url('pembelian/detail/'.$pembelian->id_pembelian)."';</script>";
     }
 
     public function blokir_pembayaran($id)
@@ -57,7 +60,7 @@ class Pembayaran extends CI_Controller
       $detail['pembelian'] = $this->m_pembelian->get($detail['pembayaran']->id_pembelian)->row();
       $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
       $detail['perumahan'] = $this->m_perumahan->get($detail['unit']->id_perumahan)->row();
-      $kwitansi['keterangan'] = 'Pembayaran Cicilan Ke '.$detail['pembayaran']->jenis.' Pembelian '.$detail['perumahan']->nama.' Unit '.$detail['unit']->blok.' Cluster '.$detail['unit']->cluster.'.';
+      $kwitansi['keterangan'] = 'Pembayaran cicilan ke '.$detail['pembayaran']->jenis.' pembelian '.$detail['perumahan']->nama.' unit '.$detail['unit']->blok.' cluster '.$detail['unit']->cluster.'.';
       $detail['pembeli'] = $this->m_pembeli->get($detail['pembelian']->id_pembeli)->row();
       $kwitansi['nama_pembeli'] = $detail['pembeli']->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);
