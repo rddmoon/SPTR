@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Nov 18, 2021 at 11:22 AM
+-- Generation Time: Nov 23, 2021 at 06:33 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -76,6 +76,13 @@ INSERT INTO `kwitansi` (`id`, `biaya`, `tanggal_bayar`, `keterangan`, `id_user`,
 ('171121060113', '1000000000.00', '2021-11-17', 'Pembayaran DP 3 Unit CC 33 Cluster Umbriel.', NULL, NULL, 'Harmadi Lee', 'belum'),
 ('171121124606', '25833333.33', '2021-11-17', 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', NULL, NULL, 'Harmadi Lee', 'belum'),
 ('171121125732', '25833333.33', '2021-11-17', 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', NULL, NULL, 'Harmadi Lee', 'belum'),
+('181121075327', '50000000.00', '2021-11-18', 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
+('181121075451', '50000000.00', '2021-11-18', 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
+('181121075516', '50000000.00', '2021-11-18', 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
+('181121075533', '50000000.00', '2021-11-18', 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
+('181121075555', '50000000.00', '2021-11-18', 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
+('181121080719', '50000000.00', '2021-11-18', 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
+('181121085052', '5000000.00', '2021-11-18', 'Pembayaran tambahan kualitas pada ID pembelian 211117014535.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('181121120544', '25833333.33', '2021-11-18', 'Pembayaran Cicilan Ke 5 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('181121120950', '25833333.33', '2021-11-18', 'Pembayaran Cicilan Ke 6 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('181121122139', '25833333.33', '2021-11-18', 'Pembayaran Cicilan Ke 7 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
@@ -131,7 +138,7 @@ CREATE TABLE `pembayaran` (
 INSERT INTO `pembayaran` (`id`, `id_kwitansi`, `id_user`, `id_pembelian`, `nama_pembeli`, `biaya`, `tanggal_bayar`, `tanggal_jatuh_tempo`, `jenis`, `keterangan`, `blokir`, `cetak_kwitansi`) VALUES
 (1, '131121120603', 1, '211113120846', 'Penelope Saraswati', '300000000.00', '2021-11-13', '2021-11-13', 0, 'Pembayaran DP 1 Unit D 12 Cluster dididi.', 'lunas', 'belum'),
 (2, NULL, NULL, '211113120846', 'Penelope Saraswati', '5000000.00', NULL, '2021-12-13', 1, NULL, 'buka', 'belum'),
-(3, '161121075019', 1, '211113120846', 'Penelope Saraswati', '5000000.00', NULL, '2021-12-16', 2, NULL, 'blokir', 'belum'),
+(3, '181121075327', 1, '211113120846', 'Penelope Saraswati', '5000000.00', '2021-11-18', '2021-12-16', 2, 'Pembayaran Kelebihan tanah pada ID pembelian 211117014535.', 'lunas', 'belum'),
 (4, '161121075143', 1, '211116075127', 'Harmadi Lee', '900000000.00', '2021-11-16', '2021-11-16', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas', 'belum'),
 (5, '171121124606', 1, '211116075127', 'Harmadi Lee', '25833333.33', '2021-11-17', '2021-12-16', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
 (6, '171121125732', 1, '211116075127', 'Harmadi Lee', '25833333.33', '2021-11-17', '2022-01-16', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
@@ -190,6 +197,15 @@ CREATE TABLE `pembayaran_tambahan` (
   `cetak_kwitansi` enum('sudah','belum') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pembayaran_tambahan`
+--
+
+INSERT INTO `pembayaran_tambahan` (`id`, `id_kwitansi`, `id_user`, `id_pembelian`, `nama_pembeli`, `biaya`, `tanggal_bayar`, `tanggal_jatuh_tempo`, `keterangan`, `jenis_pembayaran`, `cetak_kwitansi`) VALUES
+(4, '181121080719', 1, '211117014535', 'Alex Karsono', '50000000.00', '2021-11-18', '2022-11-18', 'Pembayaran kelebihan tanah pada ID pembelian 211117014535.', 'Kelebihan tanah', 'belum'),
+(5, NULL, NULL, '211113120846', 'Penelope Saraswati', '50000000.00', NULL, '2022-11-13', 'Pembayaran tambahan bangunan pada ID pembelian 211113120846.', 'Tambahan bangunan', 'belum'),
+(8, '181121085052', 1, '211117014535', 'Alex Karsono', '5000000.00', '2021-11-18', '2021-12-18', 'Pembayaran tambahan kualitas pada ID pembelian 211117014535.', 'Tambahan kualitas', 'belum');
+
 -- --------------------------------------------------------
 
 --
@@ -245,7 +261,7 @@ CREATE TABLE `pembelian` (
 
 INSERT INTO `pembelian` (`id`, `id_unit`, `id_pembeli`, `DP`, `id_metode`, `tanggal_beli`, `status_pembelian`, `harga_beli`, `cicilan_perbulan`, `uang_masuk`, `uang_lainnya`, `counter`, `tunggakan`) VALUES
 ('211113120846', 2, 2, '300000000.00', 3, '2021-11-13', 'berjalan', '900000000.00', '5000000.00', '300000000.00', '0.00', 0, 0),
-('211117014535', 3, 4, '900000000.00', 3, '2021-11-17', 'berjalan', '4000000000.00', '25833333.33', '1106666666.64', '0.00', 0, 0),
+('211117014535', 3, 4, '900000000.00', 3, '2021-11-17', 'berjalan', '4000000000.00', '25833333.33', '1106666666.64', '55000000.00', 0, 0),
 ('211117015404', 1, 1, '600000000.00', 5, '2021-11-17', 'selesai', '750000000.00', '12500000.00', '750000000.00', '0.00', 0, 0),
 ('211117020205', 4, 3, '3300000000.00', 1, '2021-11-17', 'selesai', '3300000000.00', '0.00', '3300000000.00', '0.00', 0, 0),
 ('211117020246', 5, 4, '2000000000.00', 2, '2021-11-17', 'selesai', '2700000000.00', '700000000.00', '2700000000.00', '0.00', 0, 0),
@@ -412,7 +428,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pembayaran_tambahan`
 --
 ALTER TABLE `pembayaran_tambahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pembeli`
