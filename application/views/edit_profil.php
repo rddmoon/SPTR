@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-success">Simpan</button>
-              <a href="<?=site_url('user')?>" type="button" class="btn btn-danger pull-right">Batal</a>
+              <a href="<?=site_url('user/profil/'.$user->id)?>" type="button" class="btn btn-danger pull-right">Batal</a>
             </div>
           </form>
         </div>
