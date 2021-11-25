@@ -32,6 +32,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'required|callback_username_check',
 				array('is_unique' => '%s sudah terpakai, gunakan username yang lain.'));
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('password_lama', 'Password Saat Ini', 'required|callback_password_check');
 		if ($this->input->post('password'))
 		{
 			$this->form_validation->set_rules('password', 'Password', 'min_length[5]');
@@ -173,6 +174,19 @@ class User extends CI_Controller {
 		{
 			return TRUE;
 		}
+  }
+
+	public function password_check($password_lama)
+  {
+      $id = $this->session->userdata('id');
+      $user = $this->m_user->get($id)->row();
+
+      if($user->password !== sha1($password_lama)) {
+          $this->form_validation->set_message('password_check', '{field} tidak sesuai.');
+          return false;
+      }
+
+      return true;
   }
 
 	public function delete()

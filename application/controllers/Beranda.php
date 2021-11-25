@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Beranda extends CI_Controller {
 
 	function __construct()
 	{
@@ -21,7 +21,8 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		cek_belum_login();
-		$content = $this->fungsi->user_login()->role . '/dashboard';
+		// $data['pengguna'] = $this->m_user->
+		$content = $this->fungsi->user_login()->role . '/beranda';
 		$this->template->load('template', $content);
 	}
 }

@@ -27,11 +27,16 @@
     					</div>
             </div>
             <div class="form-group">
-              <label>Password</label> <small> (Jika tidak diganti, biarkan kosong)</small>
+              <label>Password</label>
                 <input type="password" name="password" value="<?=$this->input->post('password')?>" class="form-control <?= form_error('password') ? 'is-invalid' : '' ?>">
                 <div class="invalid-feedback">
       						<?= form_error('password') ?>
       					</div>
+                <div class="" style="color:#e83e8c">
+                  <small class="" style="color:#e83e8c">
+                    Jika tidak diganti, biarkan kosong.
+                  </small>
+                </div>
             </div>
             <div class="form-group">
               <label>Konfirmasi Password</label>

@@ -25,6 +25,15 @@ class M_user extends CI_Model
     return $query;
   }
 
+  public function check_password($post)
+  {
+    $this->db->select('*');
+    $this->db->from('user');
+    $this->db->where('password', sha1($post['password']));
+    $query = $this->db->get();
+    return $query;
+  }
+
   public function add($post)
   {
     $params['username'] = $post['username'];

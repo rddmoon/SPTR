@@ -54,15 +54,15 @@
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
             <!-- supaa -->
-            <a href="<?=site_url('dashboard')?>">ITG</a>
+            <a href="<?=site_url('beranda')?>">ITG</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="<?=site_url('dashboard')?>">ITG</a>
+            <a href="<?=site_url('beranda')?>">ITG</a>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Menu <?=$this->session->userdata('role')?></li>
               <li>
-                <a href="<?=site_url('dashboard')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
+                <a href="<?=site_url('beranda')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
               </li>
               <?php if($this->session->userdata('role') == 'supaa') {?>
               <li>

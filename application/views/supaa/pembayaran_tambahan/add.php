@@ -84,7 +84,6 @@
                         <small class="" style="color:#e83e8c">
                           Kosongi jika pembeli belum melakukan pembayaran.
                         </small>
-
                       </div>
                     </div>
                     <div class="form-group">

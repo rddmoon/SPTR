@@ -27,7 +27,7 @@ class Auth extends CI_Controller {
 				$this->session->set_userdata($params);
 				//echo $row->role;
 				echo "<script>
-				window.location='".site_url('dashboard')."';
+				window.location='".site_url('beranda')."';
 				</script>";
 			}
 			else
