@@ -42,9 +42,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
+      var showAfter = 150;
+      if ($(this).scrollTop() > showAfter ) {
+        $('.back-to-top').show();
+       $('.back-to-top').fadeIn();
+      }
+      else {
+       $('.back-to-top').hide();
+      }
 
      $(window).scroll(function(){
-      var showAfter = 150;
       if ($(this).scrollTop() > showAfter ) {
        $('.back-to-top').fadeIn();
       }
@@ -54,7 +61,7 @@
      });
 
      $('.back-to-top').click(function(){
-      $('html, body').animate({scrollTop : 0},800);
+      $('html, body').animate({scrollTop : 0},1000);
       return false;
      });
 
@@ -166,6 +173,6 @@
   <!-- Template JS File -->
   <script src="<?=base_url()?>assets/assets/js/scripts.js"></script>
   <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
-  
+
 </body>
 </html>
