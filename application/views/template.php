@@ -18,6 +18,48 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=base_url()?>assets/assets/css/style.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/assets/css/components.css">
+  <!-- CSS -->
+  <style>
+    .back-to-top {
+     position: fixed;
+     bottom: 30px;
+     right: 30px;
+     width: 64px;
+     height: 64px;
+     border-radius: 50%;
+     text-decoration: none;
+     z-index: 9999;
+     cursor: pointer;
+     transition: opacity 0.1s ease-out;
+    }
+    .back-to-top:hover{
+     opacity: 0.7;
+    }
+
+  </style>
+
+  <!-- Script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+
+     $(window).scroll(function(){
+      var showAfter = 150;
+      if ($(this).scrollTop() > showAfter ) {
+       $('.back-to-top').fadeIn();
+      }
+      else {
+       $('.back-to-top').fadeOut();
+      }
+     });
+
+     $('.back-to-top').click(function(){
+      $('html, body').animate({scrollTop : 0},800);
+      return false;
+     });
+
+    });
+  </script>
 </head>
 
 <body>
@@ -124,8 +166,6 @@
   <!-- Template JS File -->
   <script src="<?=base_url()?>assets/assets/js/scripts.js"></script>
   <script src="<?=base_url()?>assets/assets/js/custom.js"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="<?=base_url()?>assets/assets/js/page/index-0.js"></script>
+  
 </body>
 </html>

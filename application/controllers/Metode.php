@@ -39,7 +39,7 @@ class Metode extends CI_Controller {
 			$this->m_metode->add($post);
 			if($this->db->affected_rows() > 0)
 			{
-				echo "<script>alert('Data berhasil disimpan');</script>";
+				echo "<script>alert('Metode pembayarann berhasil disimpan');</script>";
 			}
 			echo "<script>window.location='".site_url('metode')."';</script>";
 		}
@@ -75,7 +75,7 @@ class Metode extends CI_Controller {
 			$this->m_metode->edit($post);
 			if($this->db->affected_rows() > 0)
 			{
-				echo "<script>alert('Data berhasil disimpan');</script>";
+				echo "<script>alert('Metode pembayaran berhasil diubah');</script>";
 			}
 			echo "<script>window.location='".site_url('metode')."';</script>";
 		}
@@ -88,7 +88,7 @@ class Metode extends CI_Controller {
 
 		if($this->db->affected_rows() > 0)
 		{
-			echo "<script>alert('Data berhasil dihapus');</script>";
+			echo "<script>alert('Metode pembayaran berhasil dihapus');</script>";
 		}
 		echo "<script>window.location='".site_url('metode')."';</script>";
 	}

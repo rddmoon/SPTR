@@ -62,3 +62,7 @@
   </div>
 
 </section>
+<div class="floating-buttons">
+  <button id="back-to-top" type="button" class="back-to-top btn btn-primary" data-toggle="tooltip" data-original-title="Kembali ke atas" data-placement="right" data-trigger="hover" aria-label="Kembali ke atas">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+</div>
