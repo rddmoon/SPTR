@@ -19,6 +19,14 @@ class M_pembelian extends CI_Model
         return $query;
     }
 
+    public function count_berjalan()
+    {
+        $this->db->from('pembelian');
+        $this->db->where('status_pembelian', "berjalan");
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+
     public function get_berjalan()
     {
         $this->db->from('pembelian');
@@ -59,6 +67,7 @@ class M_pembelian extends CI_Model
         return $query;
     }
 
+
     public function get_cicilan_ke($id)
     {
         $this->db->from('pembayaran');
@@ -67,6 +76,31 @@ class M_pembelian extends CI_Model
         return $query;
     }
 
+    public function get_weekly_pembelian($tgl)
+    {
+        $this->db->from('pembelian');
+        $this->db->where('tanggal_beli >=', $tgl);
+        $this->db->order_by('id',"DESC");
+        $this->db->limit(3);
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function count_weekly_pembelian($tgl)
+    {
+        $this->db->from('pembelian');
+        $this->db->where('tanggal_beli >=', $tgl);
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+
+    public function weekly_pemasukan($tgl)
+    {
+      $this->db->select_sum('uang_masuk');
+      $this->db->where('tanggal_beli >=', $tgl);
+      $query = $this->db->get('pembelian')->row();
+      return $query->uang_masuk;
+    }
 
     public function add($post)
     {

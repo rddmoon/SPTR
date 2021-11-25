@@ -175,12 +175,14 @@ class Pembelian extends CI_Controller
     public function generate_dua_pembayaran($post)
     {
       date_default_timezone_set('Asia/Jakarta');
+      $perumahan = $this->m_perumahan->get($post['perumahan'])->row();
+
       $kwitansi['id'] = date('dmyhis');
       //generate dp
       $kwitansi['biaya'] = $post['DP'];
       $kwitansi['tanggal_bayar'] = $post['tanggal_beli'];
       $unit = $this->m_unit->get($post['id_unit'])->row();
-      $kwitansi['keterangan'] = 'Pembayaran DP '.$post['perumahan']->nama.' unit '.$unit->blok.' cluster '.$unit->cluster.'.';
+      $kwitansi['keterangan'] = 'Pembayaran DP '.$perumahan->nama.' unit '.$unit->blok.' cluster '.$unit->cluster.'.';
       $pembeli = $this->m_pembeli->get($post['id_pembeli'])->row();
       $kwitansi['nama_pembeli'] = $pembeli->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);

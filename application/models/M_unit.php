@@ -54,6 +54,14 @@ class M_unit extends CI_Model
       return $query;
     }
 
+    public function count_tersedia()
+    {
+        $this->db->from('unit');
+        $this->db->where('status', "tersedia");
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+
     public function edit_status_terjual($id)
     {
       $params['status'] = "terjual";

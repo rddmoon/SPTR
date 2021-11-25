@@ -6,14 +6,14 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-primary">
-          <i class="far fa-user"></i>
+          <i class="fas fa-hand-holding-usd"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Total Admin</h4>
+            <h4>Pembelian Berjalan</h4>
           </div>
           <div class="card-body">
-            10
+            <?php echo $pembelian_berjalan ?>
           </div>
         </div>
       </div>
@@ -36,14 +36,14 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-warning">
-          <i class="far fa-file"></i>
+          <i class="fas fa-home"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Reports</h4>
+            <h4>Unit Tersedia</h4>
           </div>
           <div class="card-body">
-            1,201
+            <?php echo $unit_tersedia ?>
           </div>
         </div>
       </div>
@@ -51,14 +51,14 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-success">
-          <i class="fas fa-circle"></i>
+          <i class="fas fa-user"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Online Users</h4>
+            <h4>Jumlah Pengguna</h4>
           </div>
           <div class="card-body">
-            47
+            <?php echo $pengguna ?>
           </div>
         </div>
       </div>
@@ -126,63 +126,37 @@
     <div class="col-lg-6 col-md-6 col-12">
       <div class="card">
         <div class="card-header">
-          <h4>This Week Stats</h4>
-          <div class="card-header-action">
-            <div class="dropdown">
-              <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown">Filter</a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item has-icon"><i class="far fa-circle"></i> Electronic</a>
-                <a href="#" class="dropdown-item has-icon"><i class="far fa-circle"></i> T-shirt</a>
-                <a href="#" class="dropdown-item has-icon"><i class="far fa-circle"></i> Hat</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">View All</a>
-              </div>
-            </div>
-          </div>
+          <h4>Pembelian Minggu Ini</h4>
         </div>
         <div class="card-body">
           <div class="summary">
             <div class="summary-info">
-              <h4>$1,053</h4>
-              <div class="text-muted">Sold 3 items on 2 customers</div>
-              <div class="d-block mt-2">
-                <a href="#">View All</a>
-              </div>
+              <h4><?=$jml_weekly_pembelian?> Unit</h4>
+              <div class="text-muted">Total pemasukan dari pembelian tersebut sebesar <?="Rp".number_format($weekly_pemasukan, 2);?></div>
             </div>
             <div class="summary-item">
-              <h6>Item List <span class="text-muted">(3 Items)</span></h6>
+              <h6>Pembelian Terbaru</h6>
               <ul class="list-unstyled list-unstyled-border">
+                <?php if ($weekly_pembelian == NULL) { ?>
+                  <div class="" style="color:#e83e8c">
+                    <span class="text-small">Belum ada unit terjual minggu ini.</span>
+                  </div>
+                <?php } ?>
+                <?php foreach ($weekly_pembelian as $key => $value) {?>
                 <li class="media">
-                  <a href="#">
-                    <img class="mr-3 rounded" width="50" src="<?=base_url()?>assets/assets/img/products/product-1-50.png" alt="product">
-                  </a>
                   <div class="media-body">
                     <div class="media-right">$405</div>
-                    <div class="media-title"><a href="#">PlayStation 9</a></div>
+                    <div class="media-title"><a href="<?=site_url('pembelian/detail/'.$value->id)?>"><?=$value->id?></a></div>
                     <div class="text-muted text-small">by <a href="#">Hasan Basri</a> <div class="bullet"></div> Sunday</div>
                   </div>
                 </li>
-                <li class="media">
-                  <a href="#">
-                    <img class="mr-3 rounded" width="50" src="<?=base_url()?>assets/assets/img/products/product-2-50.png" alt="product">
-                  </a>
-                  <div class="media-body">
-                    <div class="media-right">$499</div>
-                    <div class="media-title"><a href="#">RocketZ</a></div>
-                    <div class="text-muted text-small">by <a href="#">Hasan Basri</a> <div class="bullet"></div> Sunday</div>
-                  </div>
-                </li>
-                <li class="media">
-                  <a href="#">
-                    <img class="mr-3 rounded" width="50" src="<?=base_url()?>assets/assets/img/products/product-3-50.png" alt="product">
-                  </a>
-                  <div class="media-body">
-                    <div class="media-right">$149</div>
-                    <div class="media-title"><a href="#">Xiaomay Readme 4.0</a></div>
-                    <div class="text-muted text-small">by <a href="#">Kusnaedi</a> <div class="bullet"></div> Tuesday</div>
-                  </div>
-                </li>
+              <?php } ?>
               </ul>
+            </div>
+            <div class="text-center pt-1 pb-1">
+              <a href="<?=site_url('pembelian')?>" class="btn btn-primary btn-lg btn-round">
+                Lihat Semua
+              </a>
             </div>
           </div>
         </div>

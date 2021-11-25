@@ -34,6 +34,13 @@ class M_user extends CI_Model
     return $query;
   }
 
+  public function count_user()
+  {
+      $this->db->from('user');
+      $query = $this->db->count_all_results();
+      return $query;
+  }
+
   public function add($post)
   {
     $params['username'] = $post['username'];

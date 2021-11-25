@@ -37,6 +37,14 @@ class M_pembayaran extends CI_Model
         return $query;
     }
 
+    public function weekly_pemasukan($tgl)
+    {
+      $this->db->select_sum('biaya');
+      $this->db->where('tanggal_bayar >=', $tgl);
+      $query = $this->db->get('pembayaran')->row();
+      return $query->biaya;
+    }
+
     public function buka()
     {
       $this->db->from('pembayaran');
