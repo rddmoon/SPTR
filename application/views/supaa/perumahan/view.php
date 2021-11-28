@@ -6,6 +6,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+                    <form class="form-inline" action="<?php echo site_url() . 'perumahan'; ?>" method="post">
+                        <input class="form-control" type="text" name="search" value="" placeholder="Search...">
+                        <input class="btn btn-default" type="submit" value="Go">
+                    </form>
+                </div>
+                <div class="card-header">
                     <h4>Data Perumahan</h4>
                 </div>
                 <div class="card-body">
