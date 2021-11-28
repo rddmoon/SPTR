@@ -50,7 +50,6 @@ class M_unit extends CI_Model
       $this->db->from('unit');
       $this->db->where('id', $id);
       $query = $this->db->get()->row()->harga_jual;
-      //$output = '<input id="harga_beli" type="text" name="harga_beli" value="'.$query->harga_jual.'" class="form-control">';
       return $query;
     }
 
