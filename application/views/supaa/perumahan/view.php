@@ -4,7 +4,7 @@
     </div>
     <div class="search-element" style="display:flex; margin-bottom:20px;" >
         <form class="form-inline" action="<?php echo site_url() . 'perumahan'; ?>" method="post">
-            <input class="form-control" type="text" placeholder="Cari..." name="search" data-width="250">
+            <input class="form-control" type="text" placeholder="Cari..." name="search" data-width="250" data-height="36">
             <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
