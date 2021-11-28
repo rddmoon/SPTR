@@ -43,12 +43,12 @@ class Pembayaran extends CI_Controller
       echo "<script>alert('Blokir pembayaran berhasil dibuka.');</script>";
       echo "<script>window.location='".site_url('pembelian/detail/'.$pembelian->id_pembelian)."';</script>";
     }
-
+/////////////
     public function blokir_pembayaran($id)
     {
       $this->m_pembayaran->blokir_pembayaran($id);
     }
-
+/////////////
     public function bayar($id)
     {
       $detail['pembayaran'] = $this->m_pembayaran->get($id)->row();
@@ -76,6 +76,12 @@ class Pembayaran extends CI_Controller
       $bayar['pembelian_id'] = $detail['pembelian']->id;
       $bayar['biaya'] = $detail['pembelian']->uang_masuk + $detail['pembayaran']->biaya;
       $this->m_pembelian->uang_masuk($bayar);
+      $counter = $this->m_pembelian->counter_bayar($detail['pembelian']->id);
+      $data['id_pembelian'] = $detail['pembelian']->id;
+      if($counter < 0){
+        $data['tunggakan'] = abs($counter);
+      }
+      $this->m_pembelian->refresh_tunggakan($data);
 
       if($this->db->affected_rows() > 0)
       {

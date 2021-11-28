@@ -12,3 +12,10 @@
   <button id="gotop" type="button" class="btn btn-floating btn-primary align-items-center justify-content-center d-flex" data-toggle="tooltip" data-original-title="Go Top" data-placement="left" data-trigger="hover" aria-label="Go To Top" role="button">
     <i class="fa fa-chevron-up" aria-hidden="true"></i></button>
 </div>
+
+<!-- detail pembelian -->
+<div class="text-center">
+    <a href="<?=site_url('pembelian/detail/'.$pembelian->id)?>" class="btn btn-info">
+      <i class="fas fa-redo-alt"></i> Muat Ulang</a>
+</div>
+</br>

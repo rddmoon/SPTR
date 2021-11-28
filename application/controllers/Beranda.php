@@ -8,11 +8,11 @@ class Beranda extends CI_Controller {
 			parent::__construct();
 			cek_belum_login();
 			$this->load->model('m_pembelian');
+			$this->load->model('m_user');
+			$this->load->model('m_unit');
 			$this->load->model('m_pembeli');
 			$this->load->model('m_perumahan');
 			$this->load->model('m_metode');
-			$this->load->model('m_unit');
-			$this->load->model('m_user');
 			$this->load->model('m_pembayaran');
 			$this->load->model('m_pembayaran_tambahan');
 			$this->load->model('m_kwitansi');
@@ -31,6 +31,8 @@ class Beranda extends CI_Controller {
 		$data['weekly_pembelian'] = $this->m_pembelian->get_weekly_pembelian($date);
 		$data['jml_weekly_pembelian'] = $this->m_pembelian->count_weekly_pembelian($date);
 		$data['weekly_pemasukan'] = $this->m_pembelian->weekly_pemasukan($date);
+		$data['weekly_pembayaran'] = $this->m_pembayaran->get_weekly_pembayaran($date);
+		$data['menunggu_pembayaran'] = $this->m_pembayaran->count_menunggu();
 		// $data['datee'] = $date;
 		$content = $this->fungsi->user_login()->role . '/beranda';
 		$this->template->load('template', $content, $data);

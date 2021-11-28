@@ -64,6 +64,7 @@
             <p class="section-lead">
             Pembayaran-pembayaran menyangkut DP dan cicilan pada pembelian ini.
             </p>
+            
             <div class="row">
               <?php foreach($pembayaran->result() as $key) {?>
                 <?php if($key->jenis == 0){

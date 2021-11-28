@@ -30,6 +30,15 @@ class Pembelian extends CI_Controller
 
     public function detail($id)
     {
+        date_default_timezone_set('Asia/Jakarta');
+        $now = date('Y-m-d');
+        $jatuh_tempo = $this->m_pembayaran->get_pembayaran_terakhir($id)->row()->tanggal_jatuh_tempo;
+
+        while ($now > $jatuh_tempo) {
+          $this->blokir_pembayaran($id);
+          $jatuh_tempo = $this->m_pembayaran->get_pembayaran_terakhir($id)->row()->tanggal_jatuh_tempo;
+
+        }
         $data['pembelian'] = $this->m_pembelian->get($id)->row();
         $data['metode_selected'] = $this->m_metode->get($data['pembelian']->id_metode)->row();
         $data['cicilan_ke'] = $this->m_pembelian->get_cicilan_ke($data['pembelian']->id);
@@ -40,6 +49,7 @@ class Pembelian extends CI_Controller
 
         $data['pembayaran'] = $this->m_pembayaran->get_by_pembelian($id);
         $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get_by_pembelian($data['pembelian']->id);
+
 
         $content = $this->fungsi->user_login()->role . '/pembelian/detail';
         $this->template->load('template', $content, $data);
@@ -52,7 +62,7 @@ class Pembelian extends CI_Controller
       $this->m_pembelian->dibatalkan($id);
       $this->m_unit->edit_status_tersedia($id_unit);
       $pembayaran = $this->m_pembayaran->get_pembayaran_terakhir($id)->row();
-      $this->blokir_pembayaran($pembayaran->id);
+      $this->m_pembayaran->delete($pembayaran->id);
       if($this->db->affected_rows() > 0){
           echo "<script>alert('Pembelian telah dibatalkan');</script>";
       }
@@ -143,7 +153,16 @@ class Pembelian extends CI_Controller
 
     public function blokir_pembayaran($id)
     {
-      $this->m_pembayaran->blokir_pembayaran($id);
+        $pembayaran = $this->m_pembayaran->get_pembayaran_terakhir($id)->row();
+        $this->m_pembayaran->blokir_pembayaran($pembayaran->id);
+        $this->generate_pembayaran_baru($id);
+
+        $counter = $this->m_pembelian->counter_blokir($id);
+        $data['pembelian_id'] = $id;
+        if($counter < 0){
+          $data['tunggakan'] = abs($counter);
+        }
+        $this->m_pembelian->refresh_tunggakan($data);
     }
 
     public function generate_pembayaran_cash_keras($post)
@@ -212,12 +231,31 @@ class Pembelian extends CI_Controller
       $this->m_pembayaran->add($pembayaran_2);
     }
 
+    public function generate_pembayaran_baru($id)
+    {
+      $detail = $this->m_pembayaran->get_pembayaran_terakhir($id)->row();
+      $pembelian = $this->m_pembelian->get($id)->row();
+      $pembeli = $this->m_pembeli->get($pembelian->id_pembeli)->row();
+
+      $pembayaran['id_kwitansi'] = NULL;
+      $pembayaran['id_user'] = NULL;
+      $pembayaran['id_pembelian'] = $id;
+      $pembayaran['nama_pembeli'] = $pembeli->nama_pembeli;
+      $pembayaran['biaya'] = $detail->biaya;
+      $pembayaran['tanggal_bayar'] = NULL;
+      $pembayaran['tanggal_jatuh_tempo'] = date('Y-m-d', strtotime("+1 months", strtotime($detail->tanggal_jatuh_tempo)));
+      $pembayaran['jenis'] = $detail->jenis + 1;
+      $pembayaran['keterangan'] = NULL;
+      $pembayaran['blokir'] = "buka";
+      $this->m_pembayaran->add($pembayaran);
+    }
+
     public function check_status_pembelian($id)
     {
       $pembelian = $this->m_pembelian->get($id)->row();
       $metode = $this->m_metode->get($pembelian->id_metode)->row();
       $cicilan = $this->m_pembelian->get_cicilan_ke($pembelian->id);
-      if($pembelian->uang_masuk == $pembelian->harga_beli || $cicilan == $metode->banyaknya_cicilan)
+      if($pembelian->uang_masuk == $pembelian->harga_beli)
       {
         $this->m_pembelian->selesai($id);
         return 1;

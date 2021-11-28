@@ -21,14 +21,14 @@
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-danger">
-          <i class="far fa-newspaper"></i>
+          <i class="fas fa-coins"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>News</h4>
+            <h4>Menunggu Bayar</h4>
           </div>
           <div class="card-body">
-            42
+            <?php echo $menunggu_pembayaran ?>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
     <div class="col-lg-6 col-md-6 col-12">
       <div class="card">
         <div class="card-header">
-          <h4>Recent Activities</h4>
+          <h4>Pembayaran Terbaru</h4>
         </div>
         <div class="card-body">
         </br>

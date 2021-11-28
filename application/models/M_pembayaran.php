@@ -37,12 +37,32 @@ class M_pembayaran extends CI_Model
         return $query;
     }
 
+    public function get_weekly_pembayaran($tgl)
+    {
+        $this->db->from('pembayaran');
+        $this->db->where('tanggal_bayar >=', $tgl);
+        $this->db->where('blokir', "lunas");
+        $this->db->order_by('id',"DESC");
+        $this->db->limit(5);
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
     public function weekly_pemasukan($tgl)
     {
       $this->db->select_sum('biaya');
       $this->db->where('tanggal_bayar >=', $tgl);
       $query = $this->db->get('pembayaran')->row();
       return $query->biaya;
+    }
+
+    public function count_menunggu()
+    {
+      $this->db->from('pembayaran');
+      $this->db->where('blokir', "buka");
+      $this->db->order_by('id',"DESC");
+      $query = $this->db->count_all_results();
+      return $query;
     }
 
     public function buka()
@@ -115,6 +135,11 @@ class M_pembayaran extends CI_Model
       $this->db->where('id', $id);
       $this->db->update('pembayaran', $params);
     }
+    public function delete($id)
+    {
+      $this->db->where('id', $id);
+      $this->db->delete('pembayaran');
+    }
     ///////////////////////////////////////////////////////////////////////////
     public function edit($post)
     {
@@ -134,9 +159,4 @@ class M_pembayaran extends CI_Model
         $this->db->update('pembelian', $params);
     }
 
-    public function delete($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete('pembayaran');
-    }
 }

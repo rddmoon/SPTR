@@ -71,7 +71,8 @@ class M_pembelian extends CI_Model
     public function get_cicilan_ke($id)
     {
         $this->db->from('pembayaran');
-        $this->db->where('id_pembelian', $id);
+        $this->db->where('id_pembelian',$id);
+        $this->db->where('blokir !=',"blokir");
         $query = $this->db->count_all_results() - 1;
         return $query;
     }
@@ -157,6 +158,37 @@ class M_pembelian extends CI_Model
         $params['uang_lainnya'] = $bayar['biaya'];
 
         $this->db->where('id', $bayar['pembelian_id']);
+        $this->db->update('pembelian', $params);
+    }
+
+    public function counter_bayar($id)
+    {
+        $this->db->set('counter', 'counter+1', FALSE);
+        $this->db->where('id', $id);
+        $this->db->update('pembelian');
+
+        $this->db->from('pembelian');
+        $this->db->where('id', $id);
+        $query = $this->db->get()->row()->counter;
+        return $query;
+    }
+
+    public function counter_blokir($id)
+    {
+        $this->db->set('counter', 'counter-1', FALSE);
+        $this->db->where('id', $id);
+        $this->db->update('pembelian');
+
+        $this->db->from('pembelian');
+        $this->db->where('id', $id);
+        $query = $this->db->get()->row()->counter;
+        return $query;
+    }
+
+    public function refresh_tunggakan($data)
+    {
+        $params['tunggakan'] = $data['tunggakan'];
+        $this->db->where('id', $data['pembelian_id']);
         $this->db->update('pembelian', $params);
     }
 
