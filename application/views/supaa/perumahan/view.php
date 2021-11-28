@@ -2,15 +2,15 @@
     <div class="section-header">
         <h1>Perumahan</h1>
     </div>
+    <div class="search-element" style="display:flex; margin-bottom:20px;" >
+        <form class="form-inline" action="<?php echo site_url() . 'perumahan'; ?>" method="post">
+            <input class="form-control" type="text" placeholder="Cari..." name="search" data-width="250">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <form class="form-inline" action="<?php echo site_url() . 'perumahan'; ?>" method="post">
-                        <input class="form-control" type="text" name="search" value="" placeholder="Pencarian...">
-                        <input class="btn btn-light" type="submit" value="Cari">
-                    </form>
-                </div>
                 <div class="card-header">
                     <h4>Data Perumahan</h4>
                 </div>
