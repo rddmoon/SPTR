@@ -2,6 +2,12 @@
     <div class="section-header">
         <h1>Unit <?= $perumahan->nama?></h1>
     </div>
+    <div class="search-element" style="display:flex; margin-bottom:20px;" >
+        <form class="form-inline" action="<?php echo site_url() . 'perumahan/list_unit/' .$id; ?>" method="post">
+            <input class="form-control" type="text" placeholder="Cari..." name="search" data-width="250" data-height="36">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -10,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <div class="text-right">
-                        <a href="<?=site_url('unit/add')?>" class="btn btn-primary">
+                        <a href="<?=site_url('unit/add/'.$id)?>" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Tambah</a>
                     </div>
                     <ul class="nav nav-tabs" role="tablist">
