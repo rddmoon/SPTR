@@ -15,30 +15,56 @@ class M_perumahan extends CI_Model
         return $query;
     }
 
-    public function list_unit($id)
+    public function search($key)
+    {
+        $this->db->from('perumahan');
+        $this->db->like('nama', $key);
+        $this->db->or_like('jumlah_unit', $key);
+        $this->db->or_like('lokasi', $key);
+        $this->db->order_by('nama');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function list_unit($id, $key = null)
     {
         $this->db->from('unit');
         $this->db->where('id_perumahan', $id);
+        if($key != null){
+            $this->db->like('cluster', $key);
+            $this->db->or_like('blok', $key);
+            $this->db->or_like('tipe_rumah', $key);
+        }
         $this->db->order_by('blok', 'asc');
         $query = $this->db->get();
         return $query;
     }
 
-    public function list_unit_tersedia($id)
+    public function list_unit_tersedia($id, $key = null)
     {
         $this->db->from('unit');
         $this->db->where('id_perumahan', $id);
         $this->db->where('status', 'tersedia');
+        if($key != null){
+            $this->db->like('cluster', $key);
+            $this->db->or_like('blok', $key);
+            $this->db->or_like('tipe_rumah', $key);
+        }
         $this->db->order_by('blok', 'asc');
         $query = $this->db->get();
         return $query;
     }
 
-    public function list_unit_terjual($id)
+    public function list_unit_terjual($id, $key=null)
     {
         $this->db->from('unit');
         $this->db->where('id_perumahan', $id);
         $this->db->where('status', 'terjual');
+        if($key != null){
+            $this->db->like('cluster', $key);
+            $this->db->or_like('blok', $key);
+            $this->db->or_like('tipe_rumah', $key);
+        }
         $this->db->order_by('blok', 'asc');
         $query = $this->db->get();
         return $query;
