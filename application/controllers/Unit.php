@@ -30,10 +30,14 @@ class Unit extends CI_Controller
         $this->template->load('template', $content, $data);
     }
 
-    public function add()
+    public function add($id=null)
     {
         $content = $this->fungsi->user_login()->role . '/unit/add';
-        $data['perumahan'] = $this->m_perumahan->get();
+        if($id != null){
+            $data['perumahan'] = $this->m_perumahan->get($id);
+        } else {
+            $data['perumahan'] = $this->m_perumahan->get();
+        }
         $this->form_validation->set_rules('id_perumahan', 'Perumahan', 'required');
         $this->form_validation->set_rules('cluster', 'Cluster', 'required');
         $this->form_validation->set_rules('blok', 'Blok', 'required');
@@ -54,7 +58,11 @@ class Unit extends CI_Controller
             if($this->db->affected_rows() > 0){
                 echo "<script>alert('Data berhasil disimpan');</script>";
             }
-            echo "<script>window.location='".site_url('unit')."';</script>";
+            if($id != null){
+                echo "<script>window.location='".site_url('perumahan/list_unit/'.$id)."';</script>";
+            } else {
+                echo "<script>window.location='".site_url('unit')."';</script>";
+            }
         }
     }
 
