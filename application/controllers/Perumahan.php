@@ -13,19 +13,32 @@ class Perumahan extends CI_Controller
 
     public function index()
     {
-        $data['perumahan'] = $this->m_perumahan->get();
+        $search = $this->input->post('search');
+        if (!empty($search)) {
+            $data['perumahan'] = $this->m_perumahan->search($search);
+        } else {
+            $data['perumahan'] = $this->m_perumahan->get();
+        }
         $content = $this->fungsi->user_login()->role . '/perumahan/view';
         $this->template->load('template', $content, $data);
     }
 
     public function list_unit($id)
     {
-      $data['list_unit'] = $this->m_perumahan->list_unit($id);
-      $data['list_unit_tersedia'] = $this->m_perumahan->list_unit_tersedia($id);
-      $data['list_unit_terjual'] = $this->m_perumahan->list_unit_terjual($id); 
-      $data['perumahan'] = $this->m_perumahan->get($id)->row();
-      $content = $this->fungsi->user_login()->role . '/perumahan/list_unit';
-      $this->template->load('template', $content, $data);
+        $search = $this->input->post('search');
+        if (!empty($search)) {
+            $data['list_unit'] = $this->m_perumahan->list_unit($id, $search);
+            $data['list_unit_tersedia'] = $this->m_perumahan->list_unit_tersedia($id, $search);
+            $data['list_unit_terjual'] = $this->m_perumahan->list_unit_terjual($id, $search); 
+        } else {
+            $data['list_unit'] = $this->m_perumahan->list_unit($id);
+            $data['list_unit_tersedia'] = $this->m_perumahan->list_unit_tersedia($id);
+            $data['list_unit_terjual'] = $this->m_perumahan->list_unit_terjual($id); 
+        }
+        $data['perumahan'] = $this->m_perumahan->get($id)->row();
+        $data['id'] = $id;
+        $content = $this->fungsi->user_login()->role . '/perumahan/list_unit';
+        $this->template->load('template', $content, $data);
     }
 
     public function add()
