@@ -14,9 +14,16 @@ class Unit extends CI_Controller
 
     public function index()
     {
-        $data['unit'] = $this->m_unit->get();
-        $data['unit_tersedia'] = $this->m_unit->get_unit_tersedia();
-        $data['unit_terjual'] = $this->m_unit->get_unit_terjual();        
+        $search = $this->input->post('search');
+        if (!empty($search)) {
+            $data['unit'] = $this->m_unit->search($search);
+            $data['unit_tersedia'] = $this->m_unit->get_unit_tersedia($search);
+            $data['unit_terjual'] = $this->m_unit->get_unit_terjual($search);
+        } else {
+            $data['unit'] = $this->m_unit->get();
+            $data['unit_tersedia'] = $this->m_unit->get_unit_tersedia();
+            $data['unit_terjual'] = $this->m_unit->get_unit_terjual();        
+        }
         $data['perumahan'] = $this->m_perumahan->get();
         $content = $this->fungsi->user_login()->role . '/unit/view';
         $this->template->load('template', $content, $data);
