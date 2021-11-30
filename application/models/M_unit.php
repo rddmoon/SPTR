@@ -22,6 +22,14 @@ class M_unit extends CI_Model
       return $query;
     }
 
+    public function search($key)
+    {
+        $this->db->from('unit');
+        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%')", NULL, FALSE);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_id_perumahan($id)
     {
       $this->db->from('unit');
@@ -29,18 +37,24 @@ class M_unit extends CI_Model
       $query = $this->db->get()->row()->id_perumahan;
       return $query;
     }
-    public function get_unit_tersedia()
+    public function get_unit_tersedia($key = null)
     {
       $this->db->from('unit');
       $this->db->where('status', 'tersedia');
+      if($key != null){
+        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%')", NULL, FALSE);
+      }
       $query = $this->db->get();
       return $query;
     }
 
-    public function get_unit_terjual()
+    public function get_unit_terjual($key = null)
     {
       $this->db->from('unit');
       $this->db->where('status', 'terjual');
+      if($key != null){
+        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%')", NULL, FALSE);
+      }
       $query = $this->db->get();
       return $query;
     }
