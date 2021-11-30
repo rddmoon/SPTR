@@ -291,6 +291,7 @@ class Pembelian extends CI_Controller
             if($banyaknya_cicilan > 1){
               $harga_cicil = $post['harga_beli'] * (100 + 6 * $banyaknya_cicilan/12)/100;
               $post['cicilan_perbulan'] = ($harga_cicil - $post['DP'])/$banyaknya_cicilan;
+              $post['harga_beli'] = $harga_cicil;
             }
             elseif ($banyaknya_cicilan == 1) {
               $post['cicilan_perbulan'] = $post['harga_beli'] - $post['DP'];
