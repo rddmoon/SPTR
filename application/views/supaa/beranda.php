@@ -2,6 +2,9 @@
   <div class="section-header">
     <h1>Beranda</h1>
   </div>
+  <?php date_default_timezone_set('Asia/Jakarta');
+  $today = date('Y-m-d');
+  $yesterday = date('Y-m-d', strtotime("-1 day", strtotime($today)))?>
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
@@ -73,46 +76,25 @@
         <div class="card-body">
         </br>
           <ul class="list-unstyled list-unstyled-border">
+            <?php foreach ($weekly_pembayaran as $key => $value) {?>
             <li class="media">
-              <img class="mr-3 rounded-circle" src="../assets/img/avatar/avatar-1.png" alt="avatar" width="50">
               <div class="media-body">
-                <div class="float-right text-primary">Now</div>
-                <div class="media-title">Farhan A Mujib</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
+                <?php if($value->tanggal_bayar = $today){ ?>
+                <div class="float-right">Hari ini</div>
+                <?php }elseif($value->tanggal_bayar = $yesterday){ ?>
+                <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
+                <div class="float-right">Kemarin</div>
+                <?php }else{ ?>
+                <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
+                <?php } ?>
+                <div class="media-title"><?=$value->nama_pembeli?></div>
+                <div class="text-small">
+                  <span class="" style="color:#6777ef"><?="Rp".number_format($value->biaya, 2);?></span><div class="bullet"></div>ID <?=$value->id_pembelian?><div class="bullet"></div>
+                  <span class="text-muted">Oleh: <?=$value->nama_user?></span>
+                </div>
               </div>
             </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" src="../assets/img/avatar/avatar-2.png" alt="avatar" width="50">
-              <div class="media-body">
-                <div class="float-right">12m</div>
-                <div class="media-title">Ujang Maman</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" src="../assets/img/avatar/avatar-3.png" alt="avatar" width="50">
-              <div class="media-body">
-                <div class="float-right">17m</div>
-                <div class="media-title">Rizal Fakhri</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" src="../assets/img/avatar/avatar-4.png" alt="avatar" width="50">
-              <div class="media-body">
-                <div class="float-right">21m</div>
-                <div class="media-title">Alfa Zulkarnain</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
-            <li class="media">
-              <img class="mr-3 rounded-circle" src="../assets/img/avatar/avatar-4.png" alt="avatar" width="50">
-              <div class="media-body">
-                <div class="float-right">21m</div>
-                <div class="media-title">Alfa Zulkarnain</div>
-                <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.</span>
-              </div>
-            </li>
+          <?php } ?>
           </ul>
         </br>
           <div class="text-center pt-1 pb-1">
@@ -145,9 +127,9 @@
                 <?php foreach ($weekly_pembelian as $key => $value) {?>
                 <li class="media">
                   <div class="media-body">
-                    <div class="media-right">$405</div>
+                    <div class="media-right"><?=$value->blok?> <?=$value->cluster?></div>
                     <div class="media-title"><a href="<?=site_url('pembelian/detail/'.$value->id)?>"><?=$value->id?></a></div>
-                    <div class="text-muted text-small">by <a href="#">Hasan Basri</a> <div class="bullet"></div> Sunday</div>
+                    <div class="text-muted text-small"><?=$value->nama_pembeli?> <div class="bullet"></div> <?=date('d M Y', strtotime($value->tanggal_beli))?></div>
                   </div>
                 </li>
               <?php } ?>

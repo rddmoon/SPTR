@@ -58,7 +58,7 @@
                           </div>
                       </div>
                       <div class="form-group">
-                        <label>Harga Beli</label>
+                        <label>Harga Jual Rumah</label>
                         <div class="" style="max-width:400px">
                           <input id="harga_beli" type="text" name="harga_beli" value="<?=set_value('harga_beli')?>" class="form-control <?= form_error('harga_beli') ? 'is-invalid' : '' ?>">
                           <div class="invalid-feedback">

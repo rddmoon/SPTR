@@ -39,9 +39,11 @@ class M_pembayaran extends CI_Model
 
     public function get_weekly_pembayaran($tgl)
     {
+        $this->db->select('pembayaran.id AS id, pembayaran.tanggal_bayar AS tanggal_bayar, pembayaran.keterangan AS keterangan, pembayaran.nama_pembeli AS nama_pembeli, pembayaran.biaya AS biaya, pembayaran.id_pembelian AS id_pembelian, user.nama AS nama_user');
         $this->db->from('pembayaran');
         $this->db->where('tanggal_bayar >=', $tgl);
         $this->db->where('blokir', "lunas");
+        $this->db->join('user','pembayaran.id_user=user.id','LEFT');
         $this->db->order_by('id',"DESC");
         $this->db->limit(5);
         $query = $this->db->get()->result();

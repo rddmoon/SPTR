@@ -128,15 +128,13 @@ class Pembelian extends CI_Controller
         // echo json_encode($data);
     }
 
-    function get_data_edit(){
-      $pembelian_id = $this->input->post('pembelian_id',TRUE);
-      $data['id_unit'] = $this->m_pembelian->get($pembelian_id)->row()->id_unit;
-      $data['blok'] = $this->m_unit->get($pembelian_id)->row()->blok;
-      $data['cluster'] = $this->m_unit->get($pembelian_id)->row()->cluster;
-      // $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
-      // $data['perumahan'] = $this->m_unit->get_id_perumahan($id_perumahan);
-      echo json_encode($data);
-    }
+    // function get_data_edit(){
+    //   $pembelian_id = $this->input->post('pembelian_id',TRUE);
+    //   $data['id_unit'] = $this->m_pembelian->get($pembelian_id)->row()->id_unit;
+    //   $data['blok'] = $this->m_unit->get($pembelian_id)->row()->blok;
+    //   $data['cluster'] = $this->m_unit->get($pembelian_id)->row()->cluster;
+    //   echo json_encode($data);
+    // }
 
     public function get_harga_beli()
     {
@@ -168,12 +166,13 @@ class Pembelian extends CI_Controller
     public function generate_pembayaran_cash_keras($post)
     {
       date_default_timezone_set('Asia/Jakarta');
+      $perumahan = $this->m_perumahan->get($post['perumahan'])->row();
       $kwitansi['id'] = date('dmyhis');
       //generate dp
       $kwitansi['biaya'] = $post['DP'];
       $kwitansi['tanggal_bayar'] = $post['tanggal_beli'];
       $unit = $this->m_unit->get($post['id_unit'])->row();
-      $kwitansi['keterangan'] = 'Pembayaran '.$post['perumahan']->nama.' unit '.$unit->blok.' cluster '.$unit->cluster.'.';
+      $kwitansi['keterangan'] = 'Pembayaran '.$perumahan->nama.' unit '.$unit->blok.' cluster '.$unit->cluster.'.';
       $pembeli = $this->m_pembeli->get($post['id_pembeli'])->row();
       $kwitansi['nama_pembeli'] = $pembeli->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);
@@ -319,58 +318,58 @@ class Pembelian extends CI_Controller
         }
     }
 
-    public function edit($id)
-    {
-      $data['perumahan'] = $this->m_perumahan->get()->result();
-      $data['pembeli'] = $this->m_pembeli->get()->result();
-      $data['metode'] = $this->m_metode->get()->result();
-      $data['unit'] = $this->m_unit->get_unit_tersedia()->result();
-      $content = $this->fungsi->user_login()->role . '/pembelian/edit';
-
-      $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
-      $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
-      $this->form_validation->set_rules('id_unit', 'Unit', 'required');
-      $this->form_validation->set_rules('DP', 'DP', 'required|numeric');
-      $this->form_validation->set_rules('id_metode', 'Metode', 'required');
-      $this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric');
-      $this->form_validation->set_rules('cicilan_perbulan', 'Cicilan Perbulan', 'required|numeric');
-      $this->form_validation->set_rules('status_pembelian', 'Status Pembelian', 'required');
-      $this->form_validation->set_message('required', '%s masih kosong.');
-      $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
-
-      $query = $this->m_pembelian->get($id);
-        if($this->form_validation->run() == FALSE){
-            if($query->num_rows() > 0){
-                $this->m_unit->edit_status_tersedia($query->row()->id_unit);
-                $data['pembelian'] = $query->row();
-                $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
-                $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
-                $data['perumahan_selected'] = $this->m_unit->get_id_perumahan($id_perumahan);
-                $data['list_unit_selected'] = $this->m_perumahan->list_unit_selected($data['perumahan_selected'])->result();
-                $this->template->load('template', $content, $data);
-            }
-            else{
-                echo "<script>alert('Data tidak ditemukan.');";
-				        echo "window.location='".site_url('pembelian')."';</script>";
-            }
-        }
-        else
-        {
-            $post = $this->input->post(null,TRUE);
-      			$this->m_pembelian->edit($post);
-      			if($this->db->affected_rows() > 0)
-      			{
-              $this->m_unit->edit_status_terjual($query->row()->id_unit);
-              if ($post['id_unit'] != $data['pembelian']->id_unit)
-              {
-                $this->m_unit->edit_status_terjual($post['id_unit']);
-                $this->m_unit->edit_status_tersedia($data['pembelian']->id_unit);
-              }
-      				echo "<script>alert('Data berhasil disimpan');</script>";
-      			}
-      			echo "<script>window.location='".site_url('pembelian')."';</script>";
-          }
-      }
+    // public function edit($id)
+    // {
+    //   $data['perumahan'] = $this->m_perumahan->get()->result();
+    //   $data['pembeli'] = $this->m_pembeli->get()->result();
+    //   $data['metode'] = $this->m_metode->get()->result();
+    //   $data['unit'] = $this->m_unit->get_unit_tersedia()->result();
+    //   $content = $this->fungsi->user_login()->role . '/pembelian/edit';
+    //
+    //   $this->form_validation->set_rules('perumahan', 'Perumahan', 'required');
+    //   $this->form_validation->set_rules('id_pembeli', 'Pembeli', 'required');
+    //   $this->form_validation->set_rules('id_unit', 'Unit', 'required');
+    //   $this->form_validation->set_rules('DP', 'DP', 'required|numeric');
+    //   $this->form_validation->set_rules('id_metode', 'Metode', 'required');
+    //   $this->form_validation->set_rules('harga_beli', 'Harga Beli', 'required|numeric');
+    //   $this->form_validation->set_rules('cicilan_perbulan', 'Cicilan Perbulan', 'required|numeric');
+    //   $this->form_validation->set_rules('status_pembelian', 'Status Pembelian', 'required');
+    //   $this->form_validation->set_message('required', '%s masih kosong.');
+    //   $this->form_validation->set_message('numeric', '%s tidak boleh berisi selain angka.');
+    //
+    //   $query = $this->m_pembelian->get($id);
+    //     if($this->form_validation->run() == FALSE){
+    //         if($query->num_rows() > 0){
+    //             $this->m_unit->edit_status_tersedia($query->row()->id_unit);
+    //             $data['pembelian'] = $query->row();
+    //             $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
+    //             $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
+    //             $data['perumahan_selected'] = $this->m_unit->get_id_perumahan($id_perumahan);
+    //             $data['list_unit_selected'] = $this->m_perumahan->list_unit_selected($data['perumahan_selected'])->result();
+    //             $this->template->load('template', $content, $data);
+    //         }
+    //         else{
+    //             echo "<script>alert('Data tidak ditemukan.');";
+		// 		        echo "window.location='".site_url('pembelian')."';</script>";
+    //         }
+    //     }
+    //     else
+    //     {
+    //         $post = $this->input->post(null,TRUE);
+    //   			$this->m_pembelian->edit($post);
+    //   			if($this->db->affected_rows() > 0)
+    //   			{
+    //           $this->m_unit->edit_status_terjual($query->row()->id_unit);
+    //           if ($post['id_unit'] != $data['pembelian']->id_unit)
+    //           {
+    //             $this->m_unit->edit_status_terjual($post['id_unit']);
+    //             $this->m_unit->edit_status_tersedia($data['pembelian']->id_unit);
+    //           }
+    //   				echo "<script>alert('Data berhasil disimpan');</script>";
+    //   			}
+    //   			echo "<script>window.location='".site_url('pembelian')."';</script>";
+    //       }
+    //   }
 
     public function delete()
     {

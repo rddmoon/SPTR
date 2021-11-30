@@ -79,9 +79,13 @@ class M_pembelian extends CI_Model
 
     public function get_weekly_pembelian($tgl)
     {
+        $this->db->select('pembelian.id AS id, pembeli.nama_pembeli AS nama_pembeli, unit.blok AS blok, unit.cluster AS cluster, pembelian.tanggal_beli AS tanggal_beli');
         $this->db->from('pembelian');
-        $this->db->where('tanggal_beli >=', $tgl);
-        $this->db->order_by('id',"DESC");
+        $this->db->where('pembelian.tanggal_beli >=', $tgl);
+        $this->db->where('pembelian.status_pembelian !=', 'dibatalkan');
+        $this->db->join('pembeli','pembelian.id_pembeli=pembeli.id','LEFT');
+        $this->db->join('unit','pembelian.id_unit=unit.id','LEFT');
+        $this->db->order_by('pembelian.id',"DESC");
         $this->db->limit(3);
         $query = $this->db->get()->result();
         return $query;
