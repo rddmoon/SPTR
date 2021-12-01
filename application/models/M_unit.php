@@ -6,10 +6,15 @@ class M_unit extends CI_Model
 {
     public function get($id = null)
     {
+        $this->db->select('unit.id AS id, unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah, 
+        unit.luas_tanah AS luas_tanah, unit.tingkat_rumah AS tingkat_rumah, unit.BEP AS BEP, unit.harga_jual AS harga_jual,
+        unit.status AS status, perumahan.nama AS nama_perumahan');
         $this->db->from('unit');
+        $this->db->join('perumahan', 'unit.id_perumahan=perumahan.id');
         if($id != null){
-            $this->db->where('id', $id);
+            $this->db->where('unit.id', $id);
         }
+        $this->db->order_by('nama_perumahan');
         $query = $this->db->get();
         return $query;
     }
@@ -24,8 +29,13 @@ class M_unit extends CI_Model
 
     public function search($key)
     {
+        $this->db->select('unit.id AS id, unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah, 
+        unit.luas_tanah AS luas_tanah, unit.tingkat_rumah AS tingkat_rumah, unit.BEP AS BEP, unit.harga_jual AS harga_jual,
+        unit.status AS status, perumahan.nama AS nama_perumahan');
         $this->db->from('unit');
-        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%')", NULL, FALSE);
+        $this->db->join('perumahan', 'unit.id_perumahan=perumahan.id');
+        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%' OR perumahan.nama
+        LIKE '%".$key."%')", NULL, FALSE);
         $query = $this->db->get();
         return $query;
     }
@@ -39,10 +49,15 @@ class M_unit extends CI_Model
     }
     public function get_unit_tersedia($key = null)
     {
+      $this->db->select('unit.id AS id, unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah, 
+        unit.luas_tanah AS luas_tanah, unit.tingkat_rumah AS tingkat_rumah, unit.BEP AS BEP, unit.harga_jual AS harga_jual,
+        unit.status AS status, perumahan.nama AS nama_perumahan');
       $this->db->from('unit');
+      $this->db->join('perumahan', 'unit.id_perumahan=perumahan.id');
       $this->db->where('status', 'tersedia');
       if($key != null){
-        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%')", NULL, FALSE);
+        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%' OR perumahan.nama
+        LIKE '%".$key."%')", NULL, FALSE);
       }
       $query = $this->db->get();
       return $query;
@@ -50,10 +65,15 @@ class M_unit extends CI_Model
 
     public function get_unit_terjual($key = null)
     {
+      $this->db->select('unit.id AS id, unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah, 
+        unit.luas_tanah AS luas_tanah, unit.tingkat_rumah AS tingkat_rumah, unit.BEP AS BEP, unit.harga_jual AS harga_jual,
+        unit.status AS status, perumahan.nama AS nama_perumahan');
       $this->db->from('unit');
+      $this->db->join('perumahan', 'unit.id_perumahan=perumahan.id');
       $this->db->where('status', 'terjual');
       if($key != null){
-        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%')", NULL, FALSE);
+        $this->db->where("(cluster LIKE '%".$key."%' OR blok LIKE '%".$key."%' OR tipe_rumah LIKE '%".$key."%' OR perumahan.nama
+        LIKE '%".$key."%')", NULL, FALSE);
       }
       $query = $this->db->get();
       return $query;
