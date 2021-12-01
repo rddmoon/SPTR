@@ -24,7 +24,7 @@ class Unit extends CI_Controller
             $data['unit_tersedia'] = $this->m_unit->get_unit_tersedia();
             $data['unit_terjual'] = $this->m_unit->get_unit_terjual();        
         }
-        $data['perumahan'] = $this->m_perumahan->get();
+        // $data['perumahan'] = $this->m_perumahan->get();
         $content = $this->fungsi->user_login()->role . '/unit/view';
         $this->template->load('template', $content, $data);
     }
@@ -32,7 +32,7 @@ class Unit extends CI_Controller
     public function detail($id)
     {
         $data['unit'] = $this->m_unit->get($id)->row();
-        $data['perumahan'] = $this->m_unit->get_nama_perumahan($data['unit']->id_perumahan);
+        // $data['perumahan'] = $this->m_unit->get_nama_perumahan($data['unit']->id_perumahan);
         $content = $this->fungsi->user_login()->role . '/unit/detail';
         $this->template->load('template', $content, $data);
     }
