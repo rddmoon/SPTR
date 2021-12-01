@@ -44,11 +44,11 @@
                           <tbody>
                               <?php $no = 1;
                               foreach ($unit->result() as $key => $value){
-                              $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
+                            //   $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
                               ?>
                               <tr class="text-center">
                                   <td><?=$no++?></td>
-                                  <td><?=$nama_perumahan?></td>
+                                  <td><?=$value->nama_perumahan?></td>
                                   <td><?=$value->cluster?></td>
                                   <td><?=$value->blok?></td>
                                   <td><?=$value->tipe_rumah?></td>
@@ -93,11 +93,11 @@
                           <tbody>
                               <?php $no = 1;
                               foreach ($unit_tersedia->result() as $key => $value){
-                              $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
+                            //   $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
                               ?>
                               <tr class="text-center">
                                   <td><?=$no++?></td>
-                                  <td><?=$nama_perumahan?></td>
+                                  <td><?=$value->nama_perumahan?></td>
                                   <td><?=$value->cluster?></td>
                                   <td><?=$value->blok?></td>
                                   <td><?=$value->tipe_rumah?></td>
@@ -136,11 +136,11 @@
                           <tbody>
                               <?php $no = 1;
                               foreach ($unit_terjual->result() as $key => $value){
-                              $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
+                            //   $nama_perumahan = $this->m_unit->get_nama_perumahan($value->id_perumahan)->nama;
                               ?>
                               <tr class="text-center">
                                   <td><?=$no++?></td>
-                                  <td><?=$nama_perumahan?></td>
+                                  <td><?=$value->nama_perumahan?></td>
                                   <td><?=$value->cluster?></td>
                                   <td><?=$value->blok?></td>
                                   <td><?=$value->tipe_rumah?></td>
