@@ -25,6 +25,17 @@ class M_user extends CI_Model
     return $query;
   }
 
+  public function search($key)
+    {
+        $this->db->from('user');
+        $this->db->like('username', $key);
+        $this->db->or_like('nama', $key);
+        $this->db->or_like('role', $key);
+        $this->db->order_by('nama');
+        $query = $this->db->get();
+        return $query;
+    }
+
   public function check_password($post)
   {
     $this->db->select('*');
