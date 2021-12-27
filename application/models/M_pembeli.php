@@ -19,6 +19,21 @@ class M_pembeli extends CI_Model
     return $query;
   }
 
+  public function search($key)
+    {
+        $this->db->from('pembeli');
+        $this->db->like('nama_pembeli', $key);
+        $this->db->or_like('NIK', $key);
+        $this->db->or_like('alamat', $key);
+        $this->db->or_like('telepon', $key);
+        $this->db->or_like('ttl', $key);
+        $this->db->or_like('status_perkawinan', $key);
+        $this->db->or_like('pekerjaan', $key);
+        $this->db->order_by('nama_pembeli');
+        $query = $this->db->get();
+        return $query;
+    }
+
   public function add($post)
   {
     $date = new DateTime($post['tl']);
