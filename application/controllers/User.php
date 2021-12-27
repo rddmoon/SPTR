@@ -13,7 +13,12 @@ class User extends CI_Controller {
 
 	public function index()
 	{
-		$data['user'] = $this->m_user->get();
+		$search = $this->input->post('search');
+		if (!empty($search)) {
+            $data['user'] = $this->m_user->search($search);
+        } else {
+			$data['user'] = $this->m_user->get();
+        }
 		$content = $this->fungsi->user_login()->role . '/user/view';
 
 		// $this->template->load('template', 'supaa/user/view', $data);
