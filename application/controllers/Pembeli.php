@@ -13,7 +13,13 @@ class Pembeli extends CI_Controller {
 
 	public function index()
 	{
-		$data['pembeli'] = $this->m_pembeli->get();
+		$search = $this->input->post('search');
+		if (!empty($search)) {
+			// $data['perumahan'] = $this->m_perumahan->search($search);
+			$data['pembeli'] = $this->m_pembeli->search($search);
+        } else {
+			$data['pembeli'] = $this->m_pembeli->get();
+        }
 		$content = $this->fungsi->user_login()->role . '/pembeli/view';
 
 		$this->template->load('template', $content, $data);
