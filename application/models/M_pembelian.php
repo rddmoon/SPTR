@@ -6,15 +6,45 @@ class M_pembelian extends CI_Model
 {
     public function get($id = null)
     {
+        $this->db->select('pembelian.id AS id, pembelian.id_unit AS id_unit, pembelian.id_pembeli AS id_pembeli, pembelian.id_metode AS id_metode,
+        pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP, 
+        pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan,  pembelian.uang_masuk AS uang_masuk,
+        pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
+        pembeli.nama_pembeli AS nama_pembeli, pembeli.NIK AS NIK, pembeli.alamat AS alamat, pembeli.telepon AS telepon,
+        unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah,
+        metode.nama_metode AS nama_metode');
         $this->db->from('pembelian');
+        $this->db->join('pembeli', 'pembelian.id_pembeli=pembeli.id');
+        $this->db->join('metode', 'pembelian.id_metode=metode.id');
+        $this->db->join('unit', 'pembelian.id_unit=unit.id');
         if($id != null)
         {
-            $this->db->where('id', $id);
+            // $this->db->where('id', $id);
+            $this->db->where('pembelian.id', $id);
         }
         else
         {
-          $this->db->order_by('id',"DESC");
+        //   $this->db->order_by('id',"DESC");
+          $this->db->order_by('pembelian.id',"DESC");
         }
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function search($key)
+    {
+        $this->db->select('pembelian.id AS id, pembelian.id_unit AS id_unit, pembelian.id_pembeli AS id_pembeli, pembelian.id_metode AS id_metode,
+        pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP, 
+        pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan,  pembelian.uang_masuk AS uang_masuk,
+        pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
+        pembeli.nama_pembeli AS nama_pembeli, pembeli.NIK AS NIK, pembeli.alamat AS alamat, pembeli.telepon AS telepon,
+        unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah,
+        metode.nama_metode AS nama_metode');
+        $this->db->from('pembelian');
+        $this->db->join('pembeli', 'pembelian.id_pembeli=pembeli.id');
+        $this->db->join('metode', 'pembelian.id_metode=metode.id');
+        $this->db->join('unit', 'pembelian.id_unit=unit.id');
+        $this->db->where("(pembelian.id LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR nama_metode LIKE '%".$key."%')", NULL, FALSE);
         $query = $this->db->get();
         return $query;
     }
@@ -27,26 +57,65 @@ class M_pembelian extends CI_Model
         return $query;
     }
 
-    public function get_berjalan()
+    public function get_berjalan($key = null)
     {
+        $this->db->select('pembelian.id AS id, pembelian.id_unit AS id_unit, pembelian.id_pembeli AS id_pembeli, pembelian.id_metode AS id_metode,
+        pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP, 
+        pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan,  pembelian.uang_masuk AS uang_masuk,
+        pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
+        pembeli.nama_pembeli AS nama_pembeli, pembeli.NIK AS NIK, pembeli.alamat AS alamat, pembeli.telepon AS telepon,
+        unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah,
+        metode.nama_metode AS nama_metode');
         $this->db->from('pembelian');
+        $this->db->join('pembeli', 'pembelian.id_pembeli=pembeli.id');
+        $this->db->join('metode', 'pembelian.id_metode=metode.id');
+        $this->db->join('unit', 'pembelian.id_unit=unit.id');
         $this->db->where('status_pembelian', "berjalan");
+        if($key != null){
+            $this->db->where("(pembelian.id LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR nama_metode LIKE '%".$key."%')", NULL, FALSE);
+        }
         $query = $this->db->get();
         return $query;
     }
 
-    public function get_selesai()
+    public function get_selesai($key = null)
     {
+        $this->db->select('pembelian.id AS id, pembelian.id_unit AS id_unit, pembelian.id_pembeli AS id_pembeli, pembelian.id_metode AS id_metode,
+        pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP, 
+        pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan,  pembelian.uang_masuk AS uang_masuk,
+        pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
+        pembeli.nama_pembeli AS nama_pembeli, pembeli.NIK AS NIK, pembeli.alamat AS alamat, pembeli.telepon AS telepon,
+        unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah,
+        metode.nama_metode AS nama_metode');
         $this->db->from('pembelian');
+        $this->db->join('pembeli', 'pembelian.id_pembeli=pembeli.id');
+        $this->db->join('metode', 'pembelian.id_metode=metode.id');
+        $this->db->join('unit', 'pembelian.id_unit=unit.id');
         $this->db->where('status_pembelian', "selesai");
+        if($key != null){
+            $this->db->where("(pembelian.id LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR nama_metode LIKE '%".$key."%')", NULL, FALSE);
+        }
         $query = $this->db->get();
         return $query;
     }
 
-    public function get_dibatalkan()
+    public function get_dibatalkan($key = null)
     {
+        $this->db->select('pembelian.id AS id, pembelian.id_unit AS id_unit, pembelian.id_pembeli AS id_pembeli, pembelian.id_metode AS id_metode,
+        pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP, 
+        pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan,  pembelian.uang_masuk AS uang_masuk,
+        pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
+        pembeli.nama_pembeli AS nama_pembeli, pembeli.NIK AS NIK, pembeli.alamat AS alamat, pembeli.telepon AS telepon,
+        unit.cluster AS cluster, unit.blok AS blok, unit.tipe_rumah AS tipe_rumah,
+        metode.nama_metode AS nama_metode');
         $this->db->from('pembelian');
+        $this->db->join('pembeli', 'pembelian.id_pembeli=pembeli.id');
+        $this->db->join('metode', 'pembelian.id_metode=metode.id');
+        $this->db->join('unit', 'pembelian.id_unit=unit.id');
         $this->db->where('status_pembelian', "dibatalkan");
+        if($key != null){
+            $this->db->where("(pembelian.id LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR nama_metode LIKE '%".$key."%')", NULL, FALSE);
+        }
         $query = $this->db->get();
         return $query;
     }
