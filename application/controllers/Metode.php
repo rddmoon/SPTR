@@ -13,9 +13,13 @@ class Metode extends CI_Controller {
 
 	public function index()
 	{
-		$data['metode'] = $this->m_metode->get();
+		$search = $this->input->post('search');
+		if (!empty($search)) {
+			$data['metode'] = $this->m_metode->search($search);
+        } else {
+			$data['metode'] = $this->m_metode->get();
+		}
 		$content = $this->fungsi->user_login()->role . '/metode/view';
-
 		$this->template->load('template', $content, $data);
 
 	}
