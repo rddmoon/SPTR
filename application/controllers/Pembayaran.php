@@ -20,10 +20,18 @@ class Pembayaran extends CI_Controller
 
     public function index()
     {
-        $data['pembayaran'] = $this->m_pembayaran->get();
-        $data['pembayaran_buka'] = $this->m_pembayaran->buka();
-        $data['pembayaran_lunas'] = $this->m_pembayaran->lunas();
-        $data['pembayaran_blokir'] = $this->m_pembayaran->blokir();
+        $search = $this->input->post('search');
+        if (!empty($search)) {
+          $data['pembayaran'] = $this->m_pembayaran->search($search);
+          $data['pembayaran_buka'] = $this->m_pembayaran->buka($search);
+          $data['pembayaran_lunas'] = $this->m_pembayaran->lunas($search);
+          $data['pembayaran_blokir'] = $this->m_pembayaran->blokir($search);
+        } else {
+          $data['pembayaran'] = $this->m_pembayaran->get();
+          $data['pembayaran_buka'] = $this->m_pembayaran->buka();
+          $data['pembayaran_lunas'] = $this->m_pembayaran->lunas();
+          $data['pembayaran_blokir'] = $this->m_pembayaran->blokir();
+        }
         $content = $this->fungsi->user_login()->role . '/pembayaran/view';
         $this->template->load('template', $content, $data);
     }
