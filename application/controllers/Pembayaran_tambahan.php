@@ -158,7 +158,7 @@ class Pembayaran_tambahan extends CI_Controller
 
             if($post['tanggal_bayar'] != NULL){
               $terakhir = $this->m_pembayaran_tambahan->get_pembayaran_terakhir($post['id_pembelian'])->row();
-              $this->bayar($terakhir);
+              $this->bayar($terakhir->id);
             }
             if($this->db->affected_rows() > 0 && $post['tanggal_bayar'] == NULL )
             {
