@@ -19,6 +19,14 @@ class M_pembayaran extends CI_Model
         return $query;
     }
 
+    public function search($key)
+    {
+        $this->db->from('pembayaran');
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis LIKE '%".$key."%')", NULL, FALSE); 
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_by_pembelian($id)
     {
         $this->db->from('pembayaran');
@@ -77,28 +85,37 @@ class M_pembayaran extends CI_Model
       return $query;
     }
 
-    public function buka()
+    public function buka($key = null)
     {
       $this->db->from('pembayaran');
       $this->db->where('blokir', "buka");
+      if($key != null){
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis LIKE '%".$key."%')", NULL, FALSE); 
+      }
       $this->db->order_by('id',"DESC");
       $query = $this->db->get();
       return $query;
     }
 
-    public function lunas()
+    public function lunas($key = null)
     {
       $this->db->from('pembayaran');
       $this->db->where('blokir', "lunas");
+      if($key != null){
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis LIKE '%".$key."%')", NULL, FALSE); 
+      }
       $this->db->order_by('id',"DESC");
       $query = $this->db->get();
       return $query;
     }
 
-    public function blokir()
+    public function blokir($key = null)
     {
       $this->db->from('pembayaran');
       $this->db->where('blokir', "blokir");
+      if($key != null){
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis LIKE '%".$key."%')", NULL, FALSE); 
+      }
       $this->db->order_by('id',"DESC");
       $query = $this->db->get();
       return $query;
