@@ -20,9 +20,16 @@ class Pembayaran_tambahan extends CI_Controller
 
     public function index()
     {
-        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get();
-        $data['pembayaran_tambahan_buka'] = $this->m_pembayaran_tambahan->buka();
-        $data['pembayaran_tambahan_lunas'] = $this->m_pembayaran_tambahan->lunas();
+        $search = $this->input->post('search');
+        if (!empty($search)) {
+          $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->search($search);
+          $data['pembayaran_tambahan_buka'] = $this->m_pembayaran_tambahan->buka($search);
+          $data['pembayaran_tambahan_lunas'] = $this->m_pembayaran_tambahan->lunas($search);
+        } else {
+          $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get();
+          $data['pembayaran_tambahan_buka'] = $this->m_pembayaran_tambahan->buka();
+          $data['pembayaran_tambahan_lunas'] = $this->m_pembayaran_tambahan->lunas();
+        }
         $content = $this->fungsi->user_login()->role . '/pembayaran_tambahan/view';
         $this->template->load('template', $content, $data);
     }
