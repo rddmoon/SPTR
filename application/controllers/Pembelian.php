@@ -20,10 +20,19 @@ class Pembelian extends CI_Controller
 
     public function index()
     {
-        $data['pembelian'] = $this->m_pembelian->get();
-        $data['pembelian_berjalan'] = $this->m_pembelian->get_berjalan();
-        $data['pembelian_selesai'] = $this->m_pembelian->get_selesai();
-        $data['pembelian_dibatalkan'] = $this->m_pembelian->get_dibatalkan();
+        $search = $this->input->post('search');
+        if (!empty($search)) {
+          $data['pembelian'] = $this->m_pembelian->search($search);
+          $data['pembelian_berjalan'] = $this->m_pembelian->get_berjalan($search);
+          $data['pembelian_selesai'] = $this->m_pembelian->get_selesai($search);
+          $data['pembelian_dibatalkan'] = $this->m_pembelian->get_dibatalkan($search);
+        } else {
+          $data['pembelian'] = $this->m_pembelian->get();
+          $data['pembelian_berjalan'] = $this->m_pembelian->get_berjalan();
+          $data['pembelian_selesai'] = $this->m_pembelian->get_selesai();
+          $data['pembelian_dibatalkan'] = $this->m_pembelian->get_dibatalkan();
+        }
+        
         $content = $this->fungsi->user_login()->role . '/pembelian/view';
         $this->template->load('template', $content, $data);
     }
