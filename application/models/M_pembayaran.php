@@ -50,6 +50,16 @@ class M_pembayaran extends CI_Model
         return $query;
     }
 
+    public function get_lebih_jatuh_tempo($today)
+    {
+      $this->db->from('pembayaran');
+      $this->db->where('tanggal_jatuh_tempo <', $today);
+      $this->db->where('blokir', 'buka');
+      $this->db->order_by('id',"DESC");
+      $query = $this->db->get()->result();
+      return $query;
+    }
+
     public function weekly_pemasukan($tgl)
     {
       $this->db->select_sum('biaya');

@@ -44,10 +44,10 @@ class Pembayaran extends CI_Controller
       echo "<script>window.location='".site_url('pembelian/detail/'.$pembelian->id_pembelian)."';</script>";
     }
 /////////////
-    public function blokir_pembayaran($id)
-    {
-      $this->m_pembayaran->blokir_pembayaran($id);
-    }
+    // public function blokir_pembayaran($id)
+    // {
+    //   $this->m_pembayaran->blokir_pembayaran($id);
+    // }
 /////////////
     public function bayar($id)
     {
@@ -59,8 +59,8 @@ class Pembayaran extends CI_Controller
       $kwitansi['tanggal_bayar'] = date('Y-m-d');
       $detail['pembelian'] = $this->m_pembelian->get($detail['pembayaran']->id_pembelian)->row();
       $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
-      $detail['perumahan'] = $this->m_perumahan->get($detail['unit']->id_perumahan)->row();
-      $kwitansi['keterangan'] = 'Pembayaran cicilan ke '.$detail['pembayaran']->jenis.' pembelian '.$detail['perumahan']->nama.' unit '.$detail['unit']->blok.' cluster '.$detail['unit']->cluster.'.';
+      // $detail['perumahan'] = $this->m_perumahan->get($detail['unit']->id_perumahan)->row();
+      $kwitansi['keterangan'] = 'Pembayaran cicilan ke '.$detail['pembayaran']->jenis.' pembelian '.$detail['unit']->nama_perumahan.' unit '.$detail['unit']->blok.' cluster '.$detail['unit']->cluster.'.';
       $detail['pembeli'] = $this->m_pembeli->get($detail['pembelian']->id_pembeli)->row();
       $kwitansi['nama_pembeli'] = $detail['pembeli']->nama_pembeli;
       $this->m_kwitansi->add($kwitansi);
@@ -76,12 +76,18 @@ class Pembayaran extends CI_Controller
       $bayar['pembelian_id'] = $detail['pembelian']->id;
       $bayar['biaya'] = $detail['pembelian']->uang_masuk + $detail['pembayaran']->biaya;
       $this->m_pembelian->uang_masuk($bayar);
-      $counter = $this->m_pembelian->counter_bayar($detail['pembelian']->id);
-      $data['id_pembelian'] = $detail['pembelian']->id;
-      if($counter < 0){
-        $data['tunggakan'] = abs($counter);
+      if($detail['pembayaran']->tanggal_jatuh_tempo < date('Y-m-d')){
+        $counter = $this->m_pembelian->counter_bayar($detail['pembelian']->id);
+        $data['id_pembelian'] = $detail['pembelian']->id;
+        if($counter < 0){
+          $data['tunggakan'] = abs($counter);
+          $this->m_pembelian->refresh_tunggakan($data);
+        }
+        else {
+          $data['tunggakan'] = 0;
+          $this->m_pembelian->refresh_tunggakan($data);
+        }
       }
-      $this->m_pembelian->refresh_tunggakan($data);
 
       if($this->db->affected_rows() > 0)
       {
@@ -117,7 +123,7 @@ class Pembayaran extends CI_Controller
       $pembelian = $this->m_pembelian->get($id)->row();
       $metode = $this->m_metode->get($pembelian->id_metode)->row();
       $cicilan = $this->m_pembelian->get_cicilan_ke($pembelian->id);
-      if($pembelian->uang_masuk == $pembelian->harga_beli || $cicilan == $metode->banyaknya_cicilan)
+      if($pembelian->uang_masuk >= $pembelian->harga_beli || $cicilan == $metode->banyaknya_cicilan)
       {
         $this->m_pembelian->selesai($id);
         return 1;

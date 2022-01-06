@@ -64,7 +64,7 @@
             <p class="section-lead">
             Pembayaran-pembayaran menyangkut DP dan cicilan pada pembelian ini.
             </p>
-            
+
             <div class="row">
               <?php foreach($pembayaran->result() as $key) {?>
                 <?php if($key->jenis == 0){
@@ -129,6 +129,11 @@
                           <a href="#" class="btn btn-secondary disabled">
                             Diblokir
                           </a>
+                          <?php if($pembelian->status_pembelian == "berjalan"){ ?>
+                          <a href="<?=site_url('pembayaran/buka_blokir/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan membuka blokir <?=$header?> ?')" class="btn btn-warning">
+                            <i class="fa fa-key"></i> Buka Blokir
+                          </a>
+                        <?php } ?>
                         </div>
                       </div>
                       <div class="card-body">

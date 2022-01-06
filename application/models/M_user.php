@@ -52,6 +52,22 @@ class M_user extends CI_Model
       return $query;
   }
 
+  public function get_refresh_date()
+  {
+    $this->db->select('tanggal');
+    $this->db->from('refresh');
+    $this->db->where('id', 1);
+    $query = $this->db->get()->row();
+    return $query;
+  }
+
+  public function edit_refresh_date($data)
+  {
+    $params['tanggal'] = $data;
+    $this->db->where('id', 1);
+    $this->db->update('refresh', $params);
+  }
+
   public function add($post)
   {
     $params['username'] = $post['username'];

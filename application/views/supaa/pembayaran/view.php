@@ -68,7 +68,7 @@
                         <i class="fa fa-eye"></i> Detail
                       </a>
                       <?php if($value->blokir == "blokir"){ ?>
-                        <a href="<?=site_url('pembayaran/buka_blokir/'.$value->id)?>" class="btn btn-warning">
+                        <a href="<?=site_url('pembayaran/buka_blokir/'.$value->id)?>" onclick="return confirm('Apakah Anda yakin akan membuka blokir?')" class="btn btn-warning">
                           <i class="fa fa-key"></i> Buka Blokir
                         </a>
                       <?php } ?>

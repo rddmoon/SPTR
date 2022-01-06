@@ -98,7 +98,7 @@
           </ul>
         </br>
           <div class="text-center pt-1 pb-1">
-            <a href="#" class="btn btn-primary btn-lg btn-round">
+            <a href="<?=site_url('pembayaran')?>" class="btn btn-primary btn-lg btn-round">
               View All
             </a>
           </div>

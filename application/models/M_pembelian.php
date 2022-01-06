@@ -192,7 +192,7 @@ class M_pembelian extends CI_Model
     public function refresh_tunggakan($data)
     {
         $params['tunggakan'] = $data['tunggakan'];
-        $this->db->where('id', $data['pembelian_id']);
+        $this->db->where('id', $data['id_pembelian']);
         $this->db->update('pembelian', $params);
     }
 

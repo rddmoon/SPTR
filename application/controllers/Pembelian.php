@@ -30,15 +30,15 @@ class Pembelian extends CI_Controller
 
     public function detail($id)
     {
-        date_default_timezone_set('Asia/Jakarta');
-        $now = date('Y-m-d');
-        $jatuh_tempo = $this->m_pembayaran->get_pembayaran_terakhir($id)->row()->tanggal_jatuh_tempo;
-
-        while ($now > $jatuh_tempo) {
-          $this->blokir_pembayaran($id);
-          $jatuh_tempo = $this->m_pembayaran->get_pembayaran_terakhir($id)->row()->tanggal_jatuh_tempo;
-
-        }
+        // date_default_timezone_set('Asia/Jakarta');
+        // $now = date('Y-m-d');
+        // $jatuh_tempo = $this->m_pembayaran->get_pembayaran_terakhir($id)->row()->tanggal_jatuh_tempo;
+        //
+        // while ($now > $jatuh_tempo) {
+        //   $this->blokir_pembayaran($id);
+        //   $jatuh_tempo = $this->m_pembayaran->get_pembayaran_terakhir($id)->row()->tanggal_jatuh_tempo;
+        //
+        // }
         $data['pembelian'] = $this->m_pembelian->get($id)->row();
         $data['metode_selected'] = $this->m_metode->get($data['pembelian']->id_metode)->row();
         $data['cicilan_ke'] = $this->m_pembelian->get_cicilan_ke($data['pembelian']->id);
@@ -149,19 +149,22 @@ class Pembelian extends CI_Controller
       // }
     }
 
-    public function blokir_pembayaran($id)
-    {
-        $pembayaran = $this->m_pembayaran->get_pembayaran_terakhir($id)->row();
-        $this->m_pembayaran->blokir_pembayaran($pembayaran->id);
-        $this->generate_pembayaran_baru($id);
-
-        $counter = $this->m_pembelian->counter_blokir($id);
-        $data['pembelian_id'] = $id;
-        if($counter < 0){
-          $data['tunggakan'] = abs($counter);
-        }
-        $this->m_pembelian->refresh_tunggakan($data);
-    }
+    // public function blokir_pembayaran($id)
+    // {
+    //     $pembayaran = $this->m_pembayaran->get_pembayaran_terakhir($id)->row();
+    //     $this->m_pembayaran->blokir_pembayaran($pembayaran->id);
+    //     $this->generate_pembayaran_baru($id);
+    //
+    //     $counter = $this->m_pembelian->counter_blokir($id);
+    //     $data['pembelian_id'] = $id;
+    //     if($counter < 0){
+    //       $data['tunggakan'] = abs($counter);
+    //     }
+    //     else {
+    //       $data['tunggakan'] = 0;
+    //     }
+    //     $this->m_pembelian->refresh_tunggakan($data);
+    // }
 
     public function generate_pembayaran_cash_keras($post)
     {
