@@ -39,6 +39,7 @@
                     <th scope="col">Biaya</th>
                     <th scope="col">Tanggal Bayar</th>
                     <th scope="col">Jenis</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -57,6 +58,14 @@
                       <td><?=date('d-m-Y', strtotime($value->tanggal_bayar))?></td>
                     <?php } ?>
                     <td><?=$value->jenis_pembayaran?></td>
+                    <?php
+                      if ($value->tanggal_bayar == null) {?>
+                        <td><span class="badge badge-primary">Menunggu</span></td>
+                    <?php } ?>
+                    <?php
+                      if ($value->tanggal_bayar != null) {?>
+                        <td><span class="badge badge-success">Lunas</span></td>
+                    <?php } ?>
                     <td style="min-width:310px">
                       <a href="<?=site_url('pembayaran_tambahan/detail/'.$value->id)?>" class="btn btn-info">
                         <i class="fa fa-eye"></i> Detail
