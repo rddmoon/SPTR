@@ -20,6 +20,15 @@ class M_metode extends CI_Model
     return $query;
   }
 
+  public function search($key)
+  {
+    $this->db->from('metode');
+    $this->db->like('nama_metode', $key);
+    $this->db->or_like('banyaknya_cicilan', $key);
+    $query = $this->db->get();
+    return $query;
+  }
+
   public function get_banyak_cicilan($id)
   {
     $this->db->from('metode');
