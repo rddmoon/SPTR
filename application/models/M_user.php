@@ -21,6 +21,7 @@ class M_user extends CI_Model
     {
       $this->db->where('id', $id);
     }
+    $this->db->order_by('role');
     $query = $this->db->get();
     return $query;
   }

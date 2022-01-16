@@ -113,28 +113,48 @@
               <li>
                 <a href="<?=site_url('beranda')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
               </li>
-              <?php if($this->session->userdata('role') == 'supaa') {?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'dirut_keuangan') {?>
               <li>
                 <a href="<?=site_url('user')?>" class="nav-link"><i class="fas fa-user-alt"></i> <span>Pengguna</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'marketing') {?>
               <li>
                 <a href="<?=site_url('pembeli')?>" class="nav-link"><i class="fas fa-address-book"></i> <span>Pembeli</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'marketing'
+              || $this->session->userdata('role') == 'dirut') {?>
               <li>
                 <a href="<?=site_url('perumahan')?>" class="nav-link"><i class="fas fa-city"></i> <span>Perumahan</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'marketing'
+              || $this->session->userdata('role') == 'dirut') {?>
               <li>
                 <a href="<?=site_url('unit')?>" class="nav-link"><i class="fas fa-home"></i> <span>Unit Rumah</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'kasir'
+              || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan'
+              || $this->session->userdata('role') == 'dirut') {?>
               <li>
                 <a href="<?=site_url('pembelian')?>" class="nav-link"><i class="fas fa-hand-holding-usd"></i> <span>Pembelian</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa'|| $this->session->userdata('role') == 'kasir' 
+              || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan') {?>
               <li>
                 <a href="<?=site_url('pembayaran')?>" class="nav-link"><i class="fas fa-coins"></i> <span>Pembayaran</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa'|| $this->session->userdata('role') == 'kasir'
+              || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan') {?>
               <li>
                 <a href="<?=site_url('pembayaran_tambahan')?>" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Pembayaran Tambahan</span></a>
               </li>
+              <?php } ?>
+              <?php if($this->session->userdata('role') == 'supaa') {?>
               <li>
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
               </li>
