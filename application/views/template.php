@@ -102,7 +102,7 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <!-- supaa -->
+            <!-- sidebar -->
             <a href="<?=site_url('beranda')?>">ITG</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
@@ -142,7 +142,7 @@
                 <a href="<?=site_url('pembelian')?>" class="nav-link"><i class="fas fa-hand-holding-usd"></i> <span>Pembelian</span></a>
               </li>
               <?php } ?>
-              <?php if($this->session->userdata('role') == 'supaa'|| $this->session->userdata('role') == 'kasir' 
+              <?php if($this->session->userdata('role') == 'supaa'|| $this->session->userdata('role') == 'kasir'
               || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan') {?>
               <li>
                 <a href="<?=site_url('pembayaran')?>" class="nav-link"><i class="fas fa-coins"></i> <span>Pembayaran</span></a>
@@ -159,6 +159,11 @@
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
               </li>
             <?php } ?>
+            <?php if($this->session->userdata('role') == 'supaa') {?>
+            <li>
+              <a href="<?=site_url('tagihan')?>" class="nav-link"><i class="fas fa-user-clock"></i> <span>Tagihan</span></a>
+            </li>
+          <?php } ?>
         </aside>
       </div>
 
