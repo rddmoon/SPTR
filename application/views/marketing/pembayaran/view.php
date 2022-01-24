@@ -126,7 +126,7 @@
                       <td>Cicilan <?=$value->jenis?></td>
                     <?php } ?>
                     <td><span class="badge badge-primary">Menuggu</span></td>
-                    <td style="min-width:210px">
+                    <td style="min-width:310px">
                       <a href="<?=site_url('pembayaran/detail/'.$value->id)?>" class="btn btn-info">
                         <i class="fa fa-eye"></i> Detail
                       </a>

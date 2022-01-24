@@ -74,34 +74,38 @@
           <h4>Pembayaran Terbaru</h4>
         </div>
         <div class="card-body">
-        </br>
-          <ul class="list-unstyled list-unstyled-border">
-            <?php foreach ($weekly_pembayaran as $key => $value) {?>
-            <li class="media">
-              <div class="media-body">
-                <?php if($value->tanggal_bayar = $today){ ?>
-                <div class="float-right">Hari ini</div>
-                <?php }elseif($value->tanggal_bayar = $yesterday){ ?>
-                <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
-                <div class="float-right">Kemarin</div>
-                <?php }else{ ?>
-                <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
-                <?php } ?>
-                <div class="media-title"><?=$value->nama_pembeli?></div>
-                <div class="text-small">
-                  <span class="" style="color:#6777ef"><?="Rp".number_format($value->biaya, 2);?></span><div class="bullet"></div>ID <?=$value->id_pembelian?><div class="bullet"></div>
-                  <span class="text-muted">Oleh: <?=$value->nama_user?></span>
-                </div>
-              </div>
-            </li>
-          <?php } ?>
-          </ul>
-        </br>
-          <div class="text-center pt-1 pb-1">
-            <a href="<?=site_url('pembayaran')?>" class="btn btn-primary btn-lg btn-round">
-              View All
-            </a>
+        <?php if($weekly_pembayaran == NULL){ ?>
+          <div class="" style="color:#e83e8c">
+            <span class="text-small">Belum ada pembayaran minggu ini.</span>
           </div>
+        <?php } ?>
+        <div class="tickets-list">
+          <?php foreach ($weekly_pembayaran as $key => $value) {?>
+          <a href="<?=site_url('pembayaran/detail/'.$value->id)?>" class="ticket-item">
+            <?php if($value->tanggal_bayar = $today){ ?>
+            <div class="float-right">Hari ini</div>
+            <?php }elseif($value->tanggal_bayar = $yesterday){ ?>
+            <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
+            <div class="float-right">Kemarin</div>
+            <?php }else{ ?>
+            <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
+            <?php } ?>
+            <div class="ticket-title">
+              <h4><?=$value->nama_pembeli?></h4>
+            </div>
+            <div class="ticket-info">
+              <div><?="Rp".number_format($value->biaya, 2);?></div>
+              <div class="bullet"></div>
+              <div class="text-primary">ID <?=$value->id_pembelian?></div>
+              <div class="bullet"></div>
+              <div class="text-muted">Oleh: <?=$value->nama_user?></div>
+            </div>
+          </a>
+        <?php } ?>
+          <a href="<?=site_url('pembayaran')?>" class="ticket-item ticket-more">
+            Lihat Semua <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
         </div>
       </div>
     </div>
@@ -136,8 +140,8 @@
               </ul>
             </div>
             <div class="text-center pt-1 pb-1">
-              <a href="<?=site_url('pembelian')?>" class="btn btn-primary btn-lg btn-round">
-                Lihat Semua
+              <a href="<?=site_url('pembelian')?>" class="ticket-item ticket-more">
+                Lihat Semua <i class="fas fa-chevron-right"></i>
               </a>
             </div>
           </div>

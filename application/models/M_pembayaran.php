@@ -23,6 +23,7 @@ class M_pembayaran extends CI_Model
     {
         $this->db->from('pembayaran');
         $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis LIKE '%".$key."%')", NULL, FALSE);
+        $this->db->order_by('id',"DESC");
         $query = $this->db->get();
         return $query;
     }
@@ -104,7 +105,7 @@ class M_pembayaran extends CI_Model
       if($key != null){
         $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis LIKE '%".$key."%')", NULL, FALSE);
       }
-      $this->db->order_by('id',"DESC");
+      $this->db->order_by('tanggal_bayar',"DESC");
       $query = $this->db->get();
       return $query;
     }
@@ -183,7 +184,25 @@ class M_pembayaran extends CI_Model
       $this->db->join('pembelian', 'pembayaran.id_pembelian=pembelian.id');
       $this->db->where('pembayaran.blokir', 'blokir');
       $this->db->where('pembelian.status_pembelian', 'berjalan');
-      $this->db->order_by('id',"DESC");
+      $this->db->order_by('pembayaran.tanggal_jatuh_tempo',"ASC");
+      $query = $this->db->get()->result();
+      return $query;
+    }
+
+    public function tagihan_tunggakan_terbaru()
+    {
+      $this->db->select('pembelian.id AS id_pembelian, pembayaran.id AS id, pembayaran.id_kwitansi AS id_kwitansi, pembayaran.id_user AS id_user,
+      pembayaran.nama_pembeli AS nama_pembeli, pembayaran.biaya AS biaya, pembayaran.tanggal_bayar AS tanggal_bayar, pembayaran.tanggal_jatuh_tempo AS tanggal_jatuh_tempo,
+      pembayaran.jenis AS jenis, pembayaran.keterangan AS keterangan, pembayaran.blokir AS blokir, pembayaran.cetak_kwitansi AS cetak_kwitansi,
+      pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP,
+      pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan, pembelian.uang_masuk AS uang_masuk,
+      pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
+      pembelian.id_unit AS id_unit, pembelian.id_metode AS id_metode');
+      $this->db->from('pembayaran');
+      $this->db->join('pembelian', 'pembayaran.id_pembelian=pembelian.id');
+      $this->db->where('pembayaran.blokir', 'blokir');
+      $this->db->where('pembelian.status_pembelian', 'berjalan');
+      $this->db->order_by('pembayaran.tanggal_jatuh_tempo',"DESC");
       $query = $this->db->get()->result();
       return $query;
     }
