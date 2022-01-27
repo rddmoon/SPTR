@@ -37,6 +37,7 @@ class Pembayaran_tambahan extends CI_Controller
     public function detail($id)
     {
         $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get($id)->row();
+        $data['kwitansi'] = $this->m_kwitansi->get($data['pembayaran_tambahan']->id_kwitansi)->row();
         $content = $this->fungsi->user_login()->role . '/pembayaran_tambahan/detail';
         $this->template->load('template', $content, $data);
 

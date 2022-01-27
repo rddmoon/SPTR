@@ -34,7 +34,8 @@ class M_kwitansi extends CI_Model
         $params['pencetak'] = $post['pencetak'];
         $params['sudah_cetak'] = "sudah";
 
-        $this->db->insert('kwitansi', $params);
+        $this->db->where('id', $post['id']);
+        $this->db->update('kwitansi', $params);
     }
     //////////////////////////////////////////////
     public function edit($post)

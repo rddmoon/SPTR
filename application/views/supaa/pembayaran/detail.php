@@ -33,7 +33,7 @@
                     }?></p>
                     <p><b>Keterangan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran->keterangan?></p>
                     </br>
-                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=ucfirst($pembayaran->cetak_kwitansi)?></p>
+                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=ucfirst($kwitansi->sudah_cetak)?></p>
                     <p><b>Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</p>
                     <div>
                       <?php if($pembayaran->blokir == "buka" || $pembayaran->blokir == "blokir"){ ?>
@@ -45,10 +45,10 @@
                               </a>
                       <?php } ?>
                       <?php if($pembayaran->blokir == "lunas"){ ?>
-                              <a href="#" class="btn btn-info">
+                              <a href="<?=site_url('kwitansi/index/'.$pembayaran->id_kwitansi)?>" target="_blank" class="btn btn-info">
                                 Lihat
                               </a>
-                              <a href="#" class="btn btn-success">
+                              <a href="<?=site_url('kwitansi/cetak/'.$pembayaran->id_kwitansi)?>" target="_blank" class="btn btn-success">
                                 Cetak
                               </a>
                       <?php } ?>

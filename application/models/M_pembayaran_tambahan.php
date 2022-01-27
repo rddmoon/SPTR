@@ -22,7 +22,7 @@ class m_pembayaran_tambahan extends CI_Model
     public function search($key)
     {
         $this->db->from('pembayaran_tambahan');
-        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis_pembayaran LIKE '%".$key."%')", NULL, FALSE); 
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis_pembayaran LIKE '%".$key."%')", NULL, FALSE);
         $query = $this->db->get();
         return $query;
     }
@@ -50,7 +50,7 @@ class m_pembayaran_tambahan extends CI_Model
       $this->db->from('pembayaran_tambahan');
       $this->db->where('tanggal_bayar');
       if($key != null){
-        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis_pembayaran LIKE '%".$key."%')", NULL, FALSE); 
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis_pembayaran LIKE '%".$key."%')", NULL, FALSE);
       }
       $this->db->order_by('id',"DESC");
       $query = $this->db->get();
@@ -62,7 +62,7 @@ class m_pembayaran_tambahan extends CI_Model
       $this->db->from('pembayaran_tambahan');
       $this->db->where('tanggal_bayar IS NOT NULL');
       if($key != null){
-        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis_pembayaran LIKE '%".$key."%')", NULL, FALSE); 
+        $this->db->where("(id_pembelian LIKE '%".$key."%' OR nama_pembeli LIKE '%".$key."%' OR biaya LIKE '%".$key."%' OR tanggal_bayar LIKE '%".$key."%' OR jenis_pembayaran LIKE '%".$key."%')", NULL, FALSE);
       }
       $this->db->order_by('id',"DESC");
       $query = $this->db->get();
@@ -105,7 +105,6 @@ class m_pembayaran_tambahan extends CI_Model
         $params['tanggal_jatuh_tempo'] = $pembayaran['tanggal_jatuh_tempo'];
         $params['jenis_pembayaran'] = $pembayaran['jenis_pembayaran'];
         $params['keterangan'] = $pembayaran['keterangan'];
-        $params['cetak_kwitansi'] = "belum";
         $this->db->insert('pembayaran_tambahan', $params);
     }
 

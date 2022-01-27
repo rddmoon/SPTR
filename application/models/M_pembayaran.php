@@ -134,7 +134,6 @@ class M_pembayaran extends CI_Model
         $params['jenis'] = $pembayaran['jenis'];
         $params['keterangan'] = $pembayaran['keterangan'];
         $params['blokir'] = $pembayaran['blokir'];
-        $params['cetak_kwitansi'] = "belum";
         $this->db->insert('pembayaran', $params);
     }
 
@@ -175,7 +174,7 @@ class M_pembayaran extends CI_Model
     {
       $this->db->select('pembelian.id AS id_pembelian, pembayaran.id AS id, pembayaran.id_kwitansi AS id_kwitansi, pembayaran.id_user AS id_user,
       pembayaran.nama_pembeli AS nama_pembeli, pembayaran.biaya AS biaya, pembayaran.tanggal_bayar AS tanggal_bayar, pembayaran.tanggal_jatuh_tempo AS tanggal_jatuh_tempo,
-      pembayaran.jenis AS jenis, pembayaran.keterangan AS keterangan, pembayaran.blokir AS blokir, pembayaran.cetak_kwitansi AS cetak_kwitansi,
+      pembayaran.jenis AS jenis, pembayaran.keterangan AS keterangan, pembayaran.blokir AS blokir,
       pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP,
       pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan, pembelian.uang_masuk AS uang_masuk,
       pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
@@ -193,7 +192,7 @@ class M_pembayaran extends CI_Model
     {
       $this->db->select('pembelian.id AS id_pembelian, pembayaran.id AS id, pembayaran.id_kwitansi AS id_kwitansi, pembayaran.id_user AS id_user,
       pembayaran.nama_pembeli AS nama_pembeli, pembayaran.biaya AS biaya, pembayaran.tanggal_bayar AS tanggal_bayar, pembayaran.tanggal_jatuh_tempo AS tanggal_jatuh_tempo,
-      pembayaran.jenis AS jenis, pembayaran.keterangan AS keterangan, pembayaran.blokir AS blokir, pembayaran.cetak_kwitansi AS cetak_kwitansi,
+      pembayaran.jenis AS jenis, pembayaran.keterangan AS keterangan, pembayaran.blokir AS blokir, ,
       pembelian.status_pembelian AS status_pembelian, pembelian.tanggal_beli AS tanggal_beli, pembelian.DP AS DP,
       pembelian.harga_beli AS harga_beli, pembelian.cicilan_perbulan AS cicilan_perbulan, pembelian.uang_masuk AS uang_masuk,
       pembelian.uang_lainnya AS uang_lainnya, pembelian.counter AS counter, pembelian.tunggakan AS tunggakan,
@@ -206,6 +205,7 @@ class M_pembayaran extends CI_Model
       $query = $this->db->get()->result();
       return $query;
     }
+
     ///////////////////////////////////////////////////////////////////////////
     public function edit($post)
     {

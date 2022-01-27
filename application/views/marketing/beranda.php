@@ -82,9 +82,9 @@
         <div class="tickets-list">
           <?php foreach ($weekly_pembayaran as $key => $value) {?>
           <a href="<?=site_url('pembayaran/detail/'.$value->id)?>" class="ticket-item">
-            <?php if($value->tanggal_bayar = $today){ ?>
+            <?php if($value->tanggal_bayar == $today){ ?>
             <div class="float-right">Hari ini</div>
-            <?php }elseif($value->tanggal_bayar = $yesterday){ ?>
+          <?php }elseif($value->tanggal_bayar == $yesterday){ ?>
             <div class="float-right"><?=date('d M Y', strtotime($value->tanggal_bayar))?></div>
             <div class="float-right">Kemarin</div>
             <?php }else{ ?>
