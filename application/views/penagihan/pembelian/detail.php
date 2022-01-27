@@ -79,7 +79,7 @@
                         <div class="card-header">
                           <h4 style="color:#63ed7a"><?=$header?></h4>
                           <div class="card-header-action">
-                            <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success">
+                            <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success" hidden>
                               Cetak
                             </a>
                           </div>
@@ -105,7 +105,7 @@
                       <div class="card-header">
                         <h4><?=$header?></h4>
                         <div class="card-header-action">
-                          <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
+                          <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary" hidden>
                             Bayar
                           </a>
                         </div>
@@ -126,11 +126,12 @@
                       <div class="card-header">
                         <h4 style="color:#808184"><?=$header?></h4>
                         <div class="card-header-action">
-                          <a href="#" class="btn btn-secondary disabled">
-                            Diblokir
+                          <?php if($pembelian->status_pembelian == "berjalan") ?>
+                          <a href="#" class="btn btn-secondary disabled" >
+                            Nunggak
                           </a>
                           <?php if($pembelian->status_pembelian == "berjalan"){ ?>
-                          <a href="<?=site_url('pembayaran/buka_blokir/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan membuka blokir <?=$header?> ?')" class="btn btn-warning">
+                          <a href="<?=site_url('pembayaran/buka_blokir/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan membuka blokir <?=$header?> ?')" class="btn btn-warning" hidden>
                             <i class="fa fa-key"></i> Buka Blokir
                           </a>
                         <?php } ?>
@@ -155,7 +156,7 @@
             </p>
             <?php if($pembelian->status_pembelian == "berjalan"){ ?>
               <div class="text-center">
-                  <a href="<?=site_url('pembayaran_tambahan/add_by_id/'.$pembelian->id)?>" class="btn btn-primary">
+                  <a href="<?=site_url('pembayaran_tambahan/add_by_id/'.$pembelian->id)?>" class="btn btn-primary" hidden>
                   <i class="fa fa-plus"></i> Buat Pembayaran Tambahan Baru</a>
               </div>
             <?php } ?>
@@ -169,7 +170,7 @@
                         <div class="card-header">
                           <h4 style="color:#63ed7a">Pembayaran <?=$no++?></h4>
                           <div class="card-header-action">
-                            <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success">
+                            <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success" hidden>
                               Cetak
                             </a>
                           </div>
@@ -191,7 +192,7 @@
                       <div class="card-header">
                         <h4>Pembayaran <?=$no++?></h4>
                         <div class="card-header-action">
-                          <a href="<?=site_url('pembayaran_tambahan/bayar/'.$key->id)?>" class="btn btn-primary">
+                          <a href="<?=site_url('pembayaran_tambahan/bayar/'.$key->id)?>" class="btn btn-primary" hidden>
                             Bayar
                           </a>
                         </div>

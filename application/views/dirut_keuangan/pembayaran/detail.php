@@ -20,6 +20,13 @@
                       <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-secondary">Diblokir</span></p>
                     <?php } ?>
                   </div>
+                  <?php if($pembayaran->jenis == 0){
+                          $header = "DP";
+                        }
+                        else{
+                          $header = "Cicilan ".$pembayaran->jenis;
+                        }?>
+
                     <p><b>ID Pembelian</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran->id_pembelian?></p>
                     <p><b>Nama Pembeli</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran->nama_pembeli?></p>
                     <p><b>Biaya</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?="Rp".number_format($pembayaran->biaya, 2);?></p>
@@ -28,12 +35,10 @@
                       <?php if($pembayaran->tanggal_bayar != NULL){ echo date('d M Y', strtotime($pembayaran->tanggal_bayar));} ?>
                     </p>
                     <p><b>Tanggal Jatuh Tempo</b>&nbsp;&nbsp;&nbsp;&nbsp;<?=date('d M Y', strtotime($pembayaran->tanggal_jatuh_tempo))?></p>
-                    <p><b>Jenis Pembayaran</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php if($pembayaran->jenis == 0){echo "DP";}else{
-                      echo "Cicilan ".$pembayaran->jenis;
-                    }?></p>
+                    <p><b>Jenis Pembayaran</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$header?></p>
                     <p><b>Keterangan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran->keterangan?></p>
                     </br>
-                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=ucfirst($pembayaran->cetak_kwitansi)?></p>
+                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=ucfirst($kwitansi->sudah_cetak)?></p>
                     <p><b>Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</p>
                     <div>
                       <?php if($pembayaran->blokir == "buka" || $pembayaran->blokir == "blokir"){ ?>
@@ -45,14 +50,26 @@
                               </a>
                       <?php } ?>
                       <?php if($pembayaran->blokir == "lunas"){ ?>
-                              <a href="#" class="btn btn-info">
+                              <a href="<?=site_url('kwitansi/index/'.$pembayaran->id_kwitansi)?>" target="_blank" class="btn btn-info">
                                 Lihat
                               </a>
-                              <a href="#" class="btn btn-success">
+                              <a href="<?=site_url('kwitansi/cetak/'.$pembayaran->id_kwitansi)?>" target="_blank" class="btn btn-success">
                                 Cetak
                               </a>
                       <?php } ?>
                     </div>
+                    <div class="text-center">
+                    <?php if($pembayaran->blokir == "buka"){ ?>
+                            <a href="<?=site_url('pembayaran/bayar/'.$pembayaran->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
+                              &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
+                            </a>
+                    <?php } ?>
+                    <?php if($pembayaran->blokir == "blokir"){ ?>
+                      <a href="<?=site_url('pembayaran/buka_blokir/'.$pembayaran->id)?>" class="btn btn-warning">
+                        <i class="fa fa-key"></i> Buka Blokir
+                      </a>
+                    <?php } ?>
+                  </div>
                 </div>
             </div>
         </div>

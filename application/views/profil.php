@@ -13,9 +13,15 @@
                         <a href="<?=site_url('user/edit_profil/'.$current_user->id)?>" class="btn btn-warning">
                         <i class="fa fa-edit"></i> Edit</a>
                     </div>
+                    <?php if($current_user->role == "dirut_keuangan"){
+                      $role = "dirut keuangan";
+                    }
+                    else {
+                      $role = $current_user->role;
+                    } ?>
                     <p>Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=$current_user->username?></p>
-                    <p>Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=$current_user->nama?></p>
-                    <p>Role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=$current_user->role?></p>
+                    <p>Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=ucwords($current_user->nama)?></p>
+                    <p>Role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=ucwords($role)?></p>
                 </div>
             </div>
         </div>

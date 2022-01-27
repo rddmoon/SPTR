@@ -53,9 +53,9 @@
                       <i class="fa fa-edit"></i> Ubah
                     </a>
                     <input type="hidden" name="pembeli_id" value="<?=$value->id?>">
-                    <!-- <button onclick="return confirm('Apakah anda yakin akan menghapus data?')" class="btn btn-danger">
+                    <button onclick="return confirm('Apakah anda yakin akan menghapus data?')" class="btn btn-danger" hidden>
                       <i class="fa fa-trash-alt"></i> Hapus
-                    </button> -->
+                    </button>
                   </form>
                 </td>
               </tr>

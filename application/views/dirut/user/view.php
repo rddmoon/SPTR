@@ -33,7 +33,6 @@
             <tbody>
               <?php $no = 1;
               foreach ($user->result() as $key => $value) {
-                if($value->role == "kasir" || $value->role == "keuangan"){
               ?>
               <tr class="text-center">
                 <td><?=$no++?></td>
@@ -41,6 +40,7 @@
                 <td><?=$value->nama?></td>
                 <td><?=$value->role?></td>
                 <td>
+                  <?php if($value->role != "supaa"){ ?>
                   <form class="" action="<?=site_url('user/delete')?>" method="post">
                     <a href="<?=site_url('user/edit/'.$value->id)?>" class="btn btn-warning">
                       <i class="fa fa-edit"></i> Ubah
@@ -50,9 +50,10 @@
                       <i class="fa fa-trash-alt"></i> Hapus
                     </button>
                   </form>
+                <?php } ?>
                 </td>
               </tr>
-            <?php }} ?>
+            <?php } ?>
             </tbody>
           </table>
         </div>

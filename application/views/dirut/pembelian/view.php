@@ -15,11 +15,11 @@
                     <h4>Data Pembelian</h4>
                 </div>
                 <div class="card-body">
-                    <div class="text-center">
-                        <a href="<?=site_url('pembelian/add')?>" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> Buat Pembelian Baru</a>
-                    </div>
-                    <br>
+                  <div class="text-center">
+                      <a href="<?=site_url('pembelian/add')?>" class="btn btn-primary" hidden>
+                      <i class="fa fa-plus"></i> Buat Pembelian Baru</a>
+                  </div>
+
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                       <li role="presentation" class="nav-item"><a class="nav-link active" href="#semua" aria-controls="semua" role="tab" data-toggle="tab">Semua</a></li>
@@ -69,20 +69,20 @@
                                   <td><?=$nama_metode?></td>
                                   <td><?=$cicilan_ke?></td>
                                   <td style="min-width:215px">
-                                      <form class="" action="<?=site_url('pembelian/delete')?>" method="post">
-                                          <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
-                                              <i class="fa fa-eye"></i> Detail
-                                          </a>
-                                          <a href="<?=site_url('pembelian/edit/'.$value->id)?>" class="btn btn-warning" hidden>
-                                              <i class="fa fa-edit"></i> Ubah
-                                          </a>
-                                          <input type="hidden" name="pembelian_id" value="<?=$value->id?>">
-                                          <?php if($value->status_pembelian == "dibatalkan"){ ?>
-                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
-                                              <i class="fa fa-trash-alt"></i> Hapus
-                                          </button>
-                                        <?php } ?>
-                                      </form>
+                                    <form class="" action="<?=site_url('pembelian/delete')?>" method="post">
+                                        <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
+                                            <i class="fa fa-eye"></i> Detail
+                                        </a>
+                                        <a href="<?=site_url('pembelian/edit/'.$value->id)?>" class="btn btn-warning" hidden>
+                                            <i class="fa fa-edit"></i> Ubah
+                                        </a>
+                                        <input type="hidden" name="pembelian_id" value="<?=$value->id?>">
+                                        <?php if($value->status_pembelian == "dibatalkan"){ ?>
+                                        <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
+                                            <i class="fa fa-trash-alt"></i> Hapus
+                                        </button>
+                                      <?php } ?>
+                                    </form>
                                   </td>
                               </tr>
                               <?php } ?>
@@ -214,20 +214,20 @@
                                   <td><?=$nama_metode?></td>
                                   <td><?=$cicilan_ke?></td>
                                   <td style="min-width:215px">
-                                      <form class="" action="<?=site_url('pembelian/delete')?>" method="post">
-                                          <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
-                                              <i class="fa fa-eye"></i> Detail
-                                          </a>
-                                          <a href="<?=site_url('pembelian/edit/'.$value->id)?>" class="btn btn-warning" hidden>
-                                              <i class="fa fa-edit"></i> Ubah
-                                          </a>
-                                          <input type="hidden" name="pembelian_id" value="<?=$value->id?>">
-                                          <?php if($value->status_pembelian == "dibatalkan"){ ?>
-                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
-                                              <i class="fa fa-trash-alt"></i> Hapus
-                                          </button>
-                                        <?php } ?>
-                                      </form>
+                                    <form class="" action="<?=site_url('pembelian/delete')?>" method="post">
+                                        <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
+                                            <i class="fa fa-eye"></i> Detail
+                                        </a>
+                                        <a href="<?=site_url('pembelian/edit/'.$value->id)?>" class="btn btn-warning" hidden>
+                                            <i class="fa fa-edit"></i> Ubah
+                                        </a>
+                                        <input type="hidden" name="pembelian_id" value="<?=$value->id?>">
+                                        <?php if($value->status_pembelian == "dibatalkan"){ ?>
+                                        <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
+                                            <i class="fa fa-trash-alt"></i> Hapus
+                                        </button>
+                                      <?php } ?>
+                                    </form>
                                   </td>
                               </tr>
                               <?php } ?>

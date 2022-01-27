@@ -28,7 +28,7 @@
                     <p><b>Jenis Pembayaran</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran_tambahan->jenis_pembayaran?></p>
                     <p><b>Keterangan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran_tambahan->keterangan?></p>
                     </br>
-                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=ucfirst($pembayaran_tambahan->cetak_kwitansi)?></p>
+                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=ucfirst($kwitansi->sudah_cetak)?></p>
                     <p><b>Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</p>
                     <div>
                       <?php if($pembayaran_tambahan->tanggal_bayar == NULL){ ?>
@@ -40,13 +40,20 @@
                               </a>
                       <?php } ?>
                       <?php if($pembayaran_tambahan->tanggal_bayar != NULL){ ?>
-                              <a href="#" class="btn btn-info">
-                                Lihat
-                              </a>
-                              <a href="#" class="btn btn-success">
-                                Cetak
-                              </a>
+                        <a href="<?=site_url('kwitansi/index/'.$pembayaran_tambahan->id_kwitansi)?>" target="_blank" class="btn btn-info">
+                          Lihat
+                        </a>
+                        <a href="<?=site_url('kwitansi/cetak/'.$pembayaran_tambahan->id_kwitansi)?>" target="_blank" class="btn btn-success">
+                          Cetak
+                        </a>
                       <?php } ?>
+                    </div>
+                    <div class="text-center">
+                      <?php if($pembayaran_tambahan->tanggal_bayar == NULL){ ?>
+                      <a href="<?=site_url('pembayaran_tambahan/bayar/'.$pembayaran_tambahan->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status <?=$pembayaran_tambahan->keterangan?> menjadi lunas?')" class="btn btn-primary">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
+                      </a>
+                    <?php } ?>
                     </div>
                 </div>
             </div>

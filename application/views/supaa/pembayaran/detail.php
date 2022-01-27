@@ -59,10 +59,17 @@
                       <?php } ?>
                     </div>
                     <div class="text-center">
-                      <a href="<?=site_url('pembayaran/bayar/'.$pembayaran->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
-                        &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
+                    <?php if($pembayaran->blokir == "buka"){ ?>
+                            <a href="<?=site_url('pembayaran/bayar/'.$pembayaran->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
+                              &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
+                            </a>
+                    <?php } ?>
+                    <?php if($pembayaran->blokir == "blokir"){ ?>
+                      <a href="<?=site_url('pembayaran/buka_blokir/'.$pembayaran->id)?>" class="btn btn-warning">
+                        <i class="fa fa-key"></i> Buka Blokir
                       </a>
-                    </div>
+                    <?php } ?>
+                  </div>
                 </div>
             </div>
         </div>

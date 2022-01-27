@@ -83,7 +83,7 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="<?=base_url()?>assets/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block"><?=$this->fungsi->user_login()->nama?></div></a>
+            <div class="d-sm-none d-lg-inline-block"><?=ucwords($this->fungsi->user_login()->nama)?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="<?=site_url('user/profil/'.$this->session->userdata('user_id'))?>" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profil
@@ -109,7 +109,12 @@
             <a href="<?=site_url('beranda')?>">ITG</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="menu-header">Menu <?=$this->session->userdata('role')?></li>
+              <li class="menu-header">Menu <?php if($this->session->userdata('role') == "dirut_keuangan"){
+                echo "dirut keuangan";
+              }else{
+                echo $this->session->userdata('role');
+              }?>
+            </li>
               <li>
                 <a href="<?=site_url('beranda')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
               </li>
@@ -137,19 +142,20 @@
               <?php } ?>
               <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'kasir'
               || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan'
-              || $this->session->userdata('role') == 'dirut') {?>
+              || $this->session->userdata('role') == 'dirut' || $this->session->userdata('role') == 'penagihan'
+              || $this->session->userdata('role') == 'keuangan') {?>
               <li>
                 <a href="<?=site_url('pembelian')?>" class="nav-link"><i class="fas fa-hand-holding-usd"></i> <span>Pembelian</span></a>
               </li>
               <?php } ?>
               <?php if($this->session->userdata('role') == 'supaa'|| $this->session->userdata('role') == 'kasir'
-              || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan') {?>
+              || $this->session->userdata('role') == 'dirut_keuangan' || $this->session->userdata('role') == 'keuangan') {?>
               <li>
                 <a href="<?=site_url('pembayaran')?>" class="nav-link"><i class="fas fa-coins"></i> <span>Pembayaran</span></a>
               </li>
               <?php } ?>
               <?php if($this->session->userdata('role') == 'supaa'|| $this->session->userdata('role') == 'kasir'
-              || $this->session->userdata('role') == 'marketing' || $this->session->userdata('role') == 'dirut_keuangan') {?>
+              || $this->session->userdata('role') == 'dirut_keuangan' || $this->session->userdata('role') == 'keuangan') {?>
               <li>
                 <a href="<?=site_url('pembayaran_tambahan')?>" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Pembayaran Tambahan</span></a>
               </li>
@@ -159,7 +165,8 @@
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
               </li>
             <?php } ?>
-            <?php if($this->session->userdata('role') == 'supaa') {?>
+            <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'penagihan'
+            || $this->session->userdata('role') == 'keuangan') {?>
             <li>
               <a href="<?=site_url('tagihan')?>" class="nav-link"><i class="fas fa-user-clock"></i> <span>Tagihan</span></a>
             </li>

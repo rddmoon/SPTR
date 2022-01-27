@@ -49,9 +49,11 @@
                       <?php } ?>
                     </div>
                     <div class="text-center">
+                      <?php if($pembayaran_tambahan->tanggal_bayar == NULL){ ?>
                       <a href="<?=site_url('pembayaran_tambahan/bayar/'.$pembayaran_tambahan->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status <?=$pembayaran_tambahan->keterangan?> menjadi lunas?')" class="btn btn-primary">
                         &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
                       </a>
+                    <?php } ?>
                     </div>
                 </div>
             </div>

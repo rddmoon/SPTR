@@ -63,13 +63,13 @@
                                           <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
                                               <i class="fa fa-eye"></i> Detail
                                           </a>
-                                          <!-- <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning">
+                                          <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning" hidden>
                                               <i class="fa fa-edit"></i> Ubah
                                           </a>
                                           <input type="hidden" name="unit_id" value="<?=$value->id?>">
-                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
+                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger" hidden>
                                               <i class="fa fa-trash-alt"></i> Hapus
-                                          </button> -->
+                                          </button>
                                       </form>
                                   </td>
                               </tr>
@@ -102,18 +102,18 @@
                                   <td><?=$value->blok?></td>
                                   <td><?=$value->tipe_rumah?></td>
                                   <td style="min-width:295px">
-                                      <form class="" action="<?=site_url('unit/delete')?>" method="post">
-                                          <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
-                                              <i class="fa fa-eye"></i> Detail
-                                          </a>
-                                          <!-- <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning">
-                                              <i class="fa fa-edit"></i> Ubah
-                                          </a>
-                                          <input type="hidden" name="unit_id" value="<?=$value->id?>">
-                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
-                                              <i class="fa fa-trash-alt"></i> Hapus
-                                          </button> -->
-                                      </form>
+                                    <form class="" action="<?=site_url('unit/delete')?>" method="post">
+                                        <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
+                                            <i class="fa fa-eye"></i> Detail
+                                        </a>
+                                        <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning" hidden>
+                                            <i class="fa fa-edit"></i> Ubah
+                                        </a>
+                                        <input type="hidden" name="unit_id" value="<?=$value->id?>">
+                                        <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger" hidden>
+                                            <i class="fa fa-trash-alt"></i> Hapus
+                                        </button>
+                                    </form>
                                   </td>
                               </tr>
                               <?php } ?>
@@ -149,13 +149,13 @@
                                           <a href="<?=site_url('unit/detail/'.$value->id)?>" class="btn btn-info">
                                               <i class="fa fa-eye"></i> Detail
                                           </a>
-                                          <!-- <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning">
+                                          <a href="<?=site_url('unit/edit/'.$value->id)?>" class="btn btn-warning" hidden>
                                               <i class="fa fa-edit"></i> Ubah
                                           </a>
                                           <input type="hidden" name="unit_id" value="<?=$value->id?>">
-                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
+                                          <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger" hidden>
                                               <i class="fa fa-trash-alt"></i> Hapus
-                                          </button> -->
+                                          </button>
                                       </form>
                                   </td>
                               </tr>

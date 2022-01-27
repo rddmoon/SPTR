@@ -44,13 +44,13 @@
                                         <a href="<?=site_url('perumahan/list_unit/'.$value->id)?>" class="btn btn-info">
                                             <i class="fa fa-home"></i> Unit
                                         </a>
-                                        <!-- <a href="<?=site_url('perumahan/edit/'.$value->id)?>" class="btn btn-warning">
+                                        <a href="<?=site_url('perumahan/edit/'.$value->id)?>" class="btn btn-warning" hidden>
                                             <i class="fa fa-edit"></i> Ubah
                                         </a>
                                         <input type="hidden" name="perumahan_id" value="<?=$value->id?>">
-                                        <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger">
+                                        <button onclick="return confirm('Apakah Anda yakin akan menghapus data?')" class="btn btn-danger" hidden>
                                             <i class="fa fa-trash-alt"></i> Hapus
-                                        </button> -->
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
