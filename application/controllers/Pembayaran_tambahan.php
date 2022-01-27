@@ -70,6 +70,7 @@ class Pembayaran_tambahan extends CI_Controller
       $kwitansi['biaya'] = $detail['pembayaran_tambahan']->biaya;
       $kwitansi['tanggal_bayar'] = date('Y-m-d');
       $detail['pembelian'] = $this->m_pembelian->get($detail['pembayaran_tambahan']->id_pembelian)->row();
+      $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
       // $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
       // $detail['perumahan'] = $this->m_perumahan->get($detail['unit']->id_perumahan)->row();
       $kwitansi['keterangan'] = $detail['pembayaran_tambahan']->keterangan;
@@ -115,8 +116,10 @@ class Pembayaran_tambahan extends CI_Controller
         }
         else{
             $post = $this->input->post(null,TRUE);
+            $detail['pembelian'] = $this->m_pembelian->get($post['id_pembelian'])->row();
+            $detail['unit'] = $this->m_unit->get($detail['pembelian']->id_unit)->row();
             if($post['keterangan'] == NULL){
-              $post['keterangan'] = 'Pembayaran '.strtolower($post['jenis_pembayaran']).' pada ID pembelian '.$post['id_pembelian'].'.';
+              $post['keterangan'] = 'Pembayaran '.strtolower($post['jenis_pembayaran']).' pada pembelian '.$detail['unit']->nama_perumahan.' unit '.$detail['unit']->blok.' cluster '.$detail['unit']->cluster.'.';
             }
             $post['nama_pembeli'] = $this->m_pembeli->get($post['id_pembeli'])->row()->nama_pembeli;
             $post['id_kwitansi'] = NULL;
@@ -155,8 +158,9 @@ class Pembayaran_tambahan extends CI_Controller
         }
         else{
             $post = $this->input->post(null,TRUE);
+            $detail['unit'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
             if($post['keterangan'] == NULL){
-              $post['keterangan'] = 'Pembayaran '.strtolower($post['jenis_pembayaran']).' pada ID pembelian '.$data['pembelian']->id.'.';
+              $post['keterangan'] = 'Pembayaran '.strtolower($post['jenis_pembayaran']).' pada pembelian '.$detail['unit']->nama_perumahan.' unit '.$detail['unit']->blok.' cluster '.$detail['unit']->cluster.'.';
             }
             $post['id_pembelian'] = $id;
             $post['nama_pembeli'] = $data['pembeli']->nama_pembeli;
