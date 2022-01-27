@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 16, 2022 at 05:00 PM
+-- Generation Time: Jan 27, 2022 at 01:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -53,11 +53,11 @@ INSERT INTO `kwitansi` (`id`, `biaya`, `tanggal_bayar`, `keterangan`, `id_user`,
 ('060122031841', '25000000.00', '2022-01-06', 'Pembayaran cicilan ke 7 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
 ('060122050601', '82000000.00', '2022-01-06', 'Pembayaran cicilan ke 1 pembelian Perumahan Home Sweet Home unit E 5 cluster Tethys.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('060122050713', '16666666.67', '2022-01-06', 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit DD 44 cluster Titania.', NULL, NULL, 'Harmadi Lee', 'belum'),
-('060122101142', '25833333.33', '2022-01-06', 'Pembayaran cicilan ke 9 pembelian Perumahan Home Sweet Home unit A 1 cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
+('060122101142', '25833333.33', '2022-01-06', 'Pembayaran cicilan ke 9 pembelian Perumahan Home Sweet Home unit A 1 cluster Titan.', 1, 'super admin', 'Alex Karsono', 'sudah'),
 ('060122101319', '25000000.00', '2022-01-06', 'Pembayaran cicilan ke 3 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
 ('060122101359', '500000000.00', '2022-01-06', 'Pembayaran DP Perumahan Home Alone unit AA 11 cluster Miranda.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
-('060122101420', '35833333.33', '2022-01-06', 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit AA 11 cluster Miranda.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
-('060122103042', '20000000.00', '2022-01-06', 'Pembayaran kelebihan tanah', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
+('060122101420', '35833333.33', '2022-01-06', 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit AA 11 cluster Miranda.', 9, 'Direktur Keuangan', 'Yaniar Pradityas Effendi', 'sudah'),
+('060122103042', '20000000.00', '2022-01-06', 'Pembayaran kelebihan tanah', 8, 'Keuangan', 'Yaniar Pradityas Effendi', 'sudah'),
 ('131121120603', '500000000.00', '2021-11-13', 'Pembayaran DP 2 Unit A 1 Cluster titan.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('131121120905', '300000000.00', '2021-11-13', 'Pembayaran DP 1 Unit D 12 Cluster dididi.', NULL, NULL, 'Penelope Saraswati', 'belum'),
 ('161121075019', '500000000.00', '2021-11-16', 'Pembayaran DP 1 Unit C 11 Cluster dododo.', NULL, NULL, 'Tukiyem Park', 'belum'),
@@ -102,15 +102,17 @@ INSERT INTO `kwitansi` (`id`, `biaya`, `tanggal_bayar`, `keterangan`, `id_user`,
 ('181121120950', '25833333.33', '2021-11-18', 'Pembayaran Cicilan Ke 6 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('181121122139', '25833333.33', '2021-11-18', 'Pembayaran Cicilan Ke 7 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('181121122148', '25833333.33', '2021-11-18', 'Pembayaran Cicilan Ke 8 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', NULL, NULL, 'Alex Karsono', 'belum'),
+('240122060518', '16666666.67', '2022-01-24', 'Pembayaran cicilan ke 2 pembelian Perumahan Home Alone unit DD 44 cluster Titania.', 1, 'super admin', 'Harmadi Lee', 'sudah'),
 ('261121011126', '600000000.00', '2021-11-26', 'Pembayaran DP  unit EE 55 cluster Oberon.', NULL, NULL, 'Harmadi Lee', 'belum'),
 ('261121011710', '1000000000.00', '2021-11-26', 'Pembayaran DP Perumahan Home Alone unit CC 33 cluster Umbriel.', NULL, NULL, 'Tukiyem Park', 'belum'),
 ('261121012917', '500000000.00', '2021-11-26', 'Pembayaran DP Perumahan Home Sweet Home unit E 5 cluster Tethys.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('261121012957', '400000000.00', '2021-11-26', 'Pembayaran DP Perumahan Home Alone unit DD 44 cluster Titania.', NULL, NULL, 'Harmadi Lee', 'belum'),
+('270122014446', '300000000.00', '2022-01-27', 'Pembayaran tambahan bangunan', NULL, NULL, 'Tukiyem Park', 'belum'),
 ('281121104327', '1000000000.00', '2021-11-28', 'Pembayaran DP Perumahan Home Alone unit BB 22 cluster Ariel.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
 ('301121100425', '200000000.00', '2021-11-30', 'Pembayaran DP Perumahan Rumah Rumah unit D 12 cluster Dididi.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('301121100734', '900000000.00', '2021-11-30', 'Pembayaran 1 unit D 12 cluster Dididi.', NULL, NULL, 'Alex Karsono', 'belum'),
 ('301121100957', '200000000.00', '2021-11-30', 'Pembayaran 2 unit D 4 cluster Dione.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum'),
-('301121101146', '2200000000.00', '2021-11-30', 'Pembayaran Perumahan Home Sweet Home unit D 4 cluster Dione.', NULL, NULL, 'Yaniar Pradityas Effendi', 'belum');
+('301121101146', '2200000000.00', '2021-11-30', 'Pembayaran Perumahan Home Sweet Home unit D 4 cluster Dione.', 7, 'Direktur Utama', 'Yaniar Pradityas Effendi', 'sudah');
 
 -- --------------------------------------------------------
 
@@ -151,83 +153,86 @@ CREATE TABLE `pembayaran` (
   `tanggal_jatuh_tempo` date NOT NULL,
   `jenis` int(6) NOT NULL,
   `keterangan` text DEFAULT NULL,
-  `blokir` enum('buka','blokir','lunas') NOT NULL,
-  `cetak_kwitansi` enum('sudah','belum') NOT NULL
+  `blokir` enum('buka','blokir','lunas') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id`, `id_kwitansi`, `id_user`, `id_pembelian`, `nama_pembeli`, `biaya`, `tanggal_bayar`, `tanggal_jatuh_tempo`, `jenis`, `keterangan`, `blokir`, `cetak_kwitansi`) VALUES
-(1, '131121120603', 1, '211113120846', 'Penelope Saraswati', '300000000.00', '2021-11-13', '2021-11-13', 0, 'Pembayaran DP 1 Unit D 12 Cluster dididi.', 'lunas', 'belum'),
-(2, NULL, NULL, '211113120846', 'Penelope Saraswati', '5000000.00', NULL, '2021-12-13', 1, NULL, 'blokir', 'belum'),
-(4, '161121075143', 1, '211116075127', 'Harmadi Lee', '900000000.00', '2021-11-16', '2021-11-16', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(5, '171121124606', 1, '211116075127', 'Harmadi Lee', '25833333.33', '2021-11-17', '2021-12-16', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(6, '171121125732', 1, '211116075127', 'Harmadi Lee', '25833333.33', '2021-11-17', '2022-01-16', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(7, '171121010549', 1, '211117010525', 'Alex Karsono', '900000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(8, '171121010728', 1, '211117010525', 'Alex Karsono', '25833333.33', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(9, '171121014115', 1, '211117011137', 'Alex Karsono', '900000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(10, '171121014122', 1, '211117011137', 'Alex Karsono', '25833333.33', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(11, '171121014554', 1, '211117014535', 'Alex Karsono', '900000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(12, '171121014559', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(13, '171121014720', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2022-01-17', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(14, '171121014728', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2022-02-17', 3, 'Pembayaran Cicilan Ke 3 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(15, '171121014735', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2022-03-17', 4, 'Pembayaran Cicilan Ke 4 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas', 'belum'),
-(16, '181121120544', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-04-17', 5, 'Pembayaran Cicilan Ke 5 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas', 'belum'),
-(17, '171121015431', 1, '211117015404', 'Tukiyem Park', '600000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 1 Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(18, '171121015441', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(19, '171121015444', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-01-17', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(20, '171121015449', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-02-17', 3, 'Pembayaran Cicilan Ke 3 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(21, '171121015453', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-03-17', 4, 'Pembayaran Cicilan Ke 4 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(22, '171121015457', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-04-17', 5, 'Pembayaran Cicilan Ke 5 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(23, '171121015501', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-05-17', 6, 'Pembayaran Cicilan Ke 6 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(24, '171121015505', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-06-17', 7, 'Pembayaran Cicilan Ke 7 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(25, '171121015509', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-07-17', 8, 'Pembayaran Cicilan Ke 8 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(26, '171121015513', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-08-17', 9, 'Pembayaran Cicilan Ke 9 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(27, '171121015518', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-09-17', 10, 'Pembayaran Cicilan Ke 10 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(28, '171121015522', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-10-17', 11, 'Pembayaran Cicilan Ke 11 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(29, '171121015527', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-11-17', 12, 'Pembayaran Cicilan Ke 12 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas', 'belum'),
-(30, '171121020218', 1, '211117020205', 'Harmadi Lee', '3300000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran 2 Unit B 2 Cluster Enceladus.', 'lunas', 'belum'),
-(31, '171121020307', 1, '211117020246', 'Alex Karsono', '2000000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit C 3 Cluster Mimas.', 'lunas', 'belum'),
-(32, '171121020325', 1, '211117020246', 'Alex Karsono', '700000000.00', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit C 3 Cluster Mimas.', 'lunas', 'belum'),
-(33, '171121023113', 1, '211117023053', 'Tukiyem Park', '1000000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 3 Unit AA 11 Cluster Miranda.', 'lunas', 'belum'),
-(34, NULL, NULL, '211117023053', 'Tukiyem Park', '166666666.67', NULL, '2021-12-17', 1, NULL, 'blokir', 'belum'),
-(35, '171121060113', 1, '211117060045', 'Harmadi Lee', '1000000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 3 Unit CC 33 Cluster Umbriel.', 'lunas', 'belum'),
-(36, NULL, NULL, '211117060045', 'Harmadi Lee', '1000000000.00', NULL, '2021-12-17', 1, NULL, 'blokir', 'belum'),
-(37, '181121120950', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-05-17', 6, 'Pembayaran Cicilan Ke 6 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas', 'belum'),
-(38, '181121122139', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-06-17', 7, 'Pembayaran Cicilan Ke 7 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas', 'belum'),
-(39, '181121122148', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-07-17', 8, 'Pembayaran Cicilan Ke 8 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas', 'belum'),
-(40, '060122101142', 1, '211117014535', 'Alex Karsono', '25833333.33', '2022-01-06', '2022-08-17', 9, 'Pembayaran cicilan ke 9 pembelian Perumahan Home Sweet Home unit A 1 cluster Titan.', 'lunas', 'belum'),
-(41, '261121011126', 1, '211126011055', 'Harmadi Lee', '600000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP  unit EE 55 cluster Oberon.', 'lunas', 'belum'),
-(42, NULL, NULL, '211126011055', 'Harmadi Lee', '38333333.33', NULL, '2021-12-26', 1, NULL, 'blokir', 'belum'),
-(43, '261121011710', 1, '211126011638', 'Tukiyem Park', '1000000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP Perumahan Home Alone unit CC 33 cluster Umbriel.', 'lunas', 'belum'),
-(44, NULL, NULL, '211126011638', 'Tukiyem Park', '18333333.33', NULL, '2021-12-26', 1, NULL, 'blokir', 'belum'),
-(45, '261121012917', 1, '211126012840', 'Alex Karsono', '500000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP Perumahan Home Sweet Home unit E 5 cluster Tethys.', 'lunas', 'belum'),
-(46, '060122050601', 1, '211126012840', 'Alex Karsono', '82000000.00', '2022-01-06', '2021-12-26', 1, 'Pembayaran cicilan ke 1 pembelian Perumahan Home Sweet Home unit E 5 cluster Tethys.', 'lunas', 'belum'),
-(47, '261121012957', 1, '211126012929', 'Harmadi Lee', '400000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP Perumahan Home Alone unit DD 44 cluster Titania.', 'lunas', 'belum'),
-(48, '060122050713', 1, '211126012929', 'Harmadi Lee', '16666666.67', '2022-01-06', '2021-12-26', 1, 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit DD 44 cluster Titania.', 'lunas', 'belum'),
-(49, '281121104327', 1, '211128104300', 'Yaniar Pradityas Effendi', '1000000000.00', '2021-11-28', '2021-11-28', 0, 'Pembayaran DP Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas', 'belum'),
-(50, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2021-10-27', 1, NULL, 'blokir', 'belum'),
-(65, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2021-11-27', 2, NULL, 'blokir', 'belum'),
-(66, '060122101319', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2021-12-27', 3, 'Pembayaran cicilan ke 3 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas', 'belum'),
-(67, '301121100425', 1, '211130100330', 'Alex Karsono', '200000000.00', '2021-11-30', '2021-11-30', 0, 'Pembayaran DP Perumahan Rumah Rumah unit D 12 cluster Dididi.', 'lunas', 'belum'),
-(69, '301121100734', 1, '211130100715', 'Alex Karsono', '900000000.00', '2021-11-30', '2021-11-30', 0, 'Pembayaran 1 unit D 12 cluster Dididi.', 'lunas', 'belum'),
-(71, '301121101146', 1, '211130101119', 'Yaniar Pradityas Effendi', '2200000000.00', '2021-11-30', '2021-11-30', 0, 'Pembayaran Perumahan Home Sweet Home unit D 4 cluster Dione.', 'lunas', 'belum'),
-(72, '060122023920', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-01-27', 4, 'Pembayaran cicilan ke 4 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas', 'belum'),
-(73, '060122024333', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-02-27', 5, 'Pembayaran cicilan ke 5 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas', 'belum'),
-(74, '060122024609', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-03-27', 6, 'Pembayaran cicilan ke 6 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas', 'belum'),
-(75, '060122031841', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-04-27', 7, 'Pembayaran cicilan ke 7 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas', 'belum'),
-(77, NULL, NULL, '211126012929', 'Harmadi Lee', '16666666.67', NULL, '2022-01-26', 2, NULL, 'buka', 'belum'),
-(78, NULL, NULL, '211126012840', 'Alex Karsono', '82000000.00', NULL, '2022-01-26', 2, NULL, 'buka', 'belum'),
-(79, NULL, NULL, '211126011638', 'Tukiyem Park', '18333333.33', NULL, '2022-01-26', 2, NULL, 'buka', 'belum'),
-(80, NULL, NULL, '211126011055', 'Harmadi Lee', '38333333.33', NULL, '2022-01-26', 2, NULL, 'buka', 'belum'),
-(97, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2022-05-27', 8, NULL, 'buka', 'belum'),
-(98, NULL, NULL, '211117014535', 'Alex Karsono', '25833333.33', NULL, '2022-09-17', 10, NULL, 'buka', 'belum'),
-(99, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2022-01-27', 4, NULL, 'buka', 'belum'),
-(100, '060122101359', 1, '220106101334', 'Yaniar Pradityas Effendi', '500000000.00', '2022-01-06', '2022-01-06', 0, 'Pembayaran DP Perumahan Home Alone unit AA 11 cluster Miranda.', 'lunas', 'belum'),
-(101, '060122101420', 1, '220106101334', 'Yaniar Pradityas Effendi', '35833333.33', '2022-01-06', '2022-02-06', 1, 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit AA 11 cluster Miranda.', 'lunas', 'belum'),
-(102, NULL, NULL, '220106101334', 'Yaniar Pradityas Effendi', '35833333.33', NULL, '2022-03-06', 2, NULL, 'buka', 'belum');
+INSERT INTO `pembayaran` (`id`, `id_kwitansi`, `id_user`, `id_pembelian`, `nama_pembeli`, `biaya`, `tanggal_bayar`, `tanggal_jatuh_tempo`, `jenis`, `keterangan`, `blokir`) VALUES
+(1, '131121120603', 1, '211113120846', 'Penelope Saraswati', '300000000.00', '2021-11-13', '2021-11-13', 0, 'Pembayaran DP 1 Unit D 12 Cluster dididi.', 'lunas'),
+(2, NULL, NULL, '211113120846', 'Penelope Saraswati', '5000000.00', NULL, '2021-12-13', 1, NULL, 'blokir'),
+(4, '161121075143', 1, '211116075127', 'Harmadi Lee', '900000000.00', '2021-11-16', '2021-11-16', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas'),
+(5, '171121124606', 1, '211116075127', 'Harmadi Lee', '25833333.33', '2021-11-17', '2021-12-16', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(6, '171121125732', 1, '211116075127', 'Harmadi Lee', '25833333.33', '2021-11-17', '2022-01-16', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(7, '171121010549', 1, '211117010525', 'Alex Karsono', '900000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas'),
+(8, '171121010728', 1, '211117010525', 'Alex Karsono', '25833333.33', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(9, '171121014115', 1, '211117011137', 'Alex Karsono', '900000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas'),
+(10, '171121014122', 1, '211117011137', 'Alex Karsono', '25833333.33', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(11, '171121014554', 1, '211117014535', 'Alex Karsono', '900000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit A 1 Cluster titan.', 'lunas'),
+(12, '171121014559', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(13, '171121014720', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2022-01-17', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(14, '171121014728', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2022-02-17', 3, 'Pembayaran Cicilan Ke 3 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(15, '171121014735', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-17', '2022-03-17', 4, 'Pembayaran Cicilan Ke 4 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster titan.', 'lunas'),
+(16, '181121120544', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-04-17', 5, 'Pembayaran Cicilan Ke 5 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas'),
+(17, '171121015431', 1, '211117015404', 'Tukiyem Park', '600000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 1 Unit C 11 Cluster dododo.', 'lunas'),
+(18, '171121015441', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(19, '171121015444', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-01-17', 2, 'Pembayaran Cicilan Ke 2 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(20, '171121015449', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-02-17', 3, 'Pembayaran Cicilan Ke 3 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(21, '171121015453', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-03-17', 4, 'Pembayaran Cicilan Ke 4 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(22, '171121015457', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-04-17', 5, 'Pembayaran Cicilan Ke 5 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(23, '171121015501', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-05-17', 6, 'Pembayaran Cicilan Ke 6 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(24, '171121015505', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-06-17', 7, 'Pembayaran Cicilan Ke 7 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(25, '171121015509', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-07-17', 8, 'Pembayaran Cicilan Ke 8 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(26, '171121015513', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-08-17', 9, 'Pembayaran Cicilan Ke 9 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(27, '171121015518', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-09-17', 10, 'Pembayaran Cicilan Ke 10 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(28, '171121015522', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-10-17', 11, 'Pembayaran Cicilan Ke 11 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(29, '171121015527', 1, '211117015404', 'Tukiyem Park', '12500000.00', '2021-11-17', '2022-11-17', 12, 'Pembayaran Cicilan Ke 12 Pembelian Perumahan Rumah Rumah Unit C 11 Cluster dododo.', 'lunas'),
+(30, '171121020218', 1, '211117020205', 'Harmadi Lee', '3300000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran 2 Unit B 2 Cluster Enceladus.', 'lunas'),
+(31, '171121020307', 1, '211117020246', 'Alex Karsono', '2000000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 2 Unit C 3 Cluster Mimas.', 'lunas'),
+(32, '171121020325', 1, '211117020246', 'Alex Karsono', '700000000.00', '2021-11-17', '2021-12-17', 1, 'Pembayaran Cicilan Ke 1 Pembelian Perumahan Home Sweet Home Unit C 3 Cluster Mimas.', 'lunas'),
+(33, '171121023113', 1, '211117023053', 'Tukiyem Park', '1000000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 3 Unit AA 11 Cluster Miranda.', 'lunas'),
+(34, NULL, NULL, '211117023053', 'Tukiyem Park', '166666666.67', NULL, '2021-12-17', 1, NULL, 'blokir'),
+(35, '171121060113', 1, '211117060045', 'Harmadi Lee', '1000000000.00', '2021-11-17', '2021-11-17', 0, 'Pembayaran DP 3 Unit CC 33 Cluster Umbriel.', 'lunas'),
+(36, NULL, NULL, '211117060045', 'Harmadi Lee', '1000000000.00', NULL, '2021-12-17', 1, NULL, 'blokir'),
+(37, '181121120950', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-05-17', 6, 'Pembayaran Cicilan Ke 6 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas'),
+(38, '181121122139', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-06-17', 7, 'Pembayaran Cicilan Ke 7 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas'),
+(39, '181121122148', 1, '211117014535', 'Alex Karsono', '25833333.33', '2021-11-18', '2022-07-17', 8, 'Pembayaran Cicilan Ke 8 Pembelian Perumahan Home Sweet Home Unit A 1 Cluster Titan.', 'lunas'),
+(40, '060122101142', 1, '211117014535', 'Alex Karsono', '25833333.33', '2022-01-06', '2022-08-17', 9, 'Pembayaran cicilan ke 9 pembelian Perumahan Home Sweet Home unit A 1 cluster Titan.', 'lunas'),
+(41, '261121011126', 1, '211126011055', 'Harmadi Lee', '600000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP  unit EE 55 cluster Oberon.', 'lunas'),
+(42, NULL, NULL, '211126011055', 'Harmadi Lee', '38333333.33', NULL, '2021-12-26', 1, NULL, 'blokir'),
+(43, '261121011710', 1, '211126011638', 'Tukiyem Park', '1000000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP Perumahan Home Alone unit CC 33 cluster Umbriel.', 'lunas'),
+(44, NULL, NULL, '211126011638', 'Tukiyem Park', '18333333.33', NULL, '2021-12-26', 1, NULL, 'blokir'),
+(45, '261121012917', 1, '211126012840', 'Alex Karsono', '500000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP Perumahan Home Sweet Home unit E 5 cluster Tethys.', 'lunas'),
+(46, '060122050601', 1, '211126012840', 'Alex Karsono', '82000000.00', '2022-01-06', '2021-12-26', 1, 'Pembayaran cicilan ke 1 pembelian Perumahan Home Sweet Home unit E 5 cluster Tethys.', 'lunas'),
+(47, '261121012957', 1, '211126012929', 'Harmadi Lee', '400000000.00', '2021-11-26', '2021-11-26', 0, 'Pembayaran DP Perumahan Home Alone unit DD 44 cluster Titania.', 'lunas'),
+(48, '060122050713', 1, '211126012929', 'Harmadi Lee', '16666666.67', '2022-01-06', '2021-12-26', 1, 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit DD 44 cluster Titania.', 'lunas'),
+(49, '281121104327', 1, '211128104300', 'Yaniar Pradityas Effendi', '1000000000.00', '2021-11-28', '2021-11-28', 0, 'Pembayaran DP Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas'),
+(50, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2021-10-27', 1, NULL, 'blokir'),
+(65, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2021-11-27', 2, NULL, 'blokir'),
+(66, '060122101319', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2021-12-27', 3, 'Pembayaran cicilan ke 3 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas'),
+(67, '301121100425', 1, '211130100330', 'Alex Karsono', '200000000.00', '2021-11-30', '2021-11-30', 0, 'Pembayaran DP Perumahan Rumah Rumah unit D 12 cluster Dididi.', 'lunas'),
+(69, '301121100734', 1, '211130100715', 'Alex Karsono', '900000000.00', '2021-11-30', '2021-11-30', 0, 'Pembayaran 1 unit D 12 cluster Dididi.', 'lunas'),
+(71, '301121101146', 1, '211130101119', 'Yaniar Pradityas Effendi', '2200000000.00', '2021-11-30', '2021-11-30', 0, 'Pembayaran Perumahan Home Sweet Home unit D 4 cluster Dione.', 'lunas'),
+(72, '060122023920', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-01-27', 4, 'Pembayaran cicilan ke 4 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas'),
+(73, '060122024333', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-02-27', 5, 'Pembayaran cicilan ke 5 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas'),
+(74, '060122024609', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-03-27', 6, 'Pembayaran cicilan ke 6 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas'),
+(75, '060122031841', 1, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', '2022-01-06', '2022-04-27', 7, 'Pembayaran cicilan ke 7 pembelian Perumahan Home Alone unit BB 22 cluster Ariel.', 'lunas'),
+(77, '240122060518', 1, '211126012929', 'Harmadi Lee', '16666666.67', '2022-01-24', '2022-01-26', 2, 'Pembayaran cicilan ke 2 pembelian Perumahan Home Alone unit DD 44 cluster Titania.', 'lunas'),
+(78, NULL, NULL, '211126012840', 'Alex Karsono', '82000000.00', NULL, '2022-01-26', 2, NULL, 'blokir'),
+(79, NULL, NULL, '211126011638', 'Tukiyem Park', '18333333.33', NULL, '2022-01-26', 2, NULL, 'blokir'),
+(80, NULL, NULL, '211126011055', 'Harmadi Lee', '38333333.33', NULL, '2022-01-26', 2, NULL, 'blokir'),
+(97, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2022-05-27', 8, NULL, 'buka'),
+(98, NULL, NULL, '211117014535', 'Alex Karsono', '25833333.33', NULL, '2022-09-17', 10, NULL, 'buka'),
+(99, NULL, NULL, '211128104300', 'Yaniar Pradityas Effendi', '25000000.00', NULL, '2022-01-27', 4, NULL, 'buka'),
+(100, '060122101359', 1, '220106101334', 'Yaniar Pradityas Effendi', '500000000.00', '2022-01-06', '2022-01-06', 0, 'Pembayaran DP Perumahan Home Alone unit AA 11 cluster Miranda.', 'lunas'),
+(101, '060122101420', 1, '220106101334', 'Yaniar Pradityas Effendi', '35833333.33', '2022-01-06', '2022-02-06', 1, 'Pembayaran cicilan ke 1 pembelian Perumahan Home Alone unit AA 11 cluster Miranda.', 'lunas'),
+(102, NULL, NULL, '220106101334', 'Yaniar Pradityas Effendi', '35833333.33', NULL, '2022-03-06', 2, NULL, 'buka'),
+(103, NULL, NULL, '211126012929', 'Harmadi Lee', '16666666.67', NULL, '2022-02-26', 3, NULL, 'buka'),
+(104, NULL, NULL, '211126011055', 'Harmadi Lee', '38333333.33', NULL, '2022-02-26', 3, NULL, 'buka'),
+(105, NULL, NULL, '211126011638', 'Tukiyem Park', '18333333.33', NULL, '2022-02-26', 3, NULL, 'buka'),
+(106, NULL, NULL, '211126012840', 'Alex Karsono', '82000000.00', NULL, '2022-02-26', 3, NULL, 'buka');
 
 -- --------------------------------------------------------
 
@@ -245,21 +250,21 @@ CREATE TABLE `pembayaran_tambahan` (
   `tanggal_bayar` date DEFAULT NULL,
   `tanggal_jatuh_tempo` date NOT NULL,
   `keterangan` text DEFAULT NULL,
-  `jenis_pembayaran` varchar(100) NOT NULL,
-  `cetak_kwitansi` enum('sudah','belum') NOT NULL
+  `jenis_pembayaran` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pembayaran_tambahan`
 --
 
-INSERT INTO `pembayaran_tambahan` (`id`, `id_kwitansi`, `id_user`, `id_pembelian`, `nama_pembeli`, `biaya`, `tanggal_bayar`, `tanggal_jatuh_tempo`, `keterangan`, `jenis_pembayaran`, `cetak_kwitansi`) VALUES
-(4, '181121080719', 1, '211117014535', 'Alex Karsono', '50000000.00', '2021-11-18', '2022-11-18', 'Pembayaran kelebihan tanah pada ID pembelian 211117014535.', 'Kelebihan tanah', 'belum'),
-(5, NULL, NULL, '211113120846', 'Penelope Saraswati', '50000000.00', NULL, '2022-11-13', 'Pembayaran tambahan bangunan pada ID pembelian 211113120846.', 'Tambahan bangunan', 'belum'),
-(8, '181121085052', 1, '211117014535', 'Alex Karsono', '5000000.00', '2021-11-18', '2021-12-18', 'Pembayaran tambahan kualitas pada ID pembelian 211117014535.', 'Tambahan kualitas', 'belum'),
-(9, NULL, NULL, '220106101334', 'Yaniar Pradityas Effendi', '200000.00', NULL, '2022-01-06', 'Pembayaran kelebihan tanah', 'Kelebihan tanah', 'belum'),
-(10, NULL, NULL, '220106101334', 'Yaniar Pradityas Effendi', '200000.00', NULL, '2022-01-30', 'Pembayaran kelebihan tanah', 'Kelebihan tanah', 'belum'),
-(11, '060122103042', 1, '220106101334', 'Yaniar Pradityas Effendi', '20000000.00', '2022-01-06', '2022-01-30', 'Pembayaran kelebihan tanah', 'Kelebihan tanah', 'belum');
+INSERT INTO `pembayaran_tambahan` (`id`, `id_kwitansi`, `id_user`, `id_pembelian`, `nama_pembeli`, `biaya`, `tanggal_bayar`, `tanggal_jatuh_tempo`, `keterangan`, `jenis_pembayaran`) VALUES
+(4, '181121080719', 1, '211117014535', 'Alex Karsono', '50000000.00', '2021-11-18', '2022-11-18', 'Pembayaran kelebihan tanah pada ID pembelian 211117014535.', 'Kelebihan tanah'),
+(5, NULL, NULL, '211113120846', 'Penelope Saraswati', '50000000.00', NULL, '2022-11-13', 'Pembayaran tambahan bangunan pada ID pembelian 211113120846.', 'Tambahan bangunan'),
+(8, '181121085052', 1, '211117014535', 'Alex Karsono', '5000000.00', '2021-11-18', '2021-12-18', 'Pembayaran tambahan kualitas pada ID pembelian 211117014535.', 'Tambahan kualitas'),
+(9, NULL, NULL, '220106101334', 'Yaniar Pradityas Effendi', '200000.00', NULL, '2022-01-06', 'Pembayaran kelebihan tanah', 'Kelebihan tanah'),
+(10, NULL, NULL, '220106101334', 'Yaniar Pradityas Effendi', '200000.00', NULL, '2022-01-30', 'Pembayaran kelebihan tanah', 'Kelebihan tanah'),
+(11, '060122103042', 1, '220106101334', 'Yaniar Pradityas Effendi', '20000000.00', '2022-01-06', '2022-01-30', 'Pembayaran kelebihan tanah', 'Kelebihan tanah'),
+(12, '270122014446', 1, '211126011638', 'Tukiyem Park', '300000000.00', '2022-01-27', '2022-01-31', 'Pembayaran tambahan bangunan', 'Tambahan bangunan');
 
 -- --------------------------------------------------------
 
@@ -323,10 +328,10 @@ INSERT INTO `pembelian` (`id`, `id_unit`, `id_pembeli`, `DP`, `id_metode`, `tang
 ('211117020246', 5, 4, '2000000000.00', 2, '2021-11-17', 'selesai', '2700000000.00', '700000000.00', '2700000000.00', '0.00', 0, 0),
 ('211117023053', 8, 1, '1000000000.00', 5, '2021-11-17', 'dibatalkan', '3000000000.00', '166666666.67', '1000000000.00', '0.00', 0, 0),
 ('211117060045', 10, 3, '1000000000.00', 2, '2021-11-17', 'dibatalkan', '2000000000.00', '1000000000.00', '1000000000.00', '0.00', 0, 0),
-('211126011055', 12, 3, '600000000.00', 5, '2021-11-26', 'berjalan', '1000000000.00', '38333333.33', '600000000.00', '0.00', -1, 1),
-('211126011638', 10, 1, '1000000000.00', 3, '2021-11-26', 'berjalan', '2000000000.00', '18333333.33', '1000000000.00', '0.00', -1, 1),
-('211126012840', 7, 4, '500000000.00', 5, '2021-11-26', 'berjalan', '1400000000.00', '82000000.00', '582000000.00', '0.00', 0, 0),
-('211126012929', 11, 3, '400000000.00', 3, '2021-11-26', 'berjalan', '1500000000.00', '16666666.67', '416666666.67', '0.00', 0, 0),
+('211126011055', 12, 3, '600000000.00', 5, '2021-11-26', 'berjalan', '1000000000.00', '38333333.33', '600000000.00', '0.00', -2, 2),
+('211126011638', 10, 1, '1000000000.00', 3, '2021-11-26', 'berjalan', '2000000000.00', '18333333.33', '1000000000.00', '300000000.00', -2, 2),
+('211126012840', 7, 4, '500000000.00', 5, '2021-11-26', 'berjalan', '1400000000.00', '82000000.00', '582000000.00', '0.00', -1, 1),
+('211126012929', 11, 3, '400000000.00', 3, '2021-11-26', 'berjalan', '1500000000.00', '16666666.67', '433333333.34', '0.00', 0, 0),
 ('211128104300', 9, 5, '1000000000.00', 3, '2021-11-28', 'berjalan', '2500000000.00', '25000000.00', '1225000000.00', '0.00', -2, 2),
 ('211130100330', 2, 4, '200000000.00', 3, '2021-11-30', 'dibatalkan', '1440000000.00', '10333333.33', '200000000.00', '0.00', 0, 0),
 ('211130100715', 2, 4, '900000000.00', 1, '2021-11-30', 'selesai', '900000000.00', '0.00', '900000000.00', '0.00', 0, 0),
@@ -371,7 +376,7 @@ CREATE TABLE `refresh` (
 --
 
 INSERT INTO `refresh` (`id`, `tanggal`) VALUES
-(1, '2022-01-06');
+(1, '2022-01-27');
 
 -- --------------------------------------------------------
 
@@ -430,8 +435,12 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `nama`, `password`, `role`) VALUES
 (1, 'supaa', 'super admin', '7e438329bbab72f8dc948fbdae0893ad89959b30', 'supaa'),
-(3, 'kasir', 'Kasir lah', 'af6b6d1a528cd180d2f92ff34cfdbf71ba32e038', 'kasir'),
-(4, 'marketing', 'Test Marketing', '80049f53b4717d350cc62f129a689d2e9f84a754', 'marketing');
+(3, 'kasir', 'Kasir lah', '8691e4fc53b99da544ce86e22acba62d13352eff', 'kasir'),
+(4, 'marketing', 'Test Marketing', 'a286075043d42dcdce8d6668944e827f7a64024f', 'marketing'),
+(6, 'penagihan', 'Penagihan', '8ae8158b84af0d45882065e1bf51ecf200ee8c78', 'penagihan'),
+(7, 'dirut', 'Direktur Utama', 'b03178f6dd2135699143b4bddb0e37f8c5e1d4a9', 'dirut'),
+(8, 'keuangan', 'Keuangan', '1f931595786f2f178358d0af5fe4d75eaee46819', 'keuangan'),
+(9, 'dirutk', 'Direktur Keuangan', 'b8f918530fb0852d2a015f5cf072909ad7e00f0b', 'dirut_keuangan');
 
 --
 -- Indexes for dumped tables
@@ -511,13 +520,13 @@ ALTER TABLE `metode`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `pembayaran_tambahan`
 --
 ALTER TABLE `pembayaran_tambahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pembeli`
@@ -541,7 +550,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
