@@ -41,6 +41,7 @@
                   <p><b>Cicilan Perbulan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?="Rp".number_format($pembelian->cicilan_perbulan, 2);?></p>
                   <p><b>Tunggakan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembelian->tunggakan?></p>
                   <p><b>Total Uang Masuk</b>&nbsp;&nbsp;&nbsp;&nbsp;<?="Rp".number_format($pembelian->uang_masuk, 2);?></p>
+                  <p><b>Total Uang Lainnya</b>&nbsp;&nbsp;<?="Rp".number_format($pembelian->uang_lainnya, 2);?></p>
                   <div class="text-center">
                     <?php if($pembelian->status_pembelian == "berjalan"){ ?>
                     <form class="" action="<?=site_url('pembelian/edit_pembeli/'.$pembelian->id)?>" method="post">
