@@ -156,7 +156,7 @@
             </p>
             <?php if($pembelian->status_pembelian == "berjalan"){ ?>
               <div class="text-center">
-                  <a href="<?=site_url('pembayaran_tambahan/add_by_id/'.$pembelian->id)?>" class="btn btn-primary">
+                  <a href="<?=site_url('pembayaran_tambahan/add_by_id/'.$pembelian->id)?>" class="btn btn-primary" hidden>
                   <i class="fa fa-plus"></i> Buat Pembayaran Tambahan Baru</a>
               </div>
             <?php } ?>

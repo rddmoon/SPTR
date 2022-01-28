@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="text-right">
                         <a href="<?=site_url('user/edit_profil/'.$current_user->id)?>" class="btn btn-warning">
-                        <i class="fa fa-edit"></i> Edit</a>
+                        <i class="fa fa-edit"></i> Ubah</a>
                     </div>
                     <?php if($current_user->role == "dirut_keuangan"){
                       $role = "dirut keuangan";

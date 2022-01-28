@@ -128,7 +128,8 @@
               <li>
                 <a href="<?=site_url('beranda')?>" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Beranda</span></a>
               </li>
-              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'dirut_keuangan') {?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'dirut_keuangan'
+              || $this->session->userdata('role') == 'dirut') {?>
               <li>
                 <a href="<?=site_url('user')?>" class="nav-link"><i class="fas fa-user-alt"></i> <span>Pengguna</span></a>
               </li>
@@ -170,7 +171,7 @@
                 <a href="<?=site_url('pembayaran_tambahan')?>" class="nav-link"><i class="fas fa-cart-plus"></i> <span>Pembayaran Tambahan</span></a>
               </li>
               <?php } ?>
-              <?php if($this->session->userdata('role') == 'supaa') {?>
+              <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'marketing') {?>
               <li>
                 <a href="<?=site_url('metode')?>" class="nav-link"><i class="fas fa-credit-card"></i> <span>Metode Pembayaran</span></a>
               </li>

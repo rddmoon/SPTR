@@ -15,7 +15,7 @@
           <h4>Data Pembayaran Tambahan</h4>
         </div>
         <div class="text-center">
-            <a href="<?=site_url('pembayaran_tambahan/add')?>" class="btn btn-primary">
+            <a href="<?=site_url('pembayaran_tambahan/add')?>" class="btn btn-primary" hidden>
             <i class="fa fa-plus"></i> Buat Pembayaran Tambahan Baru</a>
         </div>
         <br>
