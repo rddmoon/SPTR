@@ -170,7 +170,7 @@
                         <div class="card-header">
                           <h4 style="color:#63ed7a">Pembayaran <?=$no++?></h4>
                           <div class="card-header-action">
-                            <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success">
+                            <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success" hidden>
                               Cetak
                             </a>
                           </div>
@@ -192,7 +192,7 @@
                       <div class="card-header">
                         <h4>Pembayaran <?=$no++?></h4>
                         <div class="card-header-action">
-                          <a href="<?=site_url('pembayaran_tambahan/bayar/'.$key->id)?>" class="btn btn-primary">
+                          <a href="<?=site_url('pembayaran_tambahan/bayar/'.$key->id)?>" class="btn btn-primary" hidden>
                             Bayar
                           </a>
                         </div>
