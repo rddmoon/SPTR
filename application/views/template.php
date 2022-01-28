@@ -178,7 +178,7 @@
             <?php if($this->session->userdata('role') == 'supaa' || $this->session->userdata('role') == 'penagihan'
             || $this->session->userdata('role') == 'keuangan') {?>
             <li>
-              <a href="<?=site_url('tagihan')?>" class="nav-link"><i class="fas fa-user-clock"></i> <span>Tagihan</span></a>
+              <a href="<?=site_url('tunggakan')?>" class="nav-link"><i class="fas fa-user-clock"></i> <span>Tunggakan</span></a>
             </li>
           <?php } ?>
         </aside>
