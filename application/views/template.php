@@ -35,6 +35,14 @@
     .back-to-top:hover{
      opacity: 0.7;
     }
+    .glow{
+      font-size: 15px;
+      color: #fff;
+      font-weight: bold;
+      animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+    }
 
   </style>
 
@@ -79,6 +87,8 @@
 
         </ul>
         <form class="form-inline mr-auto">
+          <div id="clock" class="glow">
+          </div>
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
@@ -185,7 +195,38 @@
       </footer>
     </div>
   </div>
+  <!-- clock -->
+  <script>
+  setInterval(displayTime, 1000);
 
+  function displayTime() {
+
+    const timeNow = new Date();
+
+    let hoursOfDay = timeNow.getHours();
+    let minutes = timeNow.getMinutes();
+    let seconds = timeNow.getSeconds();
+    let weekDay = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
+    let today = weekDay[timeNow.getDay()];
+    let months = timeNow.toLocaleString("id-ID", {
+        month: "long"
+    });
+    let days = timeNow.toLocaleString("id-ID", {
+        day: "numeric"
+    });
+    let year = timeNow.getFullYear();
+
+    hoursOfDay = hoursOfDay < 10 ? "0" + hoursOfDay : hoursOfDay;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    let time = hoursOfDay + ":" + minutes + ":" + seconds;
+
+    document.getElementById('clock').innerHTML = today + ", " + days + " " + months + " " + year + "<br>" + time;
+
+    }
+  displayTime();
+  </script>
   <!-- General JS Scripts -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
