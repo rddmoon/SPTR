@@ -170,6 +170,17 @@ class M_pembayaran extends CI_Model
       $this->db->delete('pembayaran');
     }
 
+    public function count_tunggakan()
+    {
+      $this->db->from('pembayaran');
+      $this->db->join('pembelian', 'pembayaran.id_pembelian=pembelian.id');
+      $this->db->where('pembayaran.blokir', 'blokir');
+      $this->db->where('pembelian.status_pembelian', 'berjalan');
+      $this->db->order_by('pembayaran.tanggal_jatuh_tempo',"ASC");
+      $query = $this->db->count_all_results();
+      return $query;
+    }
+
     public function tagihan_tunggakan()
     {
       $this->db->select('pembelian.id AS id_pembelian, pembayaran.id AS id, pembayaran.id_kwitansi AS id_kwitansi, pembayaran.id_user AS id_user,

@@ -114,6 +114,14 @@ class M_perumahan extends CI_Model
         return $output;
     }
 
+    public function count_perumahan()
+    {
+      $this->db->from('perumahan');
+      $this->db->order_by('id',"DESC");
+      $query = $this->db->count_all_results();
+      return $query;
+    }
+
     public function add($post)
     {
         $params['nama'] = $post['nama'];

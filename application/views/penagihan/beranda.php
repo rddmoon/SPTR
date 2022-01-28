@@ -6,7 +6,7 @@
   $today = date('Y-m-d');
   $yesterday = date('Y-m-d', strtotime("-1 day", strtotime($today)))?>
   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
         <div class="card-icon bg-primary">
           <i class="fas fa-hand-holding-usd"></i>
@@ -21,9 +21,9 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
-        <div class="card-icon bg-danger">
+        <div class="card-icon bg-warning">
           <i class="fas fa-coins"></i>
         </div>
         <div class="card-wrap">
@@ -36,9 +36,39 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
-        <div class="card-icon bg-warning">
+        <div class="card-icon bg-danger">
+          <i class="fas fa-user-clock"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>Tunggakan</h4>
+          </div>
+          <div class="card-body">
+            <?php echo $tunggakan ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-success">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="card-wrap">
+          <div class="card-header">
+            <h4>Jumlah Pengguna</h4>
+          </div>
+          <div class="card-body">
+            <?php echo $pengguna ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+      <div class="card card-statistic-1">
+        <div class="card-icon bg-info">
           <i class="fas fa-home"></i>
         </div>
         <div class="card-wrap">
@@ -51,17 +81,17 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
       <div class="card card-statistic-1">
-        <div class="card-icon bg-success">
-          <i class="fas fa-user"></i>
+        <div class="card-icon bg-dark">
+          <i class="fas fa-city"></i>
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Jumlah Pengguna</h4>
+            <h4>Jumlah Perumahan</h4>
           </div>
           <div class="card-body">
-            <?php echo $pengguna ?>
+            <?php echo $perumahan ?>
           </div>
         </div>
       </div>
@@ -102,7 +132,7 @@
             </div>
           </a>
         <?php } ?>
-          <a href="<?=site_url('pembayaran')?>" class="ticket-item ticket-more">
+          <a href="<?=site_url('pembayaran')?>" class="ticket-item ticket-more" hidden>
             Lihat Semua <i class="fas fa-chevron-right"></i>
           </a>
         </div>
@@ -140,7 +170,7 @@
               </ul>
             </div>
             <div class="text-center pt-1 pb-1">
-              <a href="<?=site_url('pembelian')?>" class="ticket-item ticket-more">
+              <a href="<?=site_url('pembelian')?>" class="ticket-item ticket-more" hidden>
                 Lihat Semua <i class="fas fa-chevron-right"></i>
               </a>
             </div>

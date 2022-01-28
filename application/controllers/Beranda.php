@@ -33,6 +33,8 @@ class Beranda extends CI_Controller {
 		$data['weekly_pemasukan'] = $this->m_pembelian->weekly_pemasukan($date);
 		$data['weekly_pembayaran'] = $this->m_pembayaran->get_weekly_pembayaran($date);
 		$data['menunggu_pembayaran'] = $this->m_pembayaran->count_menunggu();
+		$data['tunggakan'] = $this->m_pembayaran->count_tunggakan();
+		$data['perumahan'] = $this->m_perumahan->count_perumahan();
 		// $data['datee'] = $date;
 		$content = $this->fungsi->user_login()->role . '/beranda';
 		$this->template->load('template', $content, $data);
