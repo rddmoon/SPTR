@@ -62,7 +62,7 @@
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; 2021
+              Copyright &copy; <?=date('Y')?> ITG
             </div>
           </div>
         </div>

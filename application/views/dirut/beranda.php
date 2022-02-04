@@ -128,7 +128,7 @@
               <div class="bullet"></div>
               <div class="text-primary">ID <?=$value->id_pembelian?></div>
               <div class="bullet"></div>
-              <div class="text-muted">Oleh: <?=$value->nama_user?></div>
+              <div class="text-muted">Oleh: <?=ucwords($value->nama_user)?></div>
             </div>
           </a>
         <?php } ?>
