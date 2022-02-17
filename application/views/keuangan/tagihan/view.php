@@ -17,8 +17,8 @@
                     <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle"><?=$sort?></a>
                     <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                       <li class="dropdown-title">Urutkan Dari</li>
-                      <li><a href="<?=site_url('tagihan')?>" class="dropdown-item">Terlama</a></li>
-                      <li><a href="<?=site_url('tagihan/terbaru')?>" class="dropdown-item">Terbaru</a></li>
+                      <li><a href="<?=site_url('tunggakan')?>" class="dropdown-item">Terlama</a></li>
+                      <li><a href="<?=site_url('tunggakan/terbaru')?>" class="dropdown-item">Terbaru</a></li>
                     </ul>
                   </div>
         </div>
