@@ -44,12 +44,6 @@
                   <p><b>Total Uang Lainnya</b>&nbsp;&nbsp;<?="Rp".number_format($pembelian->uang_lainnya, 2);?></p>
                   <div class="text-center">
                     <?php if($pembelian->status_pembelian == "berjalan"){ ?>
-                    <form class="" action="<?=site_url('pembelian/edit_pembeli/'.$pembelian->id)?>" method="post">
-                        <button onclick="return confirm('Apakah Anda yakin akan mengganti pembeli?')" class="btn btn-warning" hidden>
-                          <i class="fas fa-users-cog"></i> Pindah Tangan
-                        </button>
-                      </form>
-                  </br>
                   <form class="" action="<?=site_url('pembelian/edit_dibatalkan/'.$pembelian->id)?>" method="post">
                       <button onclick="return confirm('Apakah Anda yakin akan membatalkan pembelian?')" class="btn btn-danger" hidden>
                         <i class="fa fa-times-circle"></i> Batalkan Pembelian
@@ -78,7 +72,7 @@
                   <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-success">
                         <div class="card-header">
-                          <h4 style="color:#63ed7a"><?=$header?></h4>
+                          <h4><a href="<?=site_url('pembayaran/detail/'.$key->id)?>"><h4 style="color:#63ed7a"><?=$header?></h4></a></h4>
                           <div class="card-header-action">
                             <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success">
                               Cetak
@@ -102,9 +96,9 @@
 
                 <?php if($key->blokir == "buka"){?>
                   <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card card-primary">
+                    <div class="card card-primary" >
                       <div class="card-header">
-                        <h4><?=$header?></h4>
+                        <h4><a href="<?=site_url('pembayaran/detail/'.$key->id)?>"><h4><?=$header?></h4></a></h4>
                         <div class="card-header-action">
                           <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
                             Bayar
@@ -123,25 +117,20 @@
 
                 <?php if($key->blokir == "blokir"){?>
                   <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card card-secondary">
+                    <div class="card card-primary">
                       <div class="card-header">
-                        <h4 style="color:#808184"><?=$header?></h4>
+                        <h4><a href="<?=site_url('pembayaran/detail/'.$key->id)?>"><h4><?=$header?></h4></a></h4>
                         <div class="card-header-action">
-                          <a href="#" class="btn btn-secondary disabled">
-                            Diblokir
+                          <a href="<?=site_url('pembayaran/bayar/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
+                            Bayar
                           </a>
-                          <?php if($pembelian->status_pembelian == "berjalan"){ ?>
-                          <a href="<?=site_url('pembayaran/buka_blokir/'.$key->id)?>" onclick="return confirm('Apakah Anda yakin akan membuka blokir <?=$header?> ?')" class="btn btn-warning">
-                            <i class="fa fa-key"></i> Buka Blokir
-                          </a>
-                        <?php } ?>
                         </div>
                       </div>
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
                         <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
                         <p>Dibayar: -</p>
-                        <p><span style="color:#808184"><b>MELEBIHI JATUH TEMPO</b></span></p>
+                        <p><span style="color:#fc544b"><b>MELEBIHI JATUH TEMPO</b></span></p>
                       </div>
                     </div>
                   </div>
@@ -168,7 +157,7 @@
                   <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-success">
                         <div class="card-header">
-                          <h4 style="color:#63ed7a">Pembayaran <?=$no++?></h4>
+                          <h4><a href="<?=site_url('pembayaran_tambahan/detail/'.$key->id)?>"><h4 style="color:#63ed7a">Pembayaran <?=$no++?></h4></a></h4>
                           <div class="card-header-action">
                             <a href="<?=site_url('kwitansi/cetak/'.$key->id_kwitansi)?>" target="_blank" class="btn btn-success">
                               Cetak
@@ -190,7 +179,7 @@
                   <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-primary">
                       <div class="card-header">
-                        <h4>Pembayaran <?=$no++?></h4>
+                        <h4><a href="<?=site_url('pembayaran_tambahan/detail/'.$key->id)?>"><h4>Pembayaran <?=$no++?></h4></a></h4>
                         <div class="card-header-action">
                           <a href="<?=site_url('pembayaran_tambahan/bayar/'.$key->id)?>" class="btn btn-primary">
                             Bayar

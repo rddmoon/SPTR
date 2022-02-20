@@ -17,7 +17,7 @@
                       <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-success">Lunas</span></p>
                     <?php } ?>
                     <?php  if ($pembayaran->blokir == "blokir") {?>
-                      <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-secondary">Diblokir</span></p>
+                      <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">Melebihi Jatuh Tempo</span></p>
                     <?php } ?>
                   </div>
                   <?php if($pembayaran->jenis == 0){
@@ -38,40 +38,14 @@
                     <p><b>Jenis Pembayaran</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$header?></p>
                     <p><b>Keterangan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran->keterangan?></p>
                     </br>
-                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <?php if($pembayaran->blokir == "lunas") {
-                              ucfirst($kwitansi->sudah_cetak);
+                              echo ucfirst($kwitansi->sudah_cetak);
                             }
                             else{
-                              echo "Belum";
+                              echo "-";
                             }?>
                     </p>
-                    <p><b>Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</p>
-                    <div>
-                      <?php if($pembayaran->blokir == "buka" || $pembayaran->blokir == "blokir"){ ?>
-                              <a href="#" class="btn btn-info disabled">
-                                Lihat
-                              </a>
-                              <a href="#" class="btn btn-primary disabled">
-                                Cetak
-                              </a>
-                      <?php } ?>
-                      <?php if($pembayaran->blokir == "lunas"){ ?>
-                              <a href="<?=site_url('kwitansi/index/'.$pembayaran->id_kwitansi)?>" target="_blank" class="btn btn-info">
-                                Lihat
-                              </a>
-                              <a href="<?=site_url('kwitansi/cetak/'.$pembayaran->id_kwitansi)?>" target="_blank" class="btn btn-success">
-                                Cetak
-                              </a>
-                      <?php } ?>
-                    </div>
-                    <?php if($pembayaran->blokir == "buka"){ ?>
-                          <div class="text-center">
-                            <a href="<?=site_url('pembayaran/bayar/'.$pembayaran->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
-                              &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
-                            </a>
-                          </div>
-                    <?php } ?>
                 </div>
             </div>
         </div>

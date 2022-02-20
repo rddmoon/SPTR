@@ -17,7 +17,7 @@
                       <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-success">Lunas</span></p>
                     <?php } ?>
                     <?php  if ($pembayaran->blokir == "blokir") {?>
-                      <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-secondary">Diblokir</span></p>
+                      <p><b>Status:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">Melebihi Jatuh Tempo</span></p>
                     <?php } ?>
                   </div>
                   <?php if($pembayaran->jenis == 0){
@@ -38,12 +38,12 @@
                     <p><b>Jenis Pembayaran</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$header?></p>
                     <p><b>Keterangan</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$pembayaran->keterangan?></p>
                     </br>
-                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <?php if($pembayaran->blokir == "lunas") {
-                              ucfirst($kwitansi->sudah_cetak);
+                              echo ucfirst($kwitansi->sudah_cetak);
                             }
                             else{
-                              echo "Belum";
+                              echo "-";
                             }?>
                     </p>
                     <p><b>Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</p>
@@ -66,15 +66,10 @@
                       <?php } ?>
                     </div>
                     <div class="text-center">
-                    <?php if($pembayaran->blokir == "buka"){ ?>
+                    <?php if($pembayaran->blokir == "buka" || $pembayaran->blokir == "blokir"){ ?>
                             <a href="<?=site_url('pembayaran/bayar/'.$pembayaran->id)?>" onclick="return confirm('Apakah Anda yakin akan mengubah status pembayaran <?=$header?> menjadi lunas?')" class="btn btn-primary">
                               &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-coins"></i> Dibayar&nbsp;&nbsp;&nbsp;&nbsp;
                             </a>
-                    <?php } ?>
-                    <?php if($pembayaran->blokir == "blokir"){ ?>
-                      <a href="<?=site_url('pembayaran/buka_blokir/'.$pembayaran->id)?>" class="btn btn-warning">
-                        <i class="fa fa-key"></i> Buka Blokir
-                      </a>
                     <?php } ?>
                   </div>
                 </div>

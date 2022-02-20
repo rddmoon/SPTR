@@ -30,10 +30,10 @@
                     </br>
                     <p><b>Cetak Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <?php if($pembayaran_tambahan->tanggal_bayar != NULL){
-                              ucfirst($kwitansi->sudah_cetak);
+                              echo ucfirst($kwitansi->sudah_cetak);
                             }
                             else{
-                              echo "Belum";
+                              echo "-";
                             }?>
                     </p>
                     <p><b>Kwitansi</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</p>

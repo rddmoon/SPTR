@@ -45,13 +45,13 @@ class Pembayaran extends CI_Controller
 
     }
 
-    public function buka_blokir($id)
-    {
-      $this->m_pembayaran->buka_blokir($id);
-      $pembelian = $this->m_pembayaran->get($id)->row();
-      echo "<script>alert('Blokir pembayaran berhasil dibuka.');</script>";
-      echo "<script>window.location='".site_url('pembelian/detail/'.$pembelian->id_pembelian)."';</script>";
-    }
+    // public function buka_blokir($id)
+    // {
+    //   $this->m_pembayaran->buka_blokir($id);
+    //   $pembelian = $this->m_pembayaran->get($id)->row();
+    //   echo "<script>alert('Blokir pembayaran berhasil dibuka.');</script>";
+    //   echo "<script>window.location='".site_url('pembelian/detail/'.$pembelian->id_pembelian)."';</script>";
+    // }
 /////////////
     // public function blokir_pembayaran($id)
     // {
