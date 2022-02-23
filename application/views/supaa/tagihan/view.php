@@ -1,14 +1,15 @@
 <section class="section">
   <div class="section-header">
-    <h1>Tagihan Tunggakan Pembayaran</h1>
+    <h1>Tunggakan Pembayaran</h1>
   </div>
+  <div class="search-element" style="display:flex; margin-bottom:20px;" >
+        <form class="form-inline" action="<?php echo site_url() . $site; ?>" method="post">
+            <input class="form-control" type="text" placeholder="Cari..." name="search" data-width="250" data-height="36">
+            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
   <div class="row">
     <div class="col-12">
-      <!-- <div class="card">
-        <div class="card-header">
-          <h4>Tagihan Tunggakan</h4>
-        </div>
-      </div> -->
       <?php $today = date('Y-m-d'); ?>
       <div class="card">
         <div class="card-header">
@@ -34,17 +35,18 @@
                         else {
                           $header = "Cicilan ".$value->jenis;
                         }?>
-                <h4><?=$no?>) ID Pembelian: <?=$value->id_pembelian?> --- Pembayaran: <?=$header?></h4>
+                <h4><?=$no?>)&nbsp ID Pembelian: &nbsp<?=$value->id_pembelian?></h4>
               </div>
               <div class="accordion-body collapse" id="panel-body-<?=$no++?>" data-parent="#accordion" style="">
                 <p class="mb-0">
-                  Nama Pembeli: <?=$value->nama_pembeli?></br>
-                  Jumlah: <?="Rp".number_format($value->biaya, 2);?></br>
-                  Jatuh Tempo: <?=date('d M Y', strtotime($value->tanggal_jatuh_tempo))?></br>
-                  Lama tunggakan: <?=round(abs(strtotime($today) - strtotime($value->tanggal_jatuh_tempo))/86400)?> hari
+                  Nama Pembeli: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?=$value->nama_pembeli?></br>
+                  Jumlah Tunggakan: &nbsp<?=$value->tunggakan?></br>
+                  Cicilan Perbulan: &nbsp&nbsp&nbsp&nbsp&nbsp<?="Rp".number_format($value->cicilan_perbulan, 2);?></br>
+                  Total Tunggakan: &nbsp&nbsp&nbsp&nbsp<?="Rp".number_format($value->total_tunggakan, 2);?></br>
+                  Lama tunggakan: &nbsp&nbsp&nbsp&nbsp<?=round(abs(strtotime($today) - strtotime($value->tanggal_jatuh_tempo))/86400)?> hari
                 </p>
               </br>
-                <a href="<?=site_url('pembayaran/detail/'.$value->id)?>" class="btn btn-info btn-sm btn-round">
+                <a href="<?=site_url('tunggakan/detail/'.$value->id_pembelian)?>" class="btn btn-info btn-sm btn-round">
                   <i class="fa fa-eye"></i>
                   Tunggakan
                 </a>
@@ -52,6 +54,11 @@
                 <a href="<?=site_url('pembelian/detail/'.$value->id_pembelian)?>" class="btn btn-primary btn-sm btn-round">
                   <i class="fa fa-eye"></i>
                   Pembelian
+                </a>
+                &nbsp;&nbsp;
+                <a href="<?=site_url('tunggakan/cetak/'.$value->id_pembelian)?>" target="_blank" class="btn btn-warning btn-sm btn-round">
+                  <i class="fa fa-file"></i>
+                  Cetak
                 </a>
               </div>
             </br>

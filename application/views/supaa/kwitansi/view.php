@@ -148,7 +148,10 @@
                     <b><br />Kwitansi</b>
                   </div>
                   No: <?=$kwitansi->id?><br />
-                  Tanggal: <?=date('d M Y', strtotime($kwitansi->tanggal_bayar));?><br />
+                  Tanggal: <?php setlocale(LC_TIME, 'IND');
+												$thedate = explode("-", $kwitansi->tanggal_bayar);
+												$s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+												echo " ".$s."";?><br />
                 </td>
               </tr>
             </table>
@@ -189,7 +192,11 @@
         <tr class="tanggal">
           <td></td>
 
-          <td><br />Sidoarjo, <?=date('d M Y', strtotime($kwitansi->tanggal_bayar))?></td>
+          <td><br />Sidoarjo,
+						<?php setlocale(LC_TIME, 'IND');
+									$thedate = explode("-", $kwitansi->tanggal_bayar);
+									$s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+									echo " ".$s."";?>
         </tr>
 
         <tr class="ttd">

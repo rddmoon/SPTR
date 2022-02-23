@@ -37,12 +37,15 @@ class M_pembeli extends CI_Model
   public function add($post)
   {
     $date = new DateTime($post['tl']);
-    $tl = $date->format('d M Y');
+    $tl = $date->format('Y-m-d');
+    setlocale(LC_TIME, 'IND');
+    $thedate = explode("-", $tl);
+    $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
     $params['nama_pembeli'] = $post['nama'];
     $params['NIK'] = $post['NIK'];
     $params['alamat'] = $post['alamat'];
     $params['telepon'] = $post['telepon'];
-    $params['ttl'] = $post['tempat'].', '. $tl;
+    $params['ttl'] = $post['tempat'].', '. $s;
     $params['status_perkawinan'] = $post['status_perkawinan'];
     $params['pekerjaan'] = $post['pekerjaan'];
     $this->db->insert('pembeli', $params);
@@ -51,12 +54,15 @@ class M_pembeli extends CI_Model
   public function edit($post)
   {
     $date = new DateTime($post['tl']);
-    $tl = $date->format('d M Y');
+    $tl = $date->format('Y-m-d');
+    setlocale(LC_TIME, 'IND');
+    $thedate = explode("-", $tl);
+    $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
     $params['nama_pembeli'] = $post['nama'];
     $params['NIK'] = $post['NIK'];
     $params['alamat'] = $post['alamat'];
     $params['telepon'] = $post['telepon'];
-    $params['ttl'] = $post['tempat'].', '. $tl;
+    $params['ttl'] = $post['tempat'].', '. $s;
     $params['status_perkawinan'] = $post['status_perkawinan'];
     $params['pekerjaan'] = $post['pekerjaan'];
     $this->db->where('id', $post['pembeli_id']);
