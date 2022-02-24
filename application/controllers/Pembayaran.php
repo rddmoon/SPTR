@@ -101,7 +101,7 @@ class Pembayaran extends CI_Controller
       if($this->db->affected_rows() > 0)
       {
           echo "<script>alert('Data berhasil disimpan');</script>";
-          if($this->check_status_pembelian($detail['pembelian']->id) == 0){
+          if($this->check_status_pembelian($detail['pembelian']->id) == 0 && $detail['pembayaran']->blokir != "blokir"){
             $this->generate_pembayaran_baru($id);
           }
       }
