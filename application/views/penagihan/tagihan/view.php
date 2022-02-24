@@ -57,7 +57,7 @@
                 </a>
                 &nbsp;&nbsp;
                 <a href="<?=site_url('tunggakan/cetak/'.$value->id_pembelian)?>" target="_blank" class="btn btn-warning btn-sm btn-round">
-                  <i class="fa fa-file"></i>
+                  <i class="fa fa-print"></i>
                   Cetak
                 </a>
               </div>

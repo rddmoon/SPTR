@@ -115,7 +115,7 @@
     </div>
 		<div class="text-right">
 				<a href="<?=site_url('tunggakan/cetak/'.$pembelian->id)?>" target="_blank" class="btn btn-warning btn-lg">
-				<i class="fa fa-file"></i> Cetak</a>
+				<i class="fa fa-print"></i> Cetak</a>
 		</div>
 		<div class="invoice-box">
 			<table cellpadding="0" cellspacing="0">
