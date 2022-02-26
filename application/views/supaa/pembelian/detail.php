@@ -87,11 +87,25 @@
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
                         <?php if($key->jenis == 0) {?>
-                          <p>Dibayar: <?=date('d M Y', strtotime($key->tanggal_bayar))?></p>
-                          <p></br></p>
+                          <p>Dibayar:
+                            <?php setlocale(LC_TIME, 'IND');
+                                  $thedate = explode("-", $key->tanggal_bayar);
+                                  $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                  echo $s;
+                          ?></p>
                         <?php }else { ?>
-                          <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
-                          <p>Dibayar: <?=date('d M Y', strtotime($key->tanggal_bayar))?></p>
+                          <p>Jatuh Tempo:
+                            <?php setlocale(LC_TIME, 'IND');
+                                  $thedate = explode("-", $key->tanggal_jatuh_tempo);
+                                  $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                  echo $s;
+                          ?></p>
+                          <p>Dibayar:
+                            <?php setlocale(LC_TIME, 'IND');
+                                  $thedate = explode("-", $key->tanggal_bayar);
+                                  $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                  echo $s;
+                          ?></p>
                         <?php } ?>
                         <p><span style="color:#47c363"><b>LUNAS</b></span></p>
                       </div>
@@ -112,7 +126,13 @@
                       </div>
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
-                        <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                        <p>Jatuh Tempo:
+                          <?php setlocale(LC_TIME, 'IND');
+                                $thedate = explode("-", $key->tanggal_jatuh_tempo);
+                                $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                echo $s;
+                                ?>
+                        </p>
                         <p>Dibayar: -</p>
                         <p><span style="color:#6777ef"><b>MENUNGGU PEMBAYARAN</b></span></p>
                       </div>
@@ -133,7 +153,13 @@
                       </div>
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
-                        <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                        <p>Jatuh Tempo:
+                          <?php setlocale(LC_TIME, 'IND');
+                                $thedate = explode("-", $key->tanggal_jatuh_tempo);
+                                $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                echo $s;
+                                ?>
+                        </p>
                         <p>Dibayar: -</p>
                         <p><span style="color:#fc544b"><b>MELEBIHI JATUH TEMPO</b></span></p>
                       </div>
@@ -172,7 +198,12 @@
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
                         <p>Jenis: <?=$key->jenis_pembayaran?></p>
-                        <p>Dibayar: <?=date('d M Y', strtotime($key->tanggal_bayar))?></p>
+                        <p>Dibayar:
+                          <?php setlocale(LC_TIME, 'IND');
+                                $thedate = explode("-", $key->tanggal_bayar);
+                                $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                echo $s;
+                        ?></p>
                         <br><br>
                         <p><span style="color:#47c363"><b>LUNAS</b></span></p>
                       </div>
@@ -194,7 +225,12 @@
                       <div class="card-body">
                         <p>Nominal: <?="Rp".number_format($key->biaya, 2);?></p>
                         <p>Jenis: <?=$key->jenis_pembayaran?></p>
-                        <p>Jatuh Tempo: <?=date('d M Y', strtotime($key->tanggal_jatuh_tempo))?></p>
+                        <p>Jatuh Tempo:
+                          <?php setlocale(LC_TIME, 'IND');
+                                $thedate = explode("-", $key->tanggal_jatuh_tempo);
+                                $s = strftime('%d %B %Y', mktime(0, 0, 0, $thedate[1], $thedate[2], $thedate[0]));
+                                echo $s;
+                        ?></p>
                         <p>Dibayar: -</p>
                         <p><span style="color:#6777ef"><b>MENUNGGU PEMBAYARAN</b></span></p>
                       </div>

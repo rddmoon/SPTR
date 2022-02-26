@@ -65,6 +65,25 @@ class Pembelian extends CI_Controller
 
     }
 
+    public function rekap($id)
+    {
+        $data['pembelian'] = $this->m_pembelian->get($id)->row();
+        $data['metode_selected'] = $this->m_metode->get($data['pembelian']->id_metode)->row();
+        $data['cicilan_ke'] = $this->m_pembelian->get_cicilan_ke($data['pembelian']->id);
+        $data['pembeli_selected'] = $this->m_pembeli->get($data['pembelian']->id_pembeli)->row();
+        $data['unit_selected'] = $this->m_unit->get($data['pembelian']->id_unit)->row();
+        $id_perumahan = $this->m_unit->get_id_perumahan($data['pembelian']->id_unit);
+        $data['perumahan_selected'] = $this->m_unit->get_nama_perumahan($id_perumahan);
+
+        $data['pembayaran'] = $this->m_pembayaran->get_by_pembelian($id);
+        $data['pembayaran_tambahan'] = $this->m_pembayaran_tambahan->get_by_pembelian($data['pembelian']->id);
+
+
+        $content = $this->fungsi->user_login()->role . '/pembelian/rekap';
+        $this->load->view($content, $data);
+
+    }
+
     public function edit_dibatalkan($id)
     {
       $id_unit = $this->m_pembelian->get($id)->row()->id_unit;

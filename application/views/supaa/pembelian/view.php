@@ -73,6 +73,9 @@
                                           <a href="<?=site_url('pembelian/detail/'.$value->id)?>" class="btn btn-info">
                                               <i class="fa fa-eye"></i> Detail
                                           </a>
+                                          <a href="<?=site_url('pembelian/rekap/'.$value->id)?>" class="btn btn-light">
+                                              <i class="fa fa-file"></i> Rekap
+                                          </a>
                                           <a href="<?=site_url('pembelian/edit/'.$value->id)?>" class="btn btn-warning" hidden>
                                               <i class="fa fa-edit"></i> Ubah
                                           </a>
