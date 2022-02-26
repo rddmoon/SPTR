@@ -43,7 +43,26 @@
                   Jumlah Tunggakan: &nbsp<?=$value->tunggakan?></br>
                   Cicilan Perbulan: &nbsp&nbsp&nbsp&nbsp&nbsp<?="Rp".number_format($value->cicilan_perbulan, 2);?></br>
                   Total Tunggakan: &nbsp&nbsp&nbsp&nbsp<?="Rp".number_format($value->total_tunggakan, 2);?></br>
-                  Lama tunggakan: &nbsp&nbsp&nbsp&nbsp<?=round(abs(strtotime($today) - strtotime($value->tanggal_jatuh_tempo))/86400)?> hari
+                  Lama tunggakan: &nbsp&nbsp&nbsp&nbsp<?php
+                  $date1 = new DateTime($today);
+                  $date2 = new DateTime($value->tanggal_jatuh_tempo);
+                  $datediff = date_diff($date1, $date2);
+                  // $days = round(abs(strtotime($today) - strtotime($value->tanggal_jatuh_tempo))/86400);
+                  $tahun = $datediff->y;
+                  $bulan = $datediff->m;
+                  $hari = $datediff->d;
+                  // echo $datediff->format('%y tahun, %m bulan, %d hari.');
+                  if ($tahun > 0) {
+                    echo $tahun. ' tahun ';
+                  }
+                  if ($bulan > 0) {
+                    echo $bulan . ' bulan ';
+                  }
+                  if ($hari > 0) {
+                    echo $hari . ' hari';
+                  }
+                  // echo ' ' . $days . ' hari.';
+                  ?>
                 </p>
               </br>
                 <a href="<?=site_url('tunggakan/detail/'.$value->id_pembelian)?>" class="btn btn-info btn-sm btn-round">
