@@ -51,6 +51,7 @@
                   $tahun = $datediff->y;
                   $bulan = $datediff->m;
                   $hari = $datediff->d;
+                  $jam = $datediff->h;
                   // echo $datediff->format('%y tahun, %m bulan, %d hari.');
                   if ($tahun > 0) {
                     echo $tahun. ' tahun ';
@@ -60,6 +61,9 @@
                   }
                   if ($hari > 0) {
                     echo $hari . ' hari';
+                  }
+                  if ($hari == 0 && $bulan == 0 && $tahun == 0) {
+                    echo 'Baru hari ini';
                   }
                   // echo ' ' . $days . ' hari.';
                   ?>

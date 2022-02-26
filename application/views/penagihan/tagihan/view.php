@@ -61,6 +61,9 @@
                   if ($hari > 0) {
                     echo $hari . ' hari';
                   }
+                  if ($hari == 0 && $bulan == 0 && $tahun == 0) {
+                    echo 'Baru hari ini';
+                  }
                   // echo ' ' . $days . ' hari.';
                   ?>
                 </p>
