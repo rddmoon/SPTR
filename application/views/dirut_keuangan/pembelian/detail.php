@@ -49,7 +49,7 @@
                   <div class="text-center">
                     <?php if($pembelian->status_pembelian == "berjalan"){ ?>
                   <form class="" action="<?=site_url('pembelian/edit_dibatalkan/'.$pembelian->id)?>" method="post">
-                      <button onclick="return confirm('Apakah Anda yakin akan membatalkan pembelian?')" class="btn btn-danger" hidden>
+                      <button onclick="return confirm('Apakah Anda yakin akan membatalkan pembelian?')" class="btn btn-danger">
                         <i class="fa fa-times-circle"></i> Batalkan Pembelian
                       </button>
                     </form>
